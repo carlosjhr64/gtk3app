@@ -1,0 +1,57 @@
+Need to re-implement all features given by the original files listed below.
+When all functionality from a file is implemented, check it off.
+
+[ ] ROOT:
+[ ] lib/gtk2applib.rb
+
+[ ] BASE:
+[ ] lib/gtk2applib/appconfig.rb
+[ ] lib/gtk2applib/app_menu.rb
+[ ] lib/gtk2applib/cache.rb
+[ ] lib/gtk2applib/color.rb
+[ ] lib/gtk2applib/component.rb
+[ ] lib/gtk2applib/constants.rb
+[ ] lib/gtk2applib/core_hacks.rb
+[ ] lib/gtk2applib/dock_menu.rb
+[ ] lib/gtk2applib/images.rb
+[ ] lib/gtk2applib/key_press_events.rb
+[ ] lib/gtk2applib/keyvalues.rb
+[ ] lib/gtk2applib/lock.rb
+[ ] lib/gtk2applib/oauth.rb
+[ ] lib/gtk2applib/optparse.rb
+[ ] lib/gtk2applib/parameters.rb
+[ ] lib/gtk2applib/program.rb
+[ ] lib/gtk2applib/sysconfig.rb
+[ ] lib/gtk2applib/system.rb
+[ ] lib/gtk2applib/user_space.rb
+
+[ ] WIDGETS:
+[ ] lib/gtk2applib/widgets/button.rb
+[ ] lib/gtk2applib/widgets/cached_image.rb
+[ ] lib/gtk2applib/widgets/check_button.rb
+[ ] lib/gtk2applib/widgets/combo_box_entry.rb
+[ ] lib/gtk2applib/widgets/combo_box.rb
+[ ] lib/gtk2applib/widgets/composite.rb
+[ ] lib/gtk2applib/widgets/core.rb
+[ ] lib/gtk2applib/widgets/evented.rb
+[ ] lib/gtk2applib/widgets/fixed_interpreter.rb
+[ ] lib/gtk2applib/widgets/fixed.rb
+[ ] lib/gtk2applib/widgets/label.rb
+[ ] lib/gtk2applib/widgets/menu.rb
+[ ] lib/gtk2applib/widgets/on_off_button.rb
+[ ] lib/gtk2applib/widgets/standard_widgets.rb
+[ ] lib/gtk2applib/widgets/text_view.rb
+[ ] lib/gtk2applib/widgets/toggle_button.rb
+
+[ ] DIALOGS:
+[ ] lib/gtk2applib/dialogs/auth.rb
+[ ] lib/gtk2applib/dialogs/choose_tags.rb
+[ ] lib/gtk2applib/dialogs/core.rb
+[ ] lib/gtk2applib/dialogs/entry.rb
+[ ] lib/gtk2applib/dialogs/get_date.rb
+[ ] lib/gtk2applib/dialogs/login.rb
+[ ] lib/gtk2applib/dialogs/pick_one.rb
+[ ] lib/gtk2applib/dialogs/question.rb
+[ ] lib/gtk2applib/dialogs/quick_message.rb
+[ ] lib/gtk2applib/dialogs/show_image.rb
+[ ] lib/gtk2applib/dialogs/text_view.rb
