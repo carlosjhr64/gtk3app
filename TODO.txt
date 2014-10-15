@@ -1,6 +1,9 @@
 Need to re-implement all features given by the original files listed below.
 When all functionality from a file is implemented, check it off.
 
+VERSION 16.0.0
+Version 16 was never finished, and I have to no intention to finish it.
+
 [ ] ROOT:
 [ ] lib/gtk2applib.rb
 
@@ -39,7 +42,57 @@ When all functionality from a file is implemented, check it off.
 [ ] lib/gtk2applib/widgets/label.rb
 [ ] lib/gtk2applib/widgets/menu.rb
 [ ] lib/gtk2applib/widgets/on_off_button.rb
-[ ] lib/gtk2applib/widgets/standard_widgets.rb
+[*] lib/gtk2applib/widgets/standard_widgets.rb
+	Features delegated to Such gem spread over such.rb and such/such.rb.
+[ ] lib/gtk2applib/widgets/text_view.rb
+[ ] lib/gtk2applib/widgets/toggle_button.rb
+
+[ ] DIALOGS:
+[ ] lib/gtk2applib/dialogs/auth.rb
+[ ] lib/gtk2applib/dialogs/choose_tags.rb
+[ ] lib/gtk2applib/dialogs/core.rb
+[ ] lib/gtk2applib/dialogs/entry.rb
+[ ] lib/gtk2applib/dialogs/get_date.rb
+[ ] lib/gtk2applib/dialogs/login.rb
+[ ] lib/gtk2applib/dialogs/pick_one.rb
+[ ] lib/gtk2applib/dialogs/question.rb
+[ ] lib/gtk2applib/dialogs/quick_message.rb
+[ ] lib/gtk2applib/dialogs/show_image.rb
+[ ] lib/gtk2applib/dialogs/text_view.rb
+
+
+VERSION 15.3.1
+Version 15 was the last working/published version.
+
+[ ] ROOT:
+[ ] lib/gtk2applib.rb
+
+[ ] BASE:
+[ ] lib/gtk2applib/app_menu.rb
+[ ] lib/gtk2applib/cache.rb
+[ ] lib/gtk2applib/color.rb
+[ ] lib/gtk2applib/component.rb
+[ ] lib/gtk2applib/configuration.rb
+[ ] lib/gtk2applib/core.rb
+[ ] lib/gtk2applib/dock_menu.rb
+[ ] lib/gtk2applib/keyvalues.rb
+[ ] lib/gtk2applib/lock.rb
+[ ] lib/gtk2applib/oauth.rb
+[ ] lib/gtk2applib/program.rb
+[ ] lib/gtk2applib/user_space.rb
+
+[ ] WIDGETS:
+[ ] lib/gtk2applib/widgets/button.rb
+[ ] lib/gtk2applib/widgets/cached_image.rb
+[ ] lib/gtk2applib/widgets/check_button.rb
+[ ] lib/gtk2applib/widgets/combo_box_entry.rb
+[ ] lib/gtk2applib/widgets/combo_box.rb
+[.] lib/gtk2applib/widgets/core.rb
+[ ] lib/gtk2applib/widgets/fixed_interpreter.rb
+[ ] lib/gtk2applib/widgets/fixed.rb
+[ ] lib/gtk2applib/widgets/label.rb
+[ ] lib/gtk2applib/widgets/menu.rb
+[ ] lib/gtk2applib/widgets/on_off_button.rb
 [ ] lib/gtk2applib/widgets/text_view.rb
 [ ] lib/gtk2applib/widgets/toggle_button.rb
 
