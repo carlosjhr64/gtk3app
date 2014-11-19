@@ -19,6 +19,7 @@ module Gtk3App
     version, help = mod::VERSION, mod::CONFIG[:HELP]
     options       = HELP_PARSER::HelpParser.new(version, help)
     $VERBOSE      = (options[:q])? nil : (options[:V])? true : false
+    $DEBUG        = true if options[:d] # Don't get to turn off debug
     return options
   end
 

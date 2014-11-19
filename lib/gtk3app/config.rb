@@ -12,8 +12,9 @@ Options:
 
    -h --help      Show this help and exit.
    -v --version   Show the version and exit.
-   -q --quiet     Be quiet.
-   -V --verbose   Say more about what's going on.
+   -q --quiet     Be quiet, sets $VERBOSE to nil.
+   -V --verbose   Sets $VERBOSE to true.
+   -d --debug     Sets $DEBUG to true.
 
    appname        The name of the application to be run.
 
