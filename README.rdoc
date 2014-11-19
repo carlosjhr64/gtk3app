@@ -1,4 +1,4 @@
-= gt2applib2
+= gt3applib
 
 == DESCRIPTION:
 
@@ -8,7 +8,7 @@
 
 == INSTALL:
 
-  $ sudo gem install gt2applib2
+  $ sudo gem install gtk3applib
 
 == LICENSE:
 

@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+require 'gtk3app'
+Gtk3App.main
