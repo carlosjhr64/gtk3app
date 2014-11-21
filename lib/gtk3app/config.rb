@@ -38,8 +38,26 @@ HELP
       about: h0,
       about!: [:ABOUT, :about, 'activate'],
 
+      HELP: ['Help'],
+      help: h0,
+      help!: [:HELP, :help, 'activate'],
+
+      DOCK: ['Dock'],
+      dock: h0,
+      dock!: [:DOCK, :dock, 'activate'],
+
+      CLOSE: ['Close'],
+      close: h0,
+      close!: [:CLOSE, :close, 'activate'],
+
+      QUIT: ['Quit'],
+      quit: h0,
+      quit!: [:QUIT, :quit, 'activate'],
+
       APP_MENU: a0,
-      app_menu: {append_menu_item: [:fs!, :about!]}, #, :help!, :dock!, :close!, :quit!]},
+      app_menu: {
+        append_menu_item: [:fs!, :about!, :help!, :dock!, :close!, :quit!],
+      },
       app_menu!: [:APP_MENU, :app_menu, s0],
 
     },

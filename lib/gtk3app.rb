@@ -16,7 +16,7 @@ Such::Things.gtk_widget
 require 'gtk3app/version.rb'
 require 'gtk3app/config.rb'
 # Custom Widgets
-require 'gtk3app/widgets/menu.rb'
+require 'gtk3app/widget/widgets.rb'
 # Program Flow
 require 'gtk3app/program.rb'
 require 'gtk3app/gtk3app.rb'
