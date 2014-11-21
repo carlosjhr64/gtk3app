@@ -12,7 +12,6 @@ module Gtk3App
     user_space = UserSpace.new(appname: appname, appdir: appdir)
     user_space.install unless user_space.version == mod::VERSION
     user_space.configures(mod::CONFIG)
-    return mod::CONFIG
   end
 
   def self.options(mod)
@@ -20,21 +19,20 @@ module Gtk3App
     options       = HELP_PARSER::HelpParser.new(version, help)
     $VERBOSE      = (options[:q])? nil : (options[:V])? true : false
     $DEBUG        = true if options[:d] # Don't get to turn off debug
-    return options
   end
 
   def self.init(mod=Gtk3App)
     Gtk3App.config mod
     Gtk3App.options mod
+    Such::Thing.configure mod::CONFIG[:Thing]
   end
 
   def self.run(appname)
     require appname=='demo' ? 'gtk3app/demo' : appname
     app = Object.const_get appname.camelize
     Gtk3App.init app
-    #window = Window.new :app!
-    #app.run window
-    #Gtk.main
+    Program.new app
+    Gtk.main
   end
 
   def self.main

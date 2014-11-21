@@ -10,7 +10,11 @@ Version 16 was never finished, and I have to no intention to finish it.
 [ ] BASE:
 [X] lib/gtk2applib/appconfig.rb
 	Will be working with user_space gem
+
+##############################
 [ ] lib/gtk2applib/app_menu.rb
+##############################
+
 [?] lib/gtk2applib/cache.rb
 	This should be it's own gem.
 	Someone's has probably written one already.
@@ -24,7 +28,11 @@ Version 16 was never finished, and I have to no intention to finish it.
 	Just use ???::VERSION
 [R] lib/gtk2applib/core_hacks.rb
 	Rafini gem.
+
+###############################
 [ ] lib/gtk2applib/dock_menu.rb
+###############################
+
 [ ] lib/gtk2applib/images.rb
 [ ] lib/gtk2applib/key_press_events.rb
 [R] lib/gtk2applib/keyvalues.rb
