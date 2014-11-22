@@ -5,8 +5,6 @@ module Gtk3App
   UserSpace::OPTIONS[:parser] = YAML
   UserSpace::OPTIONS[:ext]    = 'yml'
 
-  APPDIR = File.dirname File.dirname __dir__
-
   def self.config(mod, appname=mod.name.downcase, appdir=mod::APPDIR)
     appname.prepend('gtk3app/') unless mod==Gtk3App
     user_space = UserSpace.new(appname: appname, appdir: appdir)

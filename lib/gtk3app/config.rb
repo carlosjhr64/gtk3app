@@ -1,4 +1,7 @@
 module Gtk3App
+
+  APPDIR = File.dirname File.dirname __dir__
+
   a0 = Rafini::Empty::ARRAY
   h0 = Rafini::Empty::HASH
   s0 = Rafini::Empty::STRING
@@ -37,6 +40,15 @@ HELP
       ABOUT: ['About'],
       about: h0,
       about!: [:ABOUT, :about, 'activate'],
+      about_dialog: {
+        set_program_name: 'Gtk3App',
+        set_version: VERSION,
+        set_copyright: '(c) 2014 CarlosJHR64',
+        set_comments: 'A Gtk3 Application Stub',
+        set_website: 'https://github.com/carlosjhr64/gtk3app',
+        set_website_label: 'See it at GitHub!',
+      },
+      LOGO: [file: "#{XDG['DATA']}/gtk3app/logo.png"],
 
       HELP: ['Help'],
       help: h0,

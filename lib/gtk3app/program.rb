@@ -12,7 +12,15 @@ module Gtk3App
     end
 
     def about!
-      puts "I'm all about it!"
+      about = Such::AboutDialog.new :about_dialog
+      begin
+        logo = Gdk::Pixbuf.new(*Such::Thing::PARAMETERS[:LOGO])
+        about.set_logo logo
+      rescue IOError
+        warn "cannot load logo: #{Such::Thing::PARAMETERS[:LOGO]}"
+      end
+      about.run
+      about.destroy
     end
 
     def help!
