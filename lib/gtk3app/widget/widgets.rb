@@ -18,7 +18,11 @@ module Widget
       @block = block
       window.add_events(Gdk::Event::BUTTON_PRESS_MASK)
       window.signal_connect('button_press_event') do |w,e|
-        self.popup(nil, nil, 3, e.time) if e.button == 3
+        if e.button == 3
+          self.popup(nil, nil, 3, e.time)
+        else
+          block.call(w,e,'button_press_event')
+        end
       end
       super(*par)
     end

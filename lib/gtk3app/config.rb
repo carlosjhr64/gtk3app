@@ -35,6 +35,14 @@ HELP
       window: h0,
       window!: [:WINDOW,:window],
 
+      MINI: a0,
+      mini: {
+        set_default_size: [25,25],
+        set_decorated: false,
+      },
+      mini!: [:MINI,:mini],
+
+
       FS: ['Full Screen'],
       fs: h0,
       fs!: [:FS, :fs, 'activate'],
@@ -50,6 +58,7 @@ HELP
         set_website: 'https://github.com/carlosjhr64/gtk3app',
         set_website_label: 'See it at GitHub!',
       },
+
       LOGO: [file: "#{XDG['DATA']}/gtk3app/logo.png"],
 
       HELP: ['Help'],
@@ -74,6 +83,12 @@ HELP
         append_menu_item: [:fs!, :about!, :help!, :minime!, :close!, :quit!],
       },
       app_menu!: [:APP_MENU, :app_menu, s0],
+
+      MINI_MENU: a0,
+      mini_menu: {
+        append_menu_item: [:quit!],
+      },
+      mini_menu!: [:MINI_MENU, :mini_menu, s0],
 
     },
   }
