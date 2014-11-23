@@ -2,20 +2,23 @@ module Gtk3App
   class Program
 
     def initialize(app)
-      @window = Such::Window.new(:window!, 'destroy'){Gtk.main_quit} # For Now
+      @window = Such::Window.new(:window!, 'delete-event'){quit!}
       @app_menu = Gtk3App::Widget::AppMenu.new(@window, :app_menu!){|w, *_|self.method(w.key).call}
+      @fs = false
+      @logo = Gdk::Pixbuf.new(*Such::Thing::PARAMETERS[:LOGO])
+      @window.set_icon @logo
       app.run(@window)
     end
 
     def fs!
-      puts "Fullscreen baby!"
+      @fs ? @window.unfullscreen : @window.fullscreen
+      @fs = !@fs
     end
 
     def about!
       about = Such::AboutDialog.new :about_dialog
       begin
-        logo = Gdk::Pixbuf.new(*Such::Thing::PARAMETERS[:LOGO])
-        about.set_logo logo
+        about.set_logo @logo
       rescue IOError
         warn "cannot load logo: #{Such::Thing::PARAMETERS[:LOGO]}"
       end
@@ -24,11 +27,11 @@ module Gtk3App
     end
 
     def help!
-      puts "HELP! I need somebody..."
+      system "#{CONFIG[:OPEN]} '#{Such::Thing::PARAMETERS[:HELP_FILE]}'"
     end
 
     def dock!
-      puts "..on the bay."
+      @window.iconify
     end
 
     def close!

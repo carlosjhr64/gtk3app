@@ -27,6 +27,8 @@ Options:
 
 HELP
 
+    OPEN: 'gnome-open',
+
     Thing: { # supplements
 
       WINDOW: a0,
@@ -53,6 +55,7 @@ HELP
       HELP: ['Help'],
       help: h0,
       help!: [:HELP, :help, 'activate'],
+      HELP_FILE: 'https://github.com/carlosjhr64/gtk3app',
 
       DOCK: ['Dock'],
       dock: h0,
