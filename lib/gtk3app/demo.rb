@@ -1,6 +1,8 @@
 module Demo
+
   APPDIR  = File.dirname File.dirname __dir__
   VERSION = '0.0.0'
+
   CONFIG = {
     HELP: <<HELP,
 
@@ -29,7 +31,16 @@ HELP
     },
   }
 
+  def self.options=(h)
+    @@options = h
+  end
+
+  def self.options
+    @@options
+  end
+
   def self.run(window)
     window.show_all
   end
+
 end

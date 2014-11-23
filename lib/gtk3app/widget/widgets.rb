@@ -22,6 +22,7 @@ module Widget
       end
       super(*par)
     end
+
     def append_menu_item(key)
       super(key, &@block)
     end

@@ -12,11 +12,20 @@ module Gtk3App
     user_space.configures(mod::CONFIG)
   end
 
-  def self.options(mod)
-    version, help = mod::VERSION, mod::CONFIG[:HELP]
-    options       = HELP_PARSER::HelpParser.new(version, help)
-    $VERBOSE      = (options[:q])? nil : (options[:V])? true : false
-    $DEBUG        = true if options[:d] # Don't get to turn off debug
+  def self.options=(h)
+    @@options=h
+  end
+
+  def self.options(mod=nil)
+    if mod
+      version, help = mod::VERSION, mod::CONFIG[:HELP]
+      options       = HELP_PARSER::HelpParser.new(version, help)
+      $VERBOSE      = (options[:q])? nil : (options[:V])? true : false
+      $DEBUG        = true if options[:d] # Don't get to turn off debug
+      mod.options   = options
+    else
+      @@options
+    end
   end
 
   def self.init(mod=Gtk3App)
