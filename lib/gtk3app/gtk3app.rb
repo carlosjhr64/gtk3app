@@ -14,7 +14,7 @@ module Gtk3App
     user_space.install unless user_space.version == mod::VERSION
     user_space.configures(mod::CONFIG)
   rescue NameError
-    $!.puts 'Application is not using APPDIR.'
+    $!.puts 'Application is not using APPDIR, VERSION, or CONFIG.'
   end
 
   def self.options=(h)
@@ -33,6 +33,8 @@ module Gtk3App
     else
       @@options
     end
+  rescue NoMethodError
+    $!.puts 'Application is not providing options setter.'
   rescue NameError
     $!.puts 'Application is not using VERSION or CONFIG.'
   end
@@ -43,7 +45,7 @@ module Gtk3App
     if thing = mod::CONFIG[:Thing]
       Such::Thing.configure thing
     end
-  rescue Exception
+  rescue NameError
     $!.puts 'Application is not using CONFIG.'
   end
 
