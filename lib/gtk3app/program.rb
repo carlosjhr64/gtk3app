@@ -11,6 +11,7 @@ module Gtk3App
       @logo = Gdk::Pixbuf.new(*Such::Thing::PARAMETERS[:LOGO])
       @window.set_icon @logo
 
+      @mini_menu = nil
       if @app_menu.children.which{|item| item.key==:minime!}
         @mini = Such::Window.new(:mini, 'delete-event'){quit!}
         @mini.set_default_size(*CONFIG[:SLOTS_SCALE])
@@ -21,7 +22,11 @@ module Gtk3App
         end
       end
 
-      app.run(@window)
+      case app.method(:run).arity
+      when 1 then app.run(@window)
+      when 2 then app.run(@window, @mini_menu)
+      else raise "Application did not provide run method."
+      end
     end
 
     def fs!
@@ -61,10 +66,6 @@ module Gtk3App
         @mini.hide
         @window.show
       end
-    end
-
-    def close!
-      puts "Sooooo close!"
     end
 
     def quit!

@@ -1,15 +1,20 @@
 module Gtk3App
   using Rafini::String
   using Rafini::Hash
+  using Rafini::Exception
 
   UserSpace::OPTIONS[:parser] = YAML
   UserSpace::OPTIONS[:ext]    = 'yml'
 
-  def self.config(mod, appname=mod.name.downcase, appdir=mod::APPDIR)
+  def self.config(mod)
+    appname=mod.name.downcase
+    appdir=mod::APPDIR
     appname.prepend('gtk3app/') unless mod==Gtk3App
     user_space = UserSpace.new(appname: appname, appdir: appdir)
     user_space.install unless user_space.version == mod::VERSION
     user_space.configures(mod::CONFIG)
+  rescue NameError
+    $!.puts 'Application is not using APPDIR.'
   end
 
   def self.options=(h)
@@ -19,24 +24,32 @@ module Gtk3App
   def self.options(mod=nil)
     if mod
       version, help = mod::VERSION, mod::CONFIG[:HELP]
-      options       = HELP_PARSER::HelpParser.new(version, help)
-      $VERBOSE      = (options[:q])? nil : (options[:V])? true : false
-      $DEBUG        = true if options[:d] # Don't get to turn off debug
-      mod.options   = options
+      if help
+        options     = HELP_PARSER::HelpParser.new(version, help)
+        $VERBOSE    = (options[:q])? nil : (options[:V])? true : false
+        $DEBUG      = true if options[:d] # Don't get to turn off debug
+        mod.options = options
+      end
     else
       @@options
     end
+  rescue NameError
+    $!.puts 'Application is not using VERSION or CONFIG.'
   end
 
   def self.init(mod=Gtk3App)
     Gtk3App.config mod
     Gtk3App.options mod
-    Such::Thing.configure mod::CONFIG[:Thing]
+    if thing = mod::CONFIG[:Thing]
+      Such::Thing.configure thing
+    end
+  rescue Exception
+    $!.puts 'Application is not using CONFIG.'
   end
 
   def self.run(appname)
     require appname=='demo' ? 'gtk3app/demo' : appname
-    app = Object.const_get appname.camelize
+    app = Object.const_get File.basename(appname).camelize
     Gtk3App.init app
     Program.new app
     Gtk.main
