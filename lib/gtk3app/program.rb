@@ -12,7 +12,7 @@ module Gtk3App
       @window.set_icon @logo
 
       if @app_menu.children.which{|item| item.key==:minime!}
-        @mini = Such::Window.new(:mini, 'delete-event', 'clicked'){quit!}
+        @mini = Such::Window.new(:mini, 'delete-event'){quit!}
         @mini.add Gtk::Image.new(pixbuf: @logo.scale(25,25))
         @mini_menu = Gtk3App::Widget::AppMenu.new(@mini, :mini_menu!) do |w,*_,s|
           self.method(w.key).call if s=='activate'
