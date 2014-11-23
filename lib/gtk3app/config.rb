@@ -57,9 +57,9 @@ HELP
       help!: [:HELP, :help, 'activate'],
       HELP_FILE: 'https://github.com/carlosjhr64/gtk3app',
 
-      DOCK: ['Dock'],
-      dock: h0,
-      dock!: [:DOCK, :dock, 'activate'],
+      MINIME: ['Mini-me'],
+      minime: h0,
+      minime!: [:MINIME, :minime, 'activate'],
 
       CLOSE: ['Close'],
       close: h0,
@@ -71,7 +71,7 @@ HELP
 
       APP_MENU: a0,
       app_menu: {
-        append_menu_item: [:fs!, :about!, :help!, :dock!, :close!, :quit!],
+        append_menu_item: [:fs!, :about!, :help!, :minime!, :close!, :quit!],
       },
       app_menu!: [:APP_MENU, :app_menu, s0],
 

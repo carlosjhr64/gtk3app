@@ -30,7 +30,7 @@ module Gtk3App
       system "#{CONFIG[:OPEN]} '#{Such::Thing::PARAMETERS[:HELP_FILE]}'"
     end
 
-    def dock!
+    def minime!
       @window.iconify
     end
 
