@@ -29,6 +29,11 @@ HELP
 
     OPEN: 'gnome-open',
 
+    SLOTS: 13,
+    SLOTS_DBM: "#{XDG['CACHE']}/gtk3app/slots.sdbm",
+    SLOTS_OFFSET: [0,0],
+    SLOTS_SCALE: [25,25],
+
     Thing: { # supplements
 
       WINDOW: a0,
@@ -37,7 +42,6 @@ HELP
 
       MINI: a0,
       mini: {
-        set_default_size: [25,25],
         set_decorated: false,
       },
       mini!: [:MINI,:mini],

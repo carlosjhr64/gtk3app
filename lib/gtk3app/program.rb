@@ -13,7 +13,8 @@ module Gtk3App
 
       if @app_menu.children.which{|item| item.key==:minime!}
         @mini = Such::Window.new(:mini, 'delete-event'){quit!}
-        @mini.add Gtk::Image.new(pixbuf: @logo.scale(25,25))
+        @mini.set_default_size(*CONFIG[:SLOTS_SCALE])
+        @mini.add Gtk::Image.new(pixbuf: @logo.scale(*CONFIG[:SLOTS_SCALE]))
         @mini_menu = Gtk3App::Widget::AppMenu.new(@mini, :mini_menu!) do |w,*_,s|
           self.method(w.key).call if s=='activate'
           minime! if s=='button_press_event'
@@ -45,12 +46,18 @@ module Gtk3App
 
     def minime!
       if @window.visible?
-        w, h = Gdk.screen_width, Gdk.screen_height
-        @window.hide
-        @mini.keep_above=true
-        @mini.move(w-25, h-25)
-        @mini.show_all
+        @slot = Slot.get
+        if @slot
+          a, b = CONFIG[:SLOTS_SCALE]
+          x, y = CONFIG[:SLOTS_OFFSET]
+          w, h = Gdk.screen_width, Gdk.screen_height
+          @mini.move(w-@slot*a+x, h-b+y)
+          @mini.keep_above=true
+          @window.hide
+          @mini.show_all
+        end
       else
+        Slot.release(@slot) if @slot
         @mini.hide
         @window.show
       end
@@ -61,6 +68,7 @@ module Gtk3App
     end
 
     def quit!
+      Slot.release(@slot) if @slot
       Gtk.main_quit
     end
 
