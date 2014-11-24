@@ -14,6 +14,7 @@ module Gtk3App
       @mini_menu = nil
       if @app_menu.children.which{|item| item.key==:minime!}
         @mini = Such::Window.new(:mini, 'delete-event'){quit!}
+        @mini.set_icon @logo
         @mini.set_default_size(*CONFIG[:SLOTS_SCALE])
         @mini.add Gtk::Image.new(pixbuf: @logo.scale(*CONFIG[:SLOTS_SCALE]))
         @mini_menu = Gtk3App::Widget::AppMenu.new(@mini, :mini_menu!) do |w,*_,s|
