@@ -1,7 +1,3 @@
-# NOTE:
-# Comments marked as NOTE are IMPORTANT!
-
-# NOTE:
 # Gtk3App will camelize the given filename of the application to get the module name.
 module SimpleApp
 
@@ -19,12 +15,10 @@ module SimpleApp
     end
   end
 
-  # NOTE:
   # Gtk3App expects a module level run method to pass the main Window object.
   # Here it's SimpleApp.run.
   def self.run(window)
 
-    # NOTE:
     # Once here, one can proceed as one normally does, "Gtk" style.
     window.set_title "My Application!"
     window.set_default_size 200, 100
