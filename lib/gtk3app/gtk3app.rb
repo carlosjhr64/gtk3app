@@ -7,12 +7,17 @@ module Gtk3App
   UserSpace::OPTIONS[:ext]    = 'yml'
 
   def self.config(mod)
-    appname=mod.name.downcase
-    appdir=mod::APPDIR
+    # Let's get NameErrors out of the way first
+    appdir  = mod::APPDIR
+    config  = mod::CONFIG
+    version = mod::VERSION
+    # Create the directory name for UserSpace.
+    appname = mod.name.downcase
     appname.prepend('gtk3app/') unless mod==Gtk3App
+    # UserSpace does its thing...
     user_space = UserSpace.new(appname: appname, appdir: appdir)
-    user_space.install unless user_space.version == mod::VERSION
-    user_space.configures(mod::CONFIG)
+    user_space.install unless user_space.version == version
+    user_space.configures(config)
   rescue NameError
     $!.puts 'Application is not using APPDIR, VERSION, or CONFIG.'
   end
@@ -25,9 +30,11 @@ module Gtk3App
     if mod
       version, help = mod::VERSION, mod::CONFIG[:HELP]
       if help
-        options     = HELP_PARSER::HelpParser.new(version, help)
-        $VERBOSE    = (options[:q])? nil : (options[:V])? true : false
-        $DEBUG      = true if options[:d] # Don't get to turn off debug
+        # HelpParser enforces -h and -v for help and version respectively.
+        # To that we add -V, -q, and -d for verbose, quiet, and debug respectively.
+        options = HELP_PARSER::HelpParser.new(version, help, {verbose: :V, quiet: :q, debug: :d})
+        $VERBOSE = (options[:q])? nil : (options[:V])? true : false
+        $DEBUG = true if options[:d] # Don't get to turn off debug
         mod.options = options
       end
     else
@@ -72,6 +79,9 @@ module Gtk3App
     rescue HELP_PARSER::UsageError
       $stderr.puts $!.message
       exit 64
+    rescue Exception
+      $!.puts
+      exit 1
     end
   end
 end

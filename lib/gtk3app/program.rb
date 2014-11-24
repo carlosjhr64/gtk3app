@@ -25,7 +25,7 @@ module Gtk3App
       case app.method(:run).arity
       when 1 then app.run(@window)
       when 2 then app.run(@window, @mini_menu)
-      else raise "Application did not provide run method."
+      else raise "Application run method should have 2 parameters."
       end
     end
 
