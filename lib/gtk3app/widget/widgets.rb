@@ -28,7 +28,7 @@ module Widget
     end
 
     def append_menu_item(key)
-      super(key, &@block)
+      block_given? ? super : super(key, &@block)
     end
   end
 
