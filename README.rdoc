@@ -22,6 +22,19 @@ That's enough to get you going.
 The three examples in the ./examples[https://github.com/carlosjhr64/gtk3app/tree/master/examples]
 directory fully explains the rest of what _Gtk3App_ can do for you.
 
+== HELP:
+
+   This is the gtk3app stub.
+   Usage:
+      gtk3app [options] appname ...
+   Options:
+      -h --help      Show this help and exit.
+      -v --version   Show the version and exit.
+      -q --quiet     Set $VERBOSE to nil.
+      -V --verbose   Set $VERBOSE to true.
+      -d --debug     Set $DEBUG to true.
+      appname        The name of the application to be run.
+
 == FEATURES:
 
 * _Such_[https://github.com/carlosjhr64/Such] wrappers.
