@@ -1,0 +1,30 @@
+#! ruby
+require 'sdbm'
+require 'sys/proctable'
+require 'xdg'
+require 'test/unit'
+require 'rafini'
+require 'gtk3app/version'
+require 'gtk3app/config'
+require 'gtk3app/slot'
+
+class TestSlot < Test::Unit::TestCase
+  def test_slot
+    # just going to ensure it still runs
+    max = 13
+    assert_nothing_raised() do
+      count=0
+      Gtk3App::Slot.numbers{count+=1}
+      assert_equal Gtk3App::CONFIG[:Slots], count
+      assert_equal max, count # double checking
+      Gtk3App::Slot.dbm do |db|
+        assert_equal SDBM, db.class
+      end
+      slot = Gtk3App::Slot.get
+      assert_equal Fixnum, slot.class
+      assert slot>0
+      assert slot<max
+      warn "\nWarning: Unexpected slot number, are there apps running?" unless slot==1
+    end
+  end
+end

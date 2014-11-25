@@ -1,0 +1,64 @@
+#! ruby
+require 'xdg'
+require 'gtk3app/version'
+require 'test/unit'
+
+class TestUserSpace < Test::Unit::TestCase
+  # Presumably, the examples have be run.
+  # Going to test the XDG files are as expected.
+  def test_user_space
+    assert_nothing_raised() do
+      data = XDG['DATA'].to_s
+      config = XDG['CONFIG'].to_s
+      cache = XDG['CACHE'].to_s
+
+      assert File.exist?(data), data
+      assert File.exist?(config), config
+      assert File.exist?(cache), cache
+
+      data = File.join data, 'gtk3app'
+      config = File.join config, 'gtk3app'
+      cache = File.join cache, 'gtk3app'
+
+      assert File.exist?(data), data
+      assert File.exist?(config), config
+      assert File.exist?(cache), cache
+
+      # Check version file
+      file = File.join data, 'VERSION'
+      assert File.exist?(file), file
+      assert_equal Gtk3App::VERSION, File.read(file).strip
+      # Check config file
+      file = File.join config, 'config.yml'
+      assert File.exist?(file), file
+      # If anything changes the config file, want to know about it!
+      assert_equal '50ac2fbafafd7733bbdb2ef67056059b',
+        `md5sum '#{file}'`.strip.split(/\s+/).first
+
+      [data,config,cache].each do |dir|
+        # Note that SimpleApp does not trigger UserSpace
+        ['intermediateapp','expertapp'].each do |x|
+          xdir = File.join dir, x
+          assert File.exist?(xdir), xdir
+          case dir
+          when data
+            file = File.join xdir, 'VERSION'
+            assert File.exist?(file), file
+            assert_equal Gtk3App::VERSION, File.read(file).strip
+          when config
+            file = File.join xdir, 'config.yml'
+            assert File.exist?(file), file
+            case x
+            when 'intermediateapp'
+              assert_equal '51489387d2fcdba904fe145f7597a91d',
+                `md5sum '#{file}'`.strip.split(/\s+/).first
+            when 'expertapp'
+              assert_equal 'aee24135d7d5dfb305d7ee156266177f',
+                `md5sum '#{file}'`.strip.split(/\s+/).first
+            end
+          end
+        end
+      end
+    end
+  end
+end

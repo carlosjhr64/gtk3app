@@ -1,0 +1,13 @@
+#! ruby
+EXAMPLES = './examples'
+LOG = './test/error.log'
+
+Dir.entries(EXAMPLES).each do |file|
+  file  = File.join EXAMPLES, file
+  if File.file?(file)
+    unless system("ruby -I ./lib ./bin/gtk3app -q #{file} 2> #{LOG}") and File.zero?(LOG)
+      $stderr.puts "Error in #{file}.  See #{LOG}.".
+      exit
+    end
+  end
+end
