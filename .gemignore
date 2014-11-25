@@ -3,6 +3,6 @@
  (examples\/)|
  (test\/)|
  (TODO\.)|
- (such.gemspec)|
+ (\w+\.gemspec)|
  (History\.)
 )

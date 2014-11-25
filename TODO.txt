@@ -143,3 +143,18 @@ Version 15 was the last working/published version.
 [ ] lib/gtk2applib/dialogs/text_view.rb
 == File List
 
+ONE:	[label: 'Button #1'],
+	examples/expert_app.rb, #48
+TWO:	[label: 'Button #2'],
+	examples/expert_app.rb, #52
+ONE:	[label: 'Button #1'],
+	examples/intermediate_app.rb, #77
+TWO:	[label: 'Button #2'],
+	examples/intermediate_app.rb, #78
+DBM:	"#{XDG['CACHE']}/gtk3app/slots.sdbm", # slot management database
+	lib/gtk3app/config.rb, #42
+OFFSET:	[0,0], # The offset from the bottom right corner
+	lib/gtk3app/config.rb, #43
+WINDOW:	a0, # Window.new's parameters
+	lib/gtk3app/config.rb, #49
+
