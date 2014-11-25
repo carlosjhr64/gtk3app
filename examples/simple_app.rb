@@ -27,14 +27,14 @@ module SimpleApp
     vbox = Gtk::Box.new :vertical
     window.add vbox
 
-    button1 = Gtk::Button.new label: 'Button #1'
-    button2 = Gtk::Button.new label: 'Button #2'
+    one = Gtk::Button.new label: 'Button #1'
+    two = Gtk::Button.new label: 'Button #2'
 
-    vbox.pack_start button1
-    vbox.pack_start button2
+    vbox.pack_start one
+    vbox.pack_start two
 
-    button1.signal_connect('clicked'){SimpleApp.says "You've pressed button number 1!"}
-    button2.signal_connect('clicked'){SimpleApp.says "You've pressed button number 2!"}
+    one.signal_connect('clicked'){SimpleApp.says "You've pressed button number 1!"}
+    two.signal_connect('clicked'){SimpleApp.says "You've pressed button number 2!"}
 
     window.show_all
 
