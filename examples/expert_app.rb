@@ -62,9 +62,9 @@ Options:
         set_website_label: 'See it at GitHub!',
       },
 
-      HELP_FILE: 'https://github.com/carlosjhr64/gtk3app',
+      HelpFile: 'https://github.com/carlosjhr64/gtk3app',
 
-      LOGO: [file: "#{XDG['DATA']}/gtk3app/expertapp/ruby.png"],
+      Logo: "#{XDG['DATA']}/gtk3app/expertapp/ruby.png",
 
       PRESS_ONE: ['Press One!'],
       press_one: Rafini::Empty::HASH,

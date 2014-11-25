@@ -88,11 +88,11 @@ Options:
         set_website: 'https://github.com/carlosjhr64/gtk3app',
         set_website_label: 'See it at GitHub!',
       },
-      # And although here it's the same as Gtk3App,
+      # Although here it's the same as Gtk3App,
       # one is expected to set the application's own help file:
-      HELP_FILE: 'https://github.com/carlosjhr64/gtk3app',
+      HelpFile: 'https://github.com/carlosjhr64/gtk3app',
       # And the application's own logo:
-      LOGO: [file: "#{XDG['DATA']}/gtk3app/intermediateapp/ruby.png"],
+      Logo: "#{XDG['DATA']}/gtk3app/intermediateapp/ruby.png",
       # Note that ruby.png gets copied over from data/ruby.png.
     },
 

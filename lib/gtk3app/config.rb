@@ -35,7 +35,7 @@ HELP
     SLOTS: 13, # The number of minime slots
     SLOTS_DBM: "#{XDG['CACHE']}/gtk3app/slots.sdbm", # slot management database
     SLOTS_OFFSET: [0,0], # The offset from the bottom right corner
-    SLOTS_SCALE: [25,25], # The size of the slots
+    SLOTS_SCALE: 25, # The size of the slots
 
     Thing: { # The application MAY overwrite some these
 
@@ -49,6 +49,7 @@ HELP
       MINI: a0,
       mini: {
         set_decorated: false,
+        minime: a0,
       },
       mini!: [:MINI,:mini],
 
@@ -72,17 +73,17 @@ HELP
         set_website: 'https://github.com/carlosjhr64/gtk3app',
         set_website_label: 'See it at GitHub!',
       },
-
       # Application SHOULD modify LOGO to use it's own logo image.
-      LOGO: [file: "#{XDG['DATA']}/gtk3app/logo.png"],
+      Logo: "#{XDG['DATA']}/gtk3app/logo.png",
+      # Application SHOULD modify :HelpFile to their own help page.
+      HelpFile: 'https://github.com/carlosjhr64/gtk3app',
+      # By convention, I'm using mix case for simple String configurations in here Thing.
 
       # Help app-menu item
       # Application MAY modify :HELP for language
-      # Application SHOULD modify :HELP_FILE to their own help page.
       HELP: ['Help'],
       help: h0,
       help!: [:HELP, :help, 'activate'],
-      HELP_FILE: 'https://github.com/carlosjhr64/gtk3app',
 
       # Minime's app-menu item.
       # Application MAY modify :MINIME for language.

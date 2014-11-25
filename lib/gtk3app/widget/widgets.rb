@@ -32,5 +32,24 @@ module Widget
     end
   end
 
+  class MainWindow < Such::Window
+    def self.set_icon(file)
+      @@icon = Gdk::Pixbuf.new(file: file)
+    end
+
+    def self.icon
+      @@icon
+    end
+
+    def initialize(*par, &block)
+      super(*par, &block)
+      self.set_icon MainWindow.icon
+    end
+
+    def minime(x=CONFIG[:SLOTS_SCALE])
+      self.set_default_size(x,x)
+      self.add Gtk::Image.new(pixbuf: MainWindow.icon.scale(x,x)).show
+    end
+  end
 end
 end

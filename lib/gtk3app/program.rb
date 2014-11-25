@@ -3,20 +3,16 @@ module Gtk3App
     using Rafini::Array
 
     def initialize(app)
-      @window = Such::Window.new(:window!, 'delete-event'){quit!}
+      Gtk3App::Widget::MainWindow.set_icon Such::Thing::PARAMETERS[:Logo]
+      @window = Gtk3App::Widget::MainWindow.new(:window!, 'delete-event'){quit!}
       @app_menu = Gtk3App::Widget::AppMenu.new(@window, :app_menu!) do |w,*_,s|
         self.method(w.key).call if s=='activate'
       end
       @fs = false
-      @logo = Gdk::Pixbuf.new(*Such::Thing::PARAMETERS[:LOGO])
-      @window.set_icon @logo
 
       @mini_menu = nil
       if @app_menu.children.which{|item| item.key==:minime!}
-        @mini = Such::Window.new(:mini, 'delete-event'){quit!}
-        @mini.set_icon @logo
-        @mini.set_default_size(*CONFIG[:SLOTS_SCALE])
-        @mini.add Gtk::Image.new(pixbuf: @logo.scale(*CONFIG[:SLOTS_SCALE])).show
+        @mini = Gtk3App::Widget::MainWindow.new(:mini, 'delete-event'){quit!}
         @mini_menu = Gtk3App::Widget::AppMenu.new(@mini, :mini_menu!) do |w,*_,s|
           self.method(w.key).call if s=='activate'
           minime! if s=='button_press_event'
@@ -37,27 +33,23 @@ module Gtk3App
 
     def about!
       about = Such::AboutDialog.new :about_dialog
-      begin
-        about.set_logo @logo
-      rescue IOError
-        warn "cannot load logo: #{Such::Thing::PARAMETERS[:LOGO]}"
-      end
+      about.set_logo Gtk3App::Widget::MainWindow.icon
       about.run
       about.destroy
     end
 
     def help!
-      system "#{CONFIG[:OPEN]} '#{Such::Thing::PARAMETERS[:HELP_FILE]}'"
+      system "#{CONFIG[:OPEN]} '#{Such::Thing::PARAMETERS[:HelpFile]}'"
     end
 
     def minime!
       if @window.visible?
         @slot = Slot.get
         if @slot
-          a, b = CONFIG[:SLOTS_SCALE]
+          s = CONFIG[:SLOTS_SCALE]
           x, y = CONFIG[:SLOTS_OFFSET]
           w, h = Gdk.screen_width, Gdk.screen_height
-          @mini.move(w-@slot*a+x, h-b+y)
+          @mini.move(w-@slot*s+x, h-s+y)
           @mini.keep_above=true
           @window.hide
           @mini.show
