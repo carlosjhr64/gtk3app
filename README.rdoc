@@ -2,15 +2,34 @@
 
 == DESCRIPTION:
 
-TODO
+_Gtk3App_ provides a _Gtk3_ application stub.
+
+It autmatically provides for command line options parsing, user configuration, and minime windows.
 
 == SYNOPSIS:
 
-TODO
+Given a module file such as ./my_app.rb, the module is expected to at leat provide MyApp.run(window):
 
-== FEATURES/PROBLEMS:
+   module MyApp
+     def self.run(window)
+       # develop as you would on a Gtk3::Window object...
+       # ...probably a good idea to show all your work.
+       window.show_all
+     end
+   end
 
-TODO
+That's enough to get you going.
+The three examples in the ./examples[https://github.com/carlosjhr64/gtk3app/tree/master/examples]
+directory fully explains the rest of what _Gtk3App_ can do for you.
+
+== FEATURES:
+
+* _Such_[https://github.com/carlosjhr64/Such] wrappers.
+* _Rafini_[https://github.com/carlosjhr64/rafini] refinements.
+* _HelpParser_[https://github.com/carlosjhr64/help_parser] command line options parsing.
+* _UserSpace_[https://github.com/carlosjhr64/user_space] XDG support.
+* MiniMe, an alternative to the deprecated Gtk::StatusIcon.
+* Popup Application Menu from window button 3 press event (standard left click on application).
 
 == INSTALL:
 
