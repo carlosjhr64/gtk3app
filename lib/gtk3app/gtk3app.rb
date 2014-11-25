@@ -57,7 +57,7 @@ module Gtk3App
   end
 
   def self.run(appname)
-    require appname=='demo' ? 'gtk3app/demo' : appname
+    require appname
     app = Object.const_get File.basename(appname, '.rb').camelize
     Gtk3App.init app
     Program.new app
