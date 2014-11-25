@@ -2,9 +2,15 @@
 
 == DESCRIPTION:
 
+TODO
+
 == SYNOPSIS:
 
+TODO
+
 == FEATURES/PROBLEMS:
+
+TODO
 
 == INSTALL:
 
