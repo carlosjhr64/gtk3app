@@ -1,5 +1,3 @@
-Such::Parts.make('MiniMe', 'Such::Window', 'minime_Image') # TODO: Implement, and why "Such::Window".
-
 module Gtk3App
   class Program
     using Rafini::Array
