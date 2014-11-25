@@ -3,11 +3,11 @@ module Slot
   using Rafini::Array
 
   def self.dbm
-    SDBM.open(Gtk3App::CONFIG[:SLOTS_DBM]){|db|yield(db)}
+    SDBM.open(CONFIG[:SLOTS_DBM]){|db|yield(db)}
   end
 
   def self.numbers
-    1.upto(Gtk3App::CONFIG[:SLOTS]){|n|yield(n.to_s)}
+    1.upto(CONFIG[:SLOTS]){|n|yield(n.to_s)}
   end
 
   def self.get

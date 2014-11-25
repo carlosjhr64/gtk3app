@@ -71,7 +71,7 @@ module Gtk3App
       if appname
         Gtk3App.run appname
       else
-        puts Gtk3App::CONFIG[:HELP]
+        puts CONFIG[:HELP]
       end
     rescue HELP_PARSER::UsageException
       puts $!.message

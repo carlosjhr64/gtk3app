@@ -3,17 +3,17 @@ module Gtk3App
     using Rafini::Array
 
     def initialize(app)
-      Gtk3App::Widget::MainWindow.set_icon Such::Thing::PARAMETERS[:Logo]
-      @window = Gtk3App::Widget::MainWindow.new(:window!, 'delete-event'){quit!}
-      @app_menu = Gtk3App::Widget::AppMenu.new(@window, :app_menu!) do |w,*_,s|
+      Widget::MainWindow.set_icon Such::Thing::PARAMETERS[:Logo]
+      @window = Widget::MainWindow.new(:window!, 'delete-event'){quit!}
+      @app_menu = Widget::AppMenu.new(@window, :app_menu!) do |w,*_,s|
         self.method(w.key).call if s=='activate'
       end
       @fs = false
 
       @mini_menu = nil
       if @app_menu.children.which{|item| item.key==:minime!}
-        @mini = Gtk3App::Widget::MainWindow.new(:mini, 'delete-event'){quit!}
-        @mini_menu = Gtk3App::Widget::AppMenu.new(@mini, :mini_menu!) do |w,*_,s|
+        @mini = Widget::MainWindow.new(:mini, 'delete-event'){quit!}
+        @mini_menu = Widget::AppMenu.new(@mini, :mini_menu!) do |w,*_,s|
           self.method(w.key).call if s=='activate'
           minime! if s=='button_press_event'
         end
@@ -33,7 +33,7 @@ module Gtk3App
 
     def about!
       about = Such::AboutDialog.new :about_dialog
-      about.set_logo Gtk3App::Widget::MainWindow.icon
+      about.set_logo Widget::MainWindow.icon
       about.run
       about.destroy
     end
