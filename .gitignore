@@ -1,2 +1,3 @@
 *.swp
 test/error.log
+*.gem
