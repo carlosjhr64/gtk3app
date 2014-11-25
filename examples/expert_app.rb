@@ -93,11 +93,10 @@ Options:
     end
   end
 
-  # TODO Why 'Such::Box' ???  Just 'Box' worked on the Such gem example.
   # We're going to create a Such::VBox out of Such::Box with two buttons in it,
   # buttons one_Button and two_Button.
   # Such::Parts knows one_Button means Such::Button::new(:one!), and so on...
-  Such::Parts.make('VBox', 'Such::Box', :one_Button, :two_Button)
+  Such::Parts.make('VBox', 'Box', :one_Button, :two_Button)
 
   # This time, we want to be able to modify minime's app menu.
   # By adding the second parameter (thus changing arity's to two)
