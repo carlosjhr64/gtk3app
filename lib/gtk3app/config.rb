@@ -7,9 +7,15 @@ module Gtk3App
   h0 = Rafini::Empty::HASH
   s0 = Rafini::Empty::STRING
 
+  # CONFIG follows the following conventions:
+  # * Strings and numbers are mixed case.
+  # * Arrays are all upper case (may except for arrays of length 1, see Such).
+  # * Hashes are all lower case.
+  # * Lower case bang! keys have special meaning in Such.
+  # * Note that method keys may have mixed case as the method itself.
   CONFIG = {
     # The command line help in standard form.
-    HELP: <<HELP,
+    Help: <<HELP,
 
 This is the gtk3app stub.
 
@@ -30,14 +36,14 @@ Options:
 HELP
 
     # The command to open with default application
-    OPEN: 'gnome-open',
+    Open: 'gnome-open',
 
-    SLOTS: 13, # The number of minime slots
-    SLOTS_DBM: "#{XDG['CACHE']}/gtk3app/slots.sdbm", # slot management database
+    Slots: 13, # The number of minime slots
+    SlotsDBM: "#{XDG['CACHE']}/gtk3app/slots.sdbm", # slot management database
     SLOTS_OFFSET: [0,0], # The offset from the bottom right corner
-    SLOTS_SCALE: 25, # The size of the slots
+    SlotsScale: 25, # The size of the slots
 
-    Thing: { # The application MAY overwrite some these
+    thing: { # The application MAY overwrite some these
 
       # Main window configuration
       WINDOW: a0, # Window.new's parameters
@@ -77,7 +83,7 @@ HELP
       Logo: "#{XDG['DATA']}/gtk3app/logo.png",
       # Application SHOULD modify :HelpFile to their own help page.
       HelpFile: 'https://github.com/carlosjhr64/gtk3app',
-      # By convention, I'm using mix case for simple String configurations in here Thing.
+      # By convention, I'm using mix case for simple String configurations in here thing.
 
       # Help app-menu item
       # Application MAY modify :HELP for language

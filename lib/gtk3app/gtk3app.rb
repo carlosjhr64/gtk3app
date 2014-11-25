@@ -28,7 +28,7 @@ module Gtk3App
 
   def self.options(mod=nil)
     if mod
-      version, help = mod::VERSION, mod::CONFIG[:HELP]
+      version, help = mod::VERSION, mod::CONFIG[:Help]
       if help
         # HelpParser enforces -h and -v for help and version respectively.
         # To that we add -V, -q, and -d for verbose, quiet, and debug respectively.
@@ -49,7 +49,7 @@ module Gtk3App
   def self.init(mod=Gtk3App)
     Gtk3App.config mod
     Gtk3App.options mod
-    if thing = mod::CONFIG[:Thing]
+    if thing = mod::CONFIG[:thing]
       Such::Thing.configure thing
     end
   rescue NameError
@@ -71,7 +71,7 @@ module Gtk3App
       if appname
         Gtk3App.run appname
       else
-        puts CONFIG[:HELP]
+        puts CONFIG[:Help]
       end
     rescue HELP_PARSER::UsageException
       puts $!.message

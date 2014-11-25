@@ -39,14 +39,14 @@ module Gtk3App
     end
 
     def help!
-      system "#{CONFIG[:OPEN]} '#{Such::Thing::PARAMETERS[:HelpFile]}'"
+      system "#{CONFIG[:Open]} '#{Such::Thing::PARAMETERS[:HelpFile]}'"
     end
 
     def minime!
       if @window.visible?
         @slot = Slot.get
         if @slot
-          s = CONFIG[:SLOTS_SCALE]
+          s = CONFIG[:SlotsScale]
           x, y = CONFIG[:SLOTS_OFFSET]
           w, h = Gdk.screen_width, Gdk.screen_height
           @mini.move(w-@slot*s+x, h-s+y)

@@ -31,7 +31,7 @@ module IntermediateApp
     # Gtk3App enforces the semantics for -h, -v, -q, -V, and -d as explained in this help
     # so one will need to add other letters for custom options.
     # --tts will flag that we want to use espeak.
-    HELP: <<-HELP,
+    Help: <<-HELP,
 
 This is IntermediaApp, an example module for Gtk3App.
 
@@ -53,7 +53,7 @@ Options:
     # Gtk3App was primarily design to use "Such", a wrapper for Gtk.
     # Gtk3App will use the CONFIG[:Thing] hash to configure Such::Thing::PARAMETERS.
     # "Such" allows one to take out what's essentially configuration out of the main code.
-    Thing: {
+    thing: {
       # By convention, use lowercase keys for hashes.
       # Hashes are used for methods=>args mappings.
       # Gtk3App uses :window! to configure the main window
@@ -98,7 +98,7 @@ Options:
 
   }
 
-  # Gtk3App will parse the CONFIG[:HELP] and get the command line options.
+  # Gtk3App will parse the CONFIG[:Help] and get the command line options.
   # It needs to be able to pass these options to the application.
   # This is how:
   #   IntermediateApp.options = options

@@ -21,9 +21,9 @@ Options:
 
   CONFIG = {
 
-    HELP: HELP,
+    Help: HELP,
 
-    Thing: {
+    thing: {
 
       window: {
         set_title: "The Expert App!",

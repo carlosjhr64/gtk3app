@@ -3,11 +3,11 @@ module Slot
   using Rafini::Array
 
   def self.dbm
-    SDBM.open(CONFIG[:SLOTS_DBM]){|db|yield(db)}
+    SDBM.open(CONFIG[:SlotsDBM]){|db|yield(db)}
   end
 
   def self.numbers
-    1.upto(CONFIG[:SLOTS]){|n|yield(n.to_s)}
+    1.upto(CONFIG[:Slots]){|n|yield(n.to_s)}
   end
 
   def self.get

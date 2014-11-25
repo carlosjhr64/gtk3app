@@ -46,7 +46,7 @@ module Widget
       self.set_icon MainWindow.icon
     end
 
-    def minime(x=CONFIG[:SLOTS_SCALE])
+    def minime(x=CONFIG[:SlotsScale])
       self.set_default_size(x,x)
       self.add Gtk::Image.new(pixbuf: MainWindow.icon.scale(x,x)).show
     end
