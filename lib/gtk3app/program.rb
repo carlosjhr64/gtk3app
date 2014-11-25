@@ -1,3 +1,5 @@
+Such::Parts.make('MiniMe', 'Such::Window', 'minime_Image') # TODO: Implement, and why "Such::Window".
+
 module Gtk3App
   class Program
     using Rafini::Array
@@ -16,7 +18,7 @@ module Gtk3App
         @mini = Such::Window.new(:mini, 'delete-event'){quit!}
         @mini.set_icon @logo
         @mini.set_default_size(*CONFIG[:SLOTS_SCALE])
-        @mini.add Gtk::Image.new(pixbuf: @logo.scale(*CONFIG[:SLOTS_SCALE]))
+        @mini.add Gtk::Image.new(pixbuf: @logo.scale(*CONFIG[:SLOTS_SCALE])).show
         @mini_menu = Gtk3App::Widget::AppMenu.new(@mini, :mini_menu!) do |w,*_,s|
           self.method(w.key).call if s=='activate'
           minime! if s=='button_press_event'
@@ -60,7 +62,7 @@ module Gtk3App
           @mini.move(w-@slot*a+x, h-b+y)
           @mini.keep_above=true
           @window.hide
-          @mini.show_all
+          @mini.show
         end
       else
         Slot.release(@slot) if @slot
