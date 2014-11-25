@@ -31,7 +31,6 @@ bin/gtk3app
 data/VERSION
 data/logo.png
 data/ruby.png
-gtk3app.gemspec
 lib/gtk3app.rb
 lib/gtk3app/config.rb
 lib/gtk3app/gtk3app.rb
