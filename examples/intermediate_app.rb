@@ -74,10 +74,10 @@ Options:
       # "Such" has some reasonable defaults that makes the following commented out code
       # unnecessary.
       # vbox: { into: [:add]} # The box will be adding itself into the window.
-      BUTTON1: [label: 'Button #1'],
-      BUTTON2: [label: 'Button #2'],
+      ONE: [label: 'Button #1'],
+      TWO: [label: 'Button #2'],
       # "Such" packs into Box with pack_start by default, so the following code is not needed:
-      # button1: {into: [:pack_start, ...pack starts parameters...]}
+      # one: {into: [:pack_start, ...pack starts parameters...]}
       # But if one needs to further configure the pack, that's where it is done.
       # Next, we override Gtk3App's :about_dialog with our application's about info:
       about_dialog: {
@@ -129,11 +129,11 @@ Options:
     vbox = Such::Box.new window, :VBOX
 
     # Be convention, I put the String signal last.
-    button1 = Such::Button.new(vbox, :BUTTON1, 'clicked') do
+    Such::Button.new(vbox, :ONE, 'clicked') do
       IntermediateApp.says "You've pressed button number 1!"
     end
     # Note that "Such" will assume a 'clicked' signal if none is given.
-    button2 = Such::Button.new(vbox, :BUTTON2){IntermediateApp.says "You've pressed button number 2!"}
+    Such::Button.new(vbox, :TWO){IntermediateApp.says "You've pressed button number 2!"}
 
     window.show_all
   end
