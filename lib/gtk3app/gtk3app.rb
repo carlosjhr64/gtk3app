@@ -79,7 +79,7 @@ module Gtk3App
     rescue HELP_PARSER::UsageError
       $stderr.puts $!.message
       exit 64
-    rescue Exception
+    rescue StandardError
       $!.puts
       exit 1
     end

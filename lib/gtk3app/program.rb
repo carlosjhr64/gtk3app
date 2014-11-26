@@ -4,10 +4,13 @@ module Gtk3App
 
     def initialize(app)
       Widget::MainWindow.set_icon Such::Thing::PARAMETERS[:Logo]
+
       @window = Widget::MainWindow.new(:window!, 'delete-event'){quit!}
+
       @app_menu = Widget::AppMenu.new(@window, :app_menu!) do |w,*_,s|
         self.method(w.key).call if s=='activate'
       end
+
       @fs = false
 
       @mini_menu = nil
