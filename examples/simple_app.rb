@@ -15,9 +15,11 @@ module SimpleApp
     end
   end
 
-  # Gtk3App expects a module level run method to pass the main Window object.
+  # Gtk3App expects a module level run method to pass the main program object.
   # Here it's SimpleApp.run.
-  def self.run(window)
+  def self.run(program)
+    # Get program's main window
+    window = program.window
 
     # Once here, one can proceed as one normally does, "Gtk" style.
     window.set_title "My Application!"

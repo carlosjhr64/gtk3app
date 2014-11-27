@@ -2,6 +2,7 @@ module Gtk3App
   class Program
     using Rafini::Array
 
+    attr_reader :window, :app_menu, :mini, :mini_menu, :fs, :slot
     def initialize(app)
       Widget::MainWindow.set_icon Such::Thing::PARAMETERS[:Logo]
 
@@ -11,9 +12,7 @@ module Gtk3App
         self.method(w.key).call if s=='activate'
       end
 
-      @fs = false
-
-      @mini_menu = nil
+      @mini = @mini_menu = nil
       if @app_menu.children.which{|item| item.key==:minime!}
         @mini = Widget::MainWindow.new(:mini, 'delete-event'){quit!}
         @mini_menu = Widget::AppMenu.new(@mini, :mini_menu!) do |w,*_,s|
@@ -22,11 +21,10 @@ module Gtk3App
         end
       end
 
-      case app.method(:run).arity
-      when 1 then app.run(@window)
-      when 2 then app.run(@window, @mini_menu)
-      else raise "Application run method should have 2 parameters."
-      end
+      @fs = false
+      @slot = nil
+
+      app.run(self)
     end
 
     def fs!

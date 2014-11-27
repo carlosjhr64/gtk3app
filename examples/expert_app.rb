@@ -17,7 +17,7 @@ Options:
   HELP
 
   APPDIR = File.dirname __dir__
-  VERSION = '0.0.0'
+  VERSION = '1.0.0'
 
   CONFIG = {
 
@@ -99,9 +99,9 @@ Options:
   Such::Parts.make('VBox', 'Box', :one_Button, :two_Button)
 
   # This time, we want to be able to modify minime's app menu.
-  # By adding the second parameter (thus changing arity's to two)
-  # Gkt3App knows to also pass mini_menu.
-  def self.run(window, mini_menu)
+  def self.run(program)
+    # Get program's main window and minime's menu.
+    window, mini_menu = program.window, program.mini_menu
     warn 'Espeak not available.' if ExpertApp.options[:tts] and !ESPEAK
 
     # Such::VBox is our new composite widget.
