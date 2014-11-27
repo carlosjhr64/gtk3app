@@ -11,7 +11,8 @@ It autmatically provides for command line options parsing, user configuration, a
 Given a module file such as ./my_app.rb, the module is expected to at leat provide MyApp.run(window):
 
    module MyApp
-     def self.run(window)
+     def self.run(program)
+       window = program.window
        # develop as you would on a Gtk3::Window object...
        # ...probably a good idea to show all your work.
        window.show_all
