@@ -8,7 +8,7 @@ It autmatically provides for command line options parsing, user configuration, a
 
 == SYNOPSIS:
 
-Given a module file such as ./my_app.rb, the module is expected to at leat provide MyApp.run(window):
+Given a module file such as ./my_app.rb, the module is expected to at leat provide MyApp.run(program):
 
    module MyApp
      def self.run(program)

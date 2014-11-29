@@ -1,3 +1,5 @@
+YAML security?  Check for ruby! in YAML?
+
 Need to re-implement all features given by the original files listed below.
 When all functionality from a file is implemented, check it off.
 
