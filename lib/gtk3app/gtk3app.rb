@@ -4,7 +4,6 @@ module Gtk3App
   using Rafini::Exception
 
   UserSpace::OPTIONS[:parser] = YAML
-  UserSpace::OPTIONS[:config] = "config-#{VERSION}"
   UserSpace::OPTIONS[:ext]    = 'yml'
 
   def self.config(mod)
@@ -16,6 +15,7 @@ module Gtk3App
     appname = mod.name.downcase
     appname.prepend('gtk3app/') unless mod==Gtk3App
     # UserSpace does its thing...
+    UserSpace::OPTIONS[:config] = "config-#{version}"
     user_space = UserSpace.new(appname: appname, appdir: appdir)
     user_space.install unless user_space.version == version
     user_space.configures(config)
