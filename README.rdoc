@@ -1,5 +1,7 @@
 = gt3applib
 
+{<img src="https://badge.fury.io/rb/gtk3app.svg" alt="Gem Version" />}[http://badge.fury.io/rb/gtk3app]
+
 == DESCRIPTION:
 
 _Gtk3App_ provides a _Gtk3_ application stub.
