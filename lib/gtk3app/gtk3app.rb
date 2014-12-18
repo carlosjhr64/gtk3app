@@ -4,6 +4,7 @@ module Gtk3App
   using Rafini::Exception
 
   UserSpace::OPTIONS[:parser] = YAML
+  UserSpace::OPTIONS[:config] = "config-#{VERSION}"
   UserSpace::OPTIONS[:ext]    = 'yml'
 
   def self.config(mod)
