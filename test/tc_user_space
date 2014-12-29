@@ -33,7 +33,7 @@ class TestUserSpace < Test::Unit::TestCase
       file = File.join config, configfilename
       assert File.exist?(file), file
       # If anything changes the config file, want to know about it!
-      assert_equal '7bdbcbdd058a44d811094c87b7310914',
+      assert_equal '9d2c42781a1dab60c483b918b3b9276f',
         `md5sum '#{file}'`.strip.split(/\s+/).first
 
       [data,config,cache].each do |dir|
@@ -51,10 +51,10 @@ class TestUserSpace < Test::Unit::TestCase
             assert File.exist?(file), file
             case x
             when 'intermediateapp'
-              assert_equal 'f3df1a00302ae1c0ca3e0b9907a0dcfc',
+              assert_equal 'a86f61b6fcbb9e747ee66dfff0a47f78',
                 `md5sum '#{file}'`.strip.split(/\s+/).first
             when 'expertapp'
-              assert_equal 'dc470f111542d6cc21f3b3c56d544bb2',
+              assert_equal '59b09bc645840a72c19d95c69f4e6892',
                 `md5sum '#{file}'`.strip.split(/\s+/).first
             end
           end
