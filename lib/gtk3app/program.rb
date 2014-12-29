@@ -50,7 +50,18 @@ module Gtk3App
           s = CONFIG[:SlotsScale]
           x, y = CONFIG[:SLOTS_OFFSET]
           w, h = Gdk.screen_width, Gdk.screen_height
-          @mini.move(w-@slot*s+x, h-s+y)
+          case CONFIG[:SlotsOrientation]
+          when :horizontal
+            @mini.move(w-@slot*s+x, h-s+y)
+          when :vertical
+            @mini.move(w-s+x, h-@slot*s+y)
+          else
+            if @slot%2==0
+              @mini.move(w-((@slot+2)/2)*s+x, h-s+y)
+            else
+              @mini.move(w-s+x, h-((@slot+1)/2)*s+y)
+            end
+          end
           @mini.keep_above=true
           @window.hide
           @mini.show

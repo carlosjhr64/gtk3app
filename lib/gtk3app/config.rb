@@ -42,6 +42,7 @@ HELP
     SlotsDBM: "#{XDG['CACHE']}/gtk3app/slots.sdbm", # slot management database
     SLOTS_OFFSET: [0,0], # The offset from the bottom right corner
     SlotsScale: 25, # The size of the slots
+    SlotsOrientation: :horizontal,
 
     thing: { # The application MAY overwrite some these
 
