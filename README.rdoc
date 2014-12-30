@@ -27,6 +27,7 @@ directory fully explains the rest of what _Gtk3App_ can do for you.
 
 == HELP:
 
+   Warning:  Gdk constants are missing.
    This is the gtk3app stub.
    Usage:
       gtk3app [options] appname ...
