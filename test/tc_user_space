@@ -1,9 +1,11 @@
 #! ruby
+require 'rafini'
 require 'xdg'
 require 'gtk3app/version'
 require 'test/unit'
 
 class TestUserSpace < Test::Unit::TestCase
+  using Rafini::String
   # Presumably, the examples have be run.
   # Going to test the XDG files are as expected.
   def test_user_space
@@ -29,11 +31,11 @@ class TestUserSpace < Test::Unit::TestCase
       assert File.exist?(file), file
       assert_equal Gtk3App::VERSION, File.read(file).strip
       # Check config file
-      configfilename = "config-#{Gtk3App::VERSION}.yml"
+      configfilename = "config-#{Gtk3App::VERSION.semantic(0..1)}.yml"
       file = File.join config, configfilename
       assert File.exist?(file), file
       # If anything changes the config file, want to know about it!
-      assert_equal '4922440e93599fcf25ba44f6e302ed29',
+      assert_equal '348316ce0cf09272d344f6d39339a04b',
         `md5sum '#{file}'`.strip.split(/\s+/).first
 
       [data,config,cache].each do |dir|
@@ -51,10 +53,10 @@ class TestUserSpace < Test::Unit::TestCase
             assert File.exist?(file), file
             case x
             when 'intermediateapp'
-              assert_equal '69b42bcd7244241e304b5c474383bd03',
+              assert_equal 'edbe37d96717da0a6386caeaa9640c29',
                 `md5sum '#{file}'`.strip.split(/\s+/).first
             when 'expertapp'
-              assert_equal '42889f8cd08cc23c727f342e41db5e23',
+              assert_equal '8f35c4cba378a853a9347a7d7ca8a6c0',
                 `md5sum '#{file}'`.strip.split(/\s+/).first
             end
           end

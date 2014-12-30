@@ -18,7 +18,7 @@ module IntermediateApp
 
   # Gtk3App tests the module's VERSION against that found in XDG[DATA]/gtk3app/modname/VERSION
   # to check if it needs to install (or reinstall) the XDG directories.
-  VERSION = '1.3.1' # One can check this is the same as that in data/VERSION.
+  VERSION = '1.4.0' # One can check this is the same as that in data/VERSION.
 
   # Gtk3App will seed the user's configuration directory with the application's CONFIG hash.
   # It's a YAML dump into XDG[CONFIG]/gtk3app/modname/config.yml
