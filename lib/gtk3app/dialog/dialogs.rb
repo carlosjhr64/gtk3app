@@ -12,7 +12,7 @@ module Runs
     show_all
     response = run
     if block_given?
-      response = yield(child, response)
+      response = yield(response)
     elsif @block
       response = @block.call(child, response)
     else
