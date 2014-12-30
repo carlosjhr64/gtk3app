@@ -1,4 +1,5 @@
 module Gtk3App
+  using Rafini::String
 
   # The gem's root directory
   APPDIR = File.dirname File.dirname __dir__
@@ -74,7 +75,7 @@ HELP
       about!: [:ABOUT, :about, 'activate'],
       about_dialog: {
         set_program_name: 'Gtk3App',
-        set_version: VERSION,
+        set_version: VERSION.semantic(0..1),
         set_copyright: '(c) 2014 CarlosJHR64',
         set_comments: 'A Gtk3 Application Stub',
         set_website: 'https://github.com/carlosjhr64/gtk3app',
