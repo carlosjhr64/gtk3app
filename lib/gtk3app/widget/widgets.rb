@@ -51,5 +51,6 @@ module Widget
       self.add Gtk::Image.new(pixbuf: MainWindow.icon.scale(x,x)).show
     end
   end
+
 end
 end

@@ -6,7 +6,7 @@
 
 _Gtk3App_ provides a _Gtk3_ application stub.
 
-It autmatically provides for command line options parsing, user configuration, and minime windows.
+It automatically provides for command line options parsing, user configuration, and minime windows.
 
 == SYNOPSIS:
 

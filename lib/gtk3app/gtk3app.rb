@@ -15,7 +15,7 @@ module Gtk3App
     appname = mod.name.downcase
     appname.prepend('gtk3app/') unless mod==Gtk3App
     # UserSpace does its thing...
-    UserSpace::OPTIONS[:config] = "config-#{version}"
+    UserSpace::OPTIONS[:config] = "config-#{version.semantic(0..1)}"
     user_space = UserSpace.new(appname: appname, appdir: appdir)
     user_space.install unless user_space.version == version
     user_space.configures(config)

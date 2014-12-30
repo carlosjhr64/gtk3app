@@ -115,7 +115,9 @@ Options:
       when vbox.one_Button
         ExpertApp.says "You've pressed button number 1!"
       when vbox.two_Button
-        ExpertApp.says "You've pressed button number 2!"
+        no_yes = Gtk3App::Dialog::NoYes.new
+        no_yes.label.text = "Should I say!?"
+        ExpertApp.says "You've pressed button number 2!" if no_yes.runs
       end
     end
 
