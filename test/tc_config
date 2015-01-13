@@ -1,9 +1,10 @@
 #! ruby
 require 'test/unit'
-require 'rafini/empty'
+require 'rafini'
 require 'xdg'
 require 'gtk3app/version'
 require 'gtk3app/config'
+using Rafini::String
 
 class TestConfig < Test::Unit::TestCase
   def test_config
@@ -61,7 +62,7 @@ class TestConfig < Test::Unit::TestCase
       end
 
       # sanity check
-      assert_equal Gtk3App::VERSION, thing[:about_dialog][:set_version]
+      assert_equal Gtk3App::VERSION.semantic(0..1), thing[:about_dialog][:set_version]
     end
   end
 end

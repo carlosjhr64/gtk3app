@@ -6,6 +6,7 @@
 #    * The about, help, quit, minime, and fullscreen applicaton menu items.
 # But you need to provide the right plugs as shown below.
 module IntermediateApp
+  using Rafini::String
 
   # APPDIR tells Gtk3App where to look for "seeding" files for the user's XDG directories.
   # It will copy APPDIR/data, APPDIR/config, and APPDIR/cache to
@@ -18,7 +19,7 @@ module IntermediateApp
 
   # Gtk3App tests the module's VERSION against that found in XDG[DATA]/gtk3app/modname/VERSION
   # to check if it needs to install (or reinstall) the XDG directories.
-  VERSION = '1.4.0' # One can check this is the same as that in data/VERSION.
+  VERSION = '1.4.1.pre' # One can check this is the same as that in data/VERSION.
 
   # Gtk3App will seed the user's configuration directory with the application's CONFIG hash.
   # It's a YAML dump into XDG[CONFIG]/gtk3app/modname/config.yml
@@ -82,7 +83,7 @@ Options:
       # Next, we override Gtk3App's :about_dialog with our application's about info:
       about_dialog: {
         set_program_name: 'Intermediate App',
-        set_version: VERSION,
+        set_version: VERSION.semantic(0..1),
         set_copyright: '(c) 2014 CarlosJHR64',
         set_comments: 'A Gtk3App Intermediate Example',
         set_website: 'https://github.com/carlosjhr64/gtk3app',

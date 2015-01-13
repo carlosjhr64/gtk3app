@@ -1,4 +1,5 @@
 module ExpertApp
+  using Rafini::String
 
   # Gtk3App always recognizes options -h, -v, -V, -q, and -d,
   # even though they are not mentioned in the help that follows:
@@ -17,7 +18,7 @@ Options:
   HELP
 
   APPDIR = File.dirname __dir__
-  VERSION = '1.4.0'
+  VERSION = '1.4.1.pre'
 
   CONFIG = {
 
@@ -55,7 +56,7 @@ Options:
 
       about_dialog: {
         set_program_name: 'Expert App',
-        set_version: VERSION,
+        set_version: VERSION.semantic(0..1),
         set_copyright: '(c) 2014 CarlosJHR64',
         set_comments: 'A Gtk3App Expert Example',
         set_website: 'https://github.com/carlosjhr64/gtk3app',
