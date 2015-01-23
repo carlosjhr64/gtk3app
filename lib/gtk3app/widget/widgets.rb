@@ -16,7 +16,7 @@ module Widget
   class AppMenu < Menu
     def initialize(window, *par, &block)
       @block = block
-      window.add_events(Gdk::Event::BUTTON_PRESS_MASK)
+      window.add_events(Gdk::EventMask::BUTTON_PRESS_MASK)
       window.signal_connect('button_press_event') do |w,e|
         if e.button == 3
           self.popup(nil, nil, 3, e.time)

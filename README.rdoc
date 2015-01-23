@@ -52,14 +52,10 @@ directory fully explains the rest of what _Gtk3App_ can do for you.
 
   $ sudo gem install gtk3app
 
-Best I can figure, Gtk3 broke on the Ruby 2.2 update and they've been fixin.
-For now, on Ruby 2.1, use:
+Best I can figure, Gtk3 broke on the Ruby 2.2 update and they've been fixing.
+For Ruby 2.2, I just patched up the stuff I know about in version 1.4.1:
 
-  $ sudo gem install gtk3app -v 1.4.0
-
-And on Ruby 2.2, use:
-
-  $ sudo gem install gtk3app -v 1.4.1.pre
+  $ sudo gem install gtk3app -v 1.4.1
 
 
 == LICENSE:

@@ -13,18 +13,22 @@ require 'sys/proctable'
 # Workhorse Gems
 
 require 'gtk3'
-begin
-  # TODO: remove when fixed.
-  Gdk::Selection::PRIMARY
-  Gdk::Selection::CLIPBOARD
-  Gdk::Event::BUTTON_PRESS_MASK
-rescue NameError
-  # This is surely a bug in the 2.2.* releases.
-  # Just patching what I need for now.
-  puts "Warning:  Gdk constants are missing."
-  Gdk::Selection::PRIMARY ||= 1
-  Gdk::Selection::CLIPBOARD ||= 69
-  Gdk::Event::BUTTON_PRESS_MASK ||= 256
+# TODO: remove when fixed.
+Gdk::Selection::PRIMARY ||= 1
+Gdk::Selection::CLIPBOARD ||= 69
+unless Gdk::RGBA.respond_to?(:parse)
+  module Gdk
+    class RGBA
+      # For now just simple colors
+      def self.parse(color)
+        if /^#(?<r>\w\w)(?<g>\w\w)(?<b>\w\w)(?<a>\w\w)$/=~color
+          r, g, b, a = r.to_i(16), g.to_i(16), b.to_i(16), a.to_i(16)
+          return new r, g, b, a
+        end
+        raise "can only parse '#rrggbb'"
+      end
+    end
+  end
 end
 
 require 'such'
