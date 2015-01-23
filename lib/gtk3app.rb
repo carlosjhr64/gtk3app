@@ -25,7 +25,11 @@ unless Gdk::RGBA.respond_to?(:parse)
           r, g, b, a = r.to_i(16), g.to_i(16), b.to_i(16), a.to_i(16)
           return new r, g, b, a
         end
-        raise "can only parse '#rrggbb'"
+        if /^#(?<r>\w)(?<g>\w)(?<b>\w)$/=~color
+          r, g, b, a = r.to_i(16)*17, g.to_i(16)*17, b.to_i(16)*17, 0
+          return new r, g, b, a
+        end
+        raise "can only parse '#rrggbbaa' or '#rgb'"
       end
     end
   end
