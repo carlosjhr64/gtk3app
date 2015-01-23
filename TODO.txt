@@ -151,5 +151,5 @@ Version 15 was the last working/published version.
 == File List
 
 TODO:	remove when fixed.
-	lib/gtk3app.rb, #17
+	lib/gtk3app.rb, #16
 

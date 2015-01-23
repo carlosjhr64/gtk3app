@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.author   = 'carlosjhr64'
   s.email    = 'carlosjhr64@gmail.com'
 
-  s.date     = '2015-01-13'
+  s.date     = '2015-01-23'
   s.licenses = ['MIT']
 
   s.description = <<DESCRIPTION
@@ -47,7 +47,7 @@ lib/gtk3app/widget/widgets.rb
   s.add_runtime_dependency 'sys-proctable', '~> 0.9', '>= 0.9.4'
   s.add_runtime_dependency 'gtk3', '~> 2.2', '>= 2.2.4'
   s.add_runtime_dependency 'such', '~> 0.2', '>= 0.2.1'
-  s.requirements << 'ruby: ruby 2.2.0p0 (2014-12-25 revision 49005) [x86_64-linux]'
+  s.requirements << 'ruby: ruby 2.1.5p273 (2014-11-13 revision 48405) [x86_64-linux]'
   s.requirements << 'system: linux/bash'
 
 end
