@@ -45,9 +45,9 @@ lib/gtk3app/widget/widgets.rb
   s.add_runtime_dependency 'user_space', '~> 2.0', '>= 2.0.1'
   s.add_runtime_dependency 'rafini', '~> 1.2', '>= 1.2.0'
   s.add_runtime_dependency 'sys-proctable', '~> 0.9', '>= 0.9.4'
-  s.add_runtime_dependency 'gtk3', '~> 2.2', '>= 2.2.4'
-  s.add_runtime_dependency 'such', '~> 0.2', '>= 0.2.1'
-  s.requirements << 'ruby: ruby 2.1.5p273 (2014-11-13 revision 48405) [x86_64-linux]'
+  s.add_runtime_dependency 'gtk3', '~> 3.0', '>= 3.0.7'
+  s.add_runtime_dependency 'such', '~> 0.3', '>= 0.3.0'
+  s.requirements << 'ruby: ruby 2.2.3p173 (2015-08-18 revision 51636) [x86_64-linux]'
   s.requirements << 'system: linux/bash'
 
 end
