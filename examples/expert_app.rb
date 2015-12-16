@@ -18,7 +18,7 @@ Options:
   HELP
 
   APPDIR = File.dirname __dir__
-  VERSION = '1.4.1'
+  VERSION = '1.5.0'
 
   CONFIG = {
 
@@ -33,25 +33,29 @@ Options:
       },
 
       # ExpertApp uses Such::Parts to create composite widgets.
-      # Although only :VBOX was required before,
+      # Although only :MYBOX was required before,
       # now the automation done by Such will notice
       # missing items and will give a warning.
       # Just to keep the app warnings free
       # we explicitly define all keys.
-      VBOX: [:vertical],
+      MYBOX: [:vertical],
       # Gtk3App uses Rafini, so might as use it.
       #    Rafini::Empty::ARRAY, Rafini::Empty::HASH, Rafini::Empty::STRING =
       #    [].freeze, {}.freeze, ''.freeze
-      vbox: Rafini::Empty::ARRAY,
+      mybox: Rafini::Empty::ARRAY,
       # The empty string, '', tells "Such" not to connect to any signals.
-      vbox!: [:VBOX, :vbox, Rafini::Empty::STRING],
+      mybox!: [:MYBOX, :mybox, Rafini::Empty::STRING],
+
+      # Going to explicitly state how to pack the button, and
+      # factor it out to the :button symbol to be used by "one!" and "two!".
+      button: {into: [:pack_start, expand:true, fill:true, padding:0]},
 
       ONE: [label: 'Button #1'],
-      one: Rafini::Empty::HASH,
+      one: :button,
       one!: [:ONE, :one, 'clicked'],
 
       TWO: [label: 'Button #2'],
-      two: Rafini::Empty::HASH,
+      two: :button,
       two!: [:TWO, :two, 'clicked'],
 
       about_dialog: {
@@ -94,10 +98,10 @@ Options:
     end
   end
 
-  # We're going to create a Such::VBox out of Such::Box with two buttons in it,
+  # We're going to create a Such::MyBox out of Such::Box with two buttons in it,
   # buttons one_Button and two_Button.
   # Such::Parts knows one_Button means Such::Button::new(:one!), and so on...
-  Such::Parts.make('VBox', 'Box', :one_Button, :two_Button)
+  Such::Parts.make('MyBox', 'Box', :one_Button, :two_Button)
 
   # This time, we want to be able to modify minime's app menu.
   def self.run(program)
@@ -105,17 +109,17 @@ Options:
     window, mini_menu = program.window, program.mini_menu
     warn 'Espeak not available.' if ExpertApp.options[:tts] and !ESPEAK
 
-    # Such::VBox is our new composite widget.
-    # Remember that vbox itself will not generate any signals as told in the configuration.
+    # Such::MyBox is our new composite widget.
+    # Remember that mybox itself will not generate any signals as told in the configuration.
     # The signals will come from one_Button and two_Button.
-    vbox = Such::VBox.new(window, :vbox!) do |widget, signal|
+    mybox = Such::MyBox.new(window, :mybox!) do |widget, signal|
       # "signal" is always 'clicked' b/c it's the only signal registered in this app,
       # but it's available to create different cases based on signal.
       # Here, we only care about which button was clicked.
       case widget
-      when vbox.one_Button
+      when mybox.one_Button
         ExpertApp.says "You've pressed button number 1!"
-      when vbox.two_Button
+      when mybox.two_Button
         no_yes = Gtk3App::Dialog::NoYes.new
         no_yes.label.text = "Should I say!?"
         ExpertApp.says "You've pressed button number 2!" if no_yes.runs
@@ -123,8 +127,8 @@ Options:
     end
 
     # Next we add to mini menu...
-    mini_menu.append_menu_item(:press_one!){vbox.one_Button.clicked}
-    mini_menu.append_menu_item(:press_two!){vbox.two_Button.clicked}
+    mini_menu.append_menu_item(:press_one!){mybox.one_Button.clicked}
+    mini_menu.append_menu_item(:press_two!){mybox.two_Button.clicked}
 
     mini_menu.show_all
     window.show_all

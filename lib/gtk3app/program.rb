@@ -49,7 +49,7 @@ module Gtk3App
         if @slot
           s = CONFIG[:SlotsScale]
           x, y = CONFIG[:SLOTS_OFFSET]
-          w, h = Gdk.screen_width, Gdk.screen_height
+          w, h = Gdk::Screen.width, Gdk::Screen.height
           case CONFIG[:SlotsOrientation]
           when :horizontal
             @mini.move(w-@slot*s+x, h-s+y)

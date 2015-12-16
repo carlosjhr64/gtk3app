@@ -11,7 +11,7 @@ module Slot
   end
 
   def self.get
-    alive = Sys::ProcTable.ps.select{|p|p.cmdline=~/\bruby\b.*\bgtk3app\b/}.map{|p|p.pid.to_s}.is(true)
+    alive = Sys::ProcTable.ps.select{|p|p.cmdline=~/ruby.*\bgtk3app\b/}.map{|p|p.pid.to_s}.is(true)
     Slot.dbm do |db|
       Slot.numbers do |slot|
         unless alive[db[slot]]

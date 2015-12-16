@@ -13,9 +13,6 @@ require 'sys/proctable'
 # Workhorse Gems
 
 require 'gtk3'
-# TODO: remove when fixed.
-Gdk::Selection::PRIMARY ||= 1
-Gdk::Selection::CLIPBOARD ||= 69
 unless Gdk::RGBA.respond_to?(:parse)
   module Gdk
     class RGBA

@@ -1,6 +1,12 @@
 #!/usr/bin/env ruby
 
-RUBY = 'ruby -I ./lib'
+if ARGV[0]
+  raise "#{ARGV[0]} ???" unless system("which '#{ARGV[0]}' 2> /dev/null")
+  RUBY = "#{ARGV[0]} -I ./lib"
+else
+  RUBY = 'ruby -I ./lib'
+end
+
 LOG = './test/errors.log'
 
 def fn(name)
