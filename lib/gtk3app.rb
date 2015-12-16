@@ -13,24 +13,6 @@ require 'sys/proctable'
 # Workhorse Gems
 
 require 'gtk3'
-unless Gdk::RGBA.respond_to?(:parse)
-  module Gdk
-    class RGBA
-      # For now just simple colors
-      def self.parse(color)
-        if /^#(?<r>\w\w)(?<g>\w\w)(?<b>\w\w)(?<a>\w\w)$/=~color
-          r, g, b, a = r.to_i(16), g.to_i(16), b.to_i(16), a.to_i(16)
-          return new r, g, b, a
-        end
-        if /^#(?<r>\w)(?<g>\w)(?<b>\w)$/=~color
-          r, g, b, a = r.to_i(16)*17, g.to_i(16)*17, b.to_i(16)*17, 0
-          return new r, g, b, a
-        end
-        raise "can only parse '#rrggbbaa' or '#rgb'"
-      end
-    end
-  end
-end
 
 require 'such'
 Such::Things.gtk_widget
