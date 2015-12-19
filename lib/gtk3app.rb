@@ -1,3 +1,8 @@
+# Rogues
+
+require 'json'
+require 'psych'
+
 # Standard Libraries
 
 require 'yaml'
