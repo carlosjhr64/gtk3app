@@ -18,7 +18,7 @@ Options:
   HELP
 
   APPDIR = File.dirname __dir__
-  VERSION = '1.5.0'
+  VERSION = '1.5.1'
 
   CONFIG = {
 
