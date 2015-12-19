@@ -4,7 +4,7 @@
 
 == DESCRIPTION:
 
-_Gtk3App_ provides a _Gtk3_ application stub.
+Gtk3App provides a Gtk3 application stub.
 
 It automatically provides for command line options parsing, user configuration, and minime windows.
 
@@ -23,7 +23,7 @@ Given a module file such as ./my_app.rb, the module is expected to at leat provi
 
 That's enough to get you going.
 The three examples in the ./examples[https://github.com/carlosjhr64/gtk3app/tree/master/examples]
-directory fully explains the rest of what _Gtk3App_ can do for you.
+directory fully explains the rest of what Gtk3App can do for you.
 
 == HELP:
 
@@ -40,22 +40,16 @@ directory fully explains the rest of what _Gtk3App_ can do for you.
 
 == FEATURES:
 
-* _Such_[https://github.com/carlosjhr64/Such] wrappers.
-* _Rafini_[https://github.com/carlosjhr64/rafini] refinements.
-* _HelpParser_[https://github.com/carlosjhr64/help_parser] command line options parsing.
-* _UserSpace_[https://github.com/carlosjhr64/user_space] XDG support.
+* Such[https://github.com/carlosjhr64/Such] wrappers.
+* Rafini[https://github.com/carlosjhr64/rafini] refinements.
+* HelpParser[https://github.com/carlosjhr64/help_parser] command line options parsing.
+* UserSpace[https://github.com/carlosjhr64/user_space] XDG support.
 * MiniMe, an alternative to the deprecated Gtk::StatusIcon.
 * Popup Application Menu from window button 3 press event (standard left click on application).
 
 == INSTALL:
 
   $ sudo gem install gtk3app
-
-Best I can figure, Gtk3 broke on the Ruby 2.2 update and they've been fixing.
-For Ruby 2.2, I just patched up the stuff I know about in version 1.4.1:
-
-  $ sudo gem install gtk3app -v 1.4.1
-
 
 == LICENSE:
 
