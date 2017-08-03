@@ -11,10 +11,9 @@ module Slot
   end
 
   def self.get
-    alive = Sys::ProcTable.ps.select{|p|p.cmdline=~/ruby.*\bgtk3app\b/}.map{|p|p.pid.to_s}.is(true)
     Slot.dbm do |db|
       Slot.numbers do |slot|
-        unless alive[db[slot]]
+        unless db[slot]
           db[slot]=$$.to_s
           return slot.to_i
         end
@@ -25,7 +24,24 @@ module Slot
 
   def self.release(slot)
     Slot.dbm{|db|db.delete(slot.to_s)}
+    Slot.gc
   end
 
+  def self.gc
+    Thread.new do
+      uid = Process.uid
+      alive = Sys::ProcTable.ps.select{|p|
+        p.uid==uid && p.cmdline=~/\bgtk3app\b/
+      }.map{|p|p.pid.to_s}.is(true)
+      Slot.dbm do |db|
+        Slot.numbers do |slot|
+          if pid = db[slot]
+            db.delete(slot) unless alive[pid]
+          end
+        end
+      end
+    end
+  end
+  Slot.gc
 end
 end
