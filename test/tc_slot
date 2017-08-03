@@ -21,7 +21,7 @@ class TestSlot < Test::Unit::TestCase
         assert_equal SDBM, db.class
       end
       slot = Gtk3App::Slot.get
-      assert_equal Fixnum, slot.class
+      assert_equal Integer, slot.class
       assert slot>0
       assert slot<max
       warn "\nWarning: Unexpected slot number, are there apps running?" unless slot==1

@@ -44,7 +44,7 @@ lib/gtk3app/widget/widgets.rb
   s.add_runtime_dependency 'help_parser', '~> 1.3', '>= 1.3.0'
   s.add_runtime_dependency 'user_space', '~> 2.1', '>= 2.1.0'
   s.add_runtime_dependency 'rafini', '~> 1.2', '>= 1.2.1'
-  s.add_runtime_dependency 'sys-proctable', '~> 0.9', '>= 0.9.9'
+  s.add_runtime_dependency 'sys-proctable', '~> 1.1', '>= 1.1.4'
   s.add_runtime_dependency 'gtk3', '~> 3.1', '>= 3.1.8'
   s.add_runtime_dependency 'such', '~> 0.4', '>= 0.4.0'
   s.requirements << 'ruby: ruby 2.4.1p111 (2017-03-22 revision 58053) [x86_64-linux]'
