@@ -34,7 +34,7 @@ module Widget
 
   class MainWindow < Such::Window
     def self.set_icon(file)
-      @@icon = Gdk::Pixbuf.new(file: file)
+      @@icon = GdkPixbuf::Pixbuf.new(file: file)
     end
 
     def self.icon

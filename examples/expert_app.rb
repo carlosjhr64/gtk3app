@@ -71,11 +71,11 @@ Options:
 
       Logo: "#{XDG['DATA']}/gtk3app/expertapp/ruby.png",
 
-      PRESS_ONE: ['Press One!'],
+      PRESS_ONE: [label: 'Press One!'],
       press_one: Rafini::Empty::HASH,
       press_one!: [:PRESS_ONE, :press_one, 'activate'],
 
-      PRESS_TWO: ['Press Two!'],
+      PRESS_TWO: [label: 'Press Two!'],
       press_two: Rafini::Empty::HASH,
       press_two!: [:PRESS_TWO, :press_two, 'activate'],
     },
@@ -121,6 +121,7 @@ Options:
         ExpertApp.says "You've pressed button number 1!"
       when mybox.two_Button
         no_yes = Gtk3App::Dialog::NoYes.new
+        no_yes.transient_for = window
         no_yes.label.text = "Should I say!?"
         ExpertApp.says "You've pressed button number 2!" if no_yes.runs
       end

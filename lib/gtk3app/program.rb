@@ -34,6 +34,7 @@ module Gtk3App
 
     def about!
       about = Such::AboutDialog.new :about_dialog
+      about.transient_for = @window
       about.set_logo Widget::MainWindow.icon
       about.run
       about.destroy

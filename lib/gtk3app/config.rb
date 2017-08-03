@@ -63,14 +63,14 @@ HELP
 
       # Fullscreen app-menu item
       # Application MAY modify :FS for language
-      FS: ['Full Screen'],
+      FS: [label: 'Full Screen'],
       fs: h0,
       fs!: [:FS, :fs, 'activate'],
 
       # About app-menu item
       # Application MAY modify :ABOUT for language
       # Application SHOULD modify :about_dialog
-      ABOUT: ['About'],
+      ABOUT: [label: 'About'],
       about: h0,
       about!: [:ABOUT, :about, 'activate'],
       about_dialog: {
@@ -89,19 +89,19 @@ HELP
 
       # Help app-menu item
       # Application MAY modify :HELP for language
-      HELP: ['Help'],
+      HELP: [label: 'Help'],
       help: h0,
       help!: [:HELP, :help, 'activate'],
 
       # Minime's app-menu item.
       # Application MAY modify :MINIME for language.
-      MINIME: ['Mini-me'],
+      MINIME: [label: 'Mini-me'],
       minime: h0,
       minime!: [:MINIME, :minime, 'activate'],
 
       # Quit app-menu item.
       # Application MAY modify :QUIT for language.
-      QUIT: ['Quit'],
+      QUIT: [label: 'Quit'],
       quit: h0,
       quit!: [:QUIT, :quit, 'activate'],
 
