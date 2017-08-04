@@ -9,11 +9,11 @@ This is ExpertApp, an example module for Gtk3App.
 
 Usage:
 
-  ruby -I ./lib ./bin/gkt3app ./examples/expert_app.rb [options]
+  [:options+]
 
 Options:
 
-  --tts   Use espeak.
+  --tts \t Use espeak.
 
   HELP
 
@@ -91,7 +91,7 @@ Options:
 
   ESPEAK = ((_=`which espeak 2> /dev/null`.strip) and (_.length>0) ? _ : nil)
   def self.says(wut)
-    if ESPEAK and ExpertApp.options[:tts]
+    if ESPEAK and ExpertApp.options.tts?
       system "#{ESPEAK} \"#{wut}\" &"
     else
       puts wut
@@ -107,7 +107,7 @@ Options:
   def self.run(program)
     # Get program's main window and minime's menu.
     window, mini_menu = program.window, program.mini_menu
-    warn 'Espeak not available.' if ExpertApp.options[:tts] and !ESPEAK
+    warn 'Espeak not available.' if ExpertApp.options.tts? and !ESPEAK
 
     # Such::MyBox is our new composite widget.
     # Remember that mybox itself will not generate any signals as told in the configuration.
