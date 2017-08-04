@@ -17,23 +17,15 @@ module Gtk3App
   CONFIG = {
     # The command line help in standard form.
     Help: <<HELP,
-
-This is the gtk3app stub.
-
+### gtk3app application stub ###
 Usage:
-
-   gtk3app [options] appname ...
-
+   gtk3app [:options+] <appname>
 Options:
-
-   -h --help      Show this help and exit.
-   -v --version   Show the version and exit.
-   -q --quiet     Set $VERBOSE to nil.
-   -V --verbose   Set $VERBOSE to true.
-   -d --debug     Set $DEBUG to true.
-
-   appname        The name of the application to be run.
-
+   -h --help   \tShow this help and exit.
+   -v --version\tShow the version and exit.
+   -q --quiet  \tSet $VERBOSE to nil.
+   -V --verbose\tSet $VERBOSE to true.
+   -d --debug  \tSet $DEBUG to true.
 HELP
 
     # The command to open with default application

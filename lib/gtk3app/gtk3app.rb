@@ -33,16 +33,20 @@ module Gtk3App
       if help
         # HelpParser enforces -h and -v for help and version respectively.
         # To that we add -V, -q, and -d for verbose, quiet, and debug respectively.
-        options = HELP_PARSER::HelpParser.new(version, help, {verbose: :V, quiet: :q, debug: :d})
-        $VERBOSE = (options[:q])? nil : (options[:V])? true : false
-        $DEBUG = true if options[:d] # Don't get to turn off debug
+        argv = Rafini::Empty::ARRAY
+        if mod==Gtk3App
+          argv = ['gtk3app']+ARGV
+        elsif i = ARGV.index('-')
+          argv = ARGV[(i+1)..-1]
+        end
+        options = HelpParser[version, help, argv]
+        $VERBOSE = (options.quiet?)? nil : (options.verbose?)? true : false
+        $DEBUG = true if options.debug? # Don't get to turn off debug
         mod.options = options
       end
     else
       @@options
     end
-  rescue NoMethodError
-    $!.puts 'Application is not providing options setter.'
   rescue NameError
     $!.puts 'Application is not using VERSION or CONFIG.'
   end
@@ -68,18 +72,7 @@ module Gtk3App
   def self.main
     begin
       Gtk3App.init
-      appname = ARGV.shift
-      if appname
-        Gtk3App.run appname
-      else
-        puts CONFIG[:Help]
-      end
-    rescue HELP_PARSER::UsageException
-      puts $!.message
-      exit 0
-    rescue HELP_PARSER::UsageError
-      $stderr.puts $!.message
-      exit 64
+      Gtk3App.run @@options.appname
     rescue StandardError
       $!.puts
       exit 1

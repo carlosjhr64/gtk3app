@@ -33,22 +33,9 @@ module IntermediateApp
     # so one will need to add other letters for custom options.
     # --tts will flag that we want to use espeak.
     Help: <<-HELP,
-
 This is IntermediaApp, an example module for Gtk3App.
-
-Usage:
-
-  ruby -I ./lib ./bin/gkt3app ./examples/intermediate_app.rb [options]
-
 Options:
-
-  -h --help      Show this help and exit.
-  -v --version   Show the version and exit.
-  -q --quiet     Set $VERBOSE to nil.
-  -V --verbose   Set $VERBOSE to true.
-  -d --debug     Set $DEBUG to true.
-  --tts          Use espeak.
-
+  --tts\tUse espeak.
     HELP
 
     # Gtk3App was primarily design to use "Such", a wrapper for Gtk.
@@ -114,7 +101,7 @@ Options:
 
   ESPEAK = ((_=`which espeak 2> /dev/null`.strip) and (_.length>0) ? _ : nil)
   def self.says(wut)
-    if ESPEAK and IntermediateApp.options[:tts]
+    if ESPEAK and IntermediateApp.options.tts?
       system "#{ESPEAK} \"#{wut}\" &"
     else
       puts wut
@@ -125,7 +112,7 @@ Options:
     # Get program's main window.
     window = program.window
     # Warn user that espeak is not available if asked for tts.
-    warn 'Espeak not available.' if IntermediateApp.options[:tts] and !ESPEAK
+    warn 'Espeak not available.' if IntermediateApp.options.tts? and !ESPEAK
 
     # By convention, I put the container first on the parameters list.
     # But order is not important, "Such" knows what to do based on the class given.
