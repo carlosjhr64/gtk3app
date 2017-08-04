@@ -27,16 +27,15 @@ directory fully explains the rest of what Gtk3App can do for you.
 
 == HELP:
 
-   This is the gtk3app stub.
+   ### gtk3app application stub ###
    Usage:
-      gtk3app [options] appname ...
+      gtk3app [:options+] <appname>
    Options:
-      -h --help      Show this help and exit.
-      -v --version   Show the version and exit.
-      -q --quiet     Set $VERBOSE to nil.
-      -V --verbose   Set $VERBOSE to true.
-      -d --debug     Set $DEBUG to true.
-      appname        The name of the application to be run.
+      -h --help   	Show this help and exit.
+      -v --version	Show the version and exit.
+      -q --quiet  	Set $VERBOSE to nil.
+      -V --verbose	Set $VERBOSE to true.
+      -d --debug  	Set $DEBUG to true.
 
 == FEATURES:
 
