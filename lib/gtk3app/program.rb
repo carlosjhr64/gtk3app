@@ -43,6 +43,13 @@ module Gtk3App
       system "#{CONFIG[:Open]} '#{Such::Thing::PARAMETERS[:HelpFile]}'"
     end
 
+    def release
+      if @slot
+        Slot.release(@slot)
+        @slot = nil
+      end
+    end
+
     def minime!
       if @window.visible?
         @slot = Slot.get
@@ -67,14 +74,14 @@ module Gtk3App
           @mini.show
         end
       else
-        Slot.release(@slot) if @slot
+        release
         @mini.hide
         @window.show
       end
     end
 
     def quit!
-      Slot.release(@slot) if @slot
+      release
       Gtk.main_quit
     end
   end

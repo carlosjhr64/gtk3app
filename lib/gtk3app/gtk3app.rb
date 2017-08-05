@@ -65,8 +65,10 @@ module Gtk3App
     require appname
     app = Object.const_get File.basename(appname, '.rb').camelize
     Gtk3App.init app
-    Program.new app
+    @program = Program.new app
     Gtk.main
+  ensure
+    @program.release if @program
   end
 
   def self.main
