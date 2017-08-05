@@ -24,7 +24,6 @@ module Slot
 
   def self.release(slot)
     Slot.dbm{|db|db.delete(slot.to_s)}
-    Slot.gc
   end
 
   def self.gc
