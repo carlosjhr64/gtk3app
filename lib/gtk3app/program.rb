@@ -23,7 +23,6 @@ module Gtk3App
 
       @fs = false
       @slot = nil
-
       app.run(self)
     end
 
@@ -78,6 +77,5 @@ module Gtk3App
       Slot.release(@slot) if @slot
       Gtk.main_quit
     end
-
   end
 end

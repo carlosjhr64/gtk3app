@@ -39,6 +39,5 @@ module SimpleApp
     two.signal_connect('clicked'){SimpleApp.says "You've pressed button number 2!"}
 
     window.show_all
-
   end
 end
