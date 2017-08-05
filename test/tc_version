@@ -1,11 +1,11 @@
 #! ruby
 require 'test/unit'
-require 'gtk3app/version'
+require 'gtk3app'
 
 class TestVersion < Test::Unit::TestCase
   def test_version
     assert_nothing_raised() do
-      version = '1.6.0'
+      version = '2.0.0'
       assert_equal version, Gtk3App::VERSION
       assert_equal version, File.read('./data/VERSION').strip
       # Ensure that everything that looks like version agrees

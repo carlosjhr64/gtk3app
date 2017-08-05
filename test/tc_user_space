@@ -1,8 +1,6 @@
 #! ruby
-require 'rafini'
-require 'xdg'
-require 'gtk3app/version'
 require 'test/unit'
+require 'gtk3app'
 
 class TestUserSpace < Test::Unit::TestCase
   using Rafini::String
@@ -35,7 +33,7 @@ class TestUserSpace < Test::Unit::TestCase
       file = File.join config, configfilename
       assert File.exist?(file), file
       # If anything changes the config file, want to know about it!
-      assert_equal 'b50524f65e35cdab55f0557037d096fe',
+      assert_equal 'd12a7532c5dfcfb94e561ec4941b1abb',
         `md5sum '#{file}'`.strip.split(/\s+/).first
 
       [data,config,cache].each do |dir|
@@ -53,10 +51,10 @@ class TestUserSpace < Test::Unit::TestCase
             assert File.exist?(file), file
             case x
             when 'intermediateapp'
-              assert_equal 'baf3206eae6266a2c8348be2f72d91d4',
+              assert_equal '06c33d10ecf0d85c6bb181e688383a60',
                 `md5sum '#{file}'`.strip.split(/\s+/).first
             when 'expertapp'
-              assert_equal '38cbd8bcb3b36b3597b0a654bf5da0a2',
+              assert_equal '4b8997b460baab3370a41b46c563cda7',
                 `md5sum '#{file}'`.strip.split(/\s+/).first
             end
           end

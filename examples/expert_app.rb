@@ -18,7 +18,7 @@ Options:
   HELP
 
   APPDIR = File.dirname __dir__
-  VERSION = '1.6.0'
+  VERSION = '2.0.0'
 
   CONFIG = {
 
@@ -61,7 +61,7 @@ Options:
       about_dialog: {
         set_program_name: 'Expert App',
         set_version: VERSION.semantic(0..1),
-        set_copyright: '(c) 2014 CarlosJHR64',
+        set_copyright: '(c) 2017 CarlosJHR64',
         set_comments: 'A Gtk3App Expert Example',
         set_website: 'https://github.com/carlosjhr64/gtk3app',
         set_website_label: 'See it at GitHub!',
