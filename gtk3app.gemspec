@@ -1,14 +1,14 @@
 Gem::Specification.new do |s|
 
   s.name     = 'gtk3app'
-  s.version  = '1.6.0'
+  s.version  = '2.0.0'
 
   s.homepage = 'https://github.com/carlosjhr64/gtk3app'
 
   s.author   = 'carlosjhr64'
   s.email    = 'carlosjhr64@gmail.com'
 
-  s.date     = '2017-08-04'
+  s.date     = '2017-08-05'
   s.licenses = ['MIT']
 
   s.description = <<DESCRIPTION
@@ -44,7 +44,6 @@ lib/gtk3app/widget/widgets.rb
   s.add_runtime_dependency 'help_parser', '~> 5.0', '>= 5.0.0'
   s.add_runtime_dependency 'user_space', '~> 2.1', '>= 2.1.0'
   s.add_runtime_dependency 'rafini', '~> 1.2', '>= 1.2.1'
-  s.add_runtime_dependency 'sys-proctable', '~> 1.1', '>= 1.1.4'
   s.add_runtime_dependency 'gtk3', '~> 3.1', '>= 3.1.8'
   s.add_runtime_dependency 'such', '~> 0.4', '>= 0.4.0'
   s.requirements << 'ruby: ruby 2.4.1p111 (2017-03-22 revision 58053) [x86_64-linux]'

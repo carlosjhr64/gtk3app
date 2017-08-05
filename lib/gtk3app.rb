@@ -1,3 +1,7 @@
+module Gtk3App
+  VERSION = '2.0.0'
+end
+
 # Rogues
 
 require 'json'
@@ -13,7 +17,6 @@ require 'sdbm'
 require 'help_parser'
 require 'user_space'
 require 'rafini'
-require 'sys/proctable'
 
 # Workhorse Gems
 
@@ -26,7 +29,6 @@ Such::Things.gtk_widget
 
 # Configuration
 
-require 'gtk3app/version.rb'
 require 'gtk3app/config.rb'
 
 # Custom Widgets & Dialogs

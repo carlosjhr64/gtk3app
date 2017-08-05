@@ -28,14 +28,10 @@ module Slot
 
   def self.gc
     Thread.new do
-      uid = Process.uid
-      alive = Sys::ProcTable.ps.select{|p|
-        p.uid==uid && p.cmdline=~/\bgtk3app\b/
-      }.map{|p|p.pid.to_s}.is(true)
       Slot.dbm do |db|
         Slot.numbers do |slot|
           if pid = db[slot]
-            db.delete(slot) unless alive[pid]
+            db.delete(slot) unless File.directory?("/proc/#{pid}")
           end
         end
       end
