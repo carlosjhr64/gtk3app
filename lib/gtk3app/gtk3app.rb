@@ -36,7 +36,7 @@ module Gtk3App
         argv = Rafini::Empty::ARRAY
         if mod==Gtk3App
           argv = ['gtk3app']+ARGV
-        elsif i = ARGV.index('-')
+        elsif i = ARGV.index('--')
           argv = ARGV[(i+1)..-1]
         end
         options = HelpParser[version, help, argv]
