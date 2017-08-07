@@ -72,12 +72,10 @@ module Gtk3App
   end
 
   def self.main
-    begin
-      Gtk3App.init
-      Gtk3App.run @@options.appname
-    rescue StandardError
-      $!.puts
-      exit 1
-    end
+    Gtk3App.init
+    Gtk3App.run @@options.appname
+  rescue StandardError
+    $!.puts
+    exit 1
   end
 end
