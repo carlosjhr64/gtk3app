@@ -51,10 +51,10 @@ class TestUserSpace < Test::Unit::TestCase
             assert File.exist?(file), file
             case x
             when 'intermediateapp'
-              assert_equal '06c33d10ecf0d85c6bb181e688383a60',
+              assert_equal 'ee8b3302ed3c7631e62ff2e73dc1792d',
                 `md5sum '#{file}'`.strip.split(/\s+/).first
             when 'expertapp'
-              assert_equal '4b8997b460baab3370a41b46c563cda7',
+              assert_equal '5c314cae9be36aa78ad1b007d9437d0c',
                 `md5sum '#{file}'`.strip.split(/\s+/).first
             end
           end

@@ -2,19 +2,13 @@
 EXAMPLES = './examples'
 LOG = './test/error.log'
 
-if ARGV[0]
-  raise "#{ARGV[0]} ???" unless system("which '#{ARGV[0]}' 2> /dev/null")
-  RUBY = "#{ARGV[0]} -W0 -I ./lib"
-else
-  RUBY = 'ruby -W0 -I ./lib'
-end
+RUBY = 'ruby -W0 -I ./lib'
 
 Dir.entries(EXAMPLES).each do |file|
+  next unless file=~/^\w+\.rb$/
   file  = File.join EXAMPLES, file
-  if File.file?(file)
-    unless system("#{RUBY} ./bin/gtk3app -q #{file} 2> #{LOG}") and File.zero?(LOG)
-      $stderr.puts "Error in #{file}.  See #{LOG}.".
-      exit
-    end
+  unless system("#{RUBY} #{file} 2> #{LOG}") and File.zero?(LOG)
+    $stderr.puts "Error in #{file}.  See #{LOG}.".
+    exit
   end
 end

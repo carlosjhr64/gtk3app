@@ -14,18 +14,13 @@ class TestConfig < Test::Unit::TestCase
       assert_equal dir, Gtk3App::APPDIR
 
       assert_equal Hash, Gtk3App::CONFIG.class
-      help= Gtk3App::CONFIG[:Help]
-      assert_not_nil help
-      assert_equal String, help.class
-      assert_match /Usage:/, help
-      assert_match /Options:/, help
 
       gopen = Gtk3App::CONFIG[:Open]
       assert_equal 'gnome-open', gopen
       assert system("which #{gopen}")
 
       assert_equal 13, Gtk3App::CONFIG[:Slots]
-      assert_match /\/gtk3app\/slots\.sdbm$/, Gtk3App::CONFIG[:SlotsDBM]
+      assert_match(/\/gtk3app\/slots\.sdbm$/, Gtk3App::CONFIG[:SlotsDBM])
       assert_equal 25, Gtk3App::CONFIG[:SlotsScale]
 
       thing = Gtk3App::CONFIG[:thing]
