@@ -23,37 +23,8 @@ module Gtk3App
     $!.puts 'Application is not using APPDIR, VERSION, or CONFIG.'
   end
 
-  def self.options=(h)
-    @@options=h
-  end
-
-  def self.options(mod=nil)
-    if mod
-      version, help = mod::VERSION, mod::CONFIG[:Help]
-      if help
-        # HelpParser enforces -h and -v for help and version respectively.
-        # To that we add -V, -q, and -d for verbose, quiet, and debug respectively.
-        argv = Rafini::Empty::ARRAY
-        if mod==Gtk3App
-          argv = ['gtk3app']+ARGV
-        elsif i = ARGV.index('--')
-          argv = ARGV[(i+1)..-1]
-        end
-        options = HelpParser[version, help, argv]
-        $VERBOSE = (options.quiet?)? nil : (options.verbose?)? true : false
-        $DEBUG = true if options.debug? # Don't get to turn off debug
-        mod.options = options
-      end
-    else
-      @@options
-    end
-  rescue NameError
-    $!.puts 'Application is not using VERSION or CONFIG.'
-  end
-
-  def self.init(mod=Gtk3App)
+  def self.init(mod)
     Gtk3App.config mod
-    Gtk3App.options mod
     if thing = mod::CONFIG[:thing]
       Such::Thing.configure thing
     end
@@ -61,21 +32,15 @@ module Gtk3App
     $!.puts 'Application is not using CONFIG.'
   end
 
-  def self.run(appname)
-    require appname
-    app = Object.const_get File.basename(appname, '.rb').camelize
+  def self.main(app)
+    Gtk3App.init Gtk3App
     Gtk3App.init app
     @program = Program.new app
     Gtk.main
-  ensure
-    @program.release if @program
-  end
-
-  def self.main
-    Gtk3App.init
-    Gtk3App.run @@options.appname
   rescue StandardError
     $!.puts
     exit 1
+  ensure
+    @program.release if @program
   end
 end

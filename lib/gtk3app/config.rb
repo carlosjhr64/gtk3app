@@ -15,18 +15,6 @@ module Gtk3App
   # * Lower case bang! keys have special meaning in Such.
   # * Note that method keys may have mixed case as the method itself.
   CONFIG = {
-    # The command line help in standard form.
-    Help: <<HELP,
-### gtk3app application stub ###
-Usage:
-   gtk3app [:options+] <appname>
-Options:
-   -h --help   \tShow this help and exit.
-   -v --version\tShow the version and exit.
-   -q --quiet  \tSet $VERBOSE to nil.
-   -V --verbose\tSet $VERBOSE to true.
-   -d --debug  \tSet $DEBUG to true.
-HELP
 
     # The command to open with default application
     Open: 'gnome-open',

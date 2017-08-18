@@ -1,3 +1,5 @@
+require 'gtk3app'
+
 # Gtk3App will camelize the given filename of the application to get the module name.
 module SimpleApp
 
@@ -41,3 +43,5 @@ module SimpleApp
     window.show_all
   end
 end
+
+Gtk3App.main(SimpleApp)

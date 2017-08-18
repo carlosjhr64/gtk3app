@@ -14,7 +14,6 @@ require 'sdbm'
 
 # Supporting Gems
 
-require 'help_parser'
 require 'user_space'
 require 'rafini'
 
