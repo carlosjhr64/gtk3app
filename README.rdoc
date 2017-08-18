@@ -6,11 +6,11 @@
 
 Gtk3App provides a Gtk3 application stub.
 
-It automatically provides for command line options parsing, user configuration, and minime windows.
+It automatically provides for user configuration, and minime windows.
 
 == SYNOPSIS:
 
-Given a module file such as ./my_app.rb, the module is expected to at leat provide MyApp.run(program):
+Given a module file such as ./my_app.rb, the module is expected to at least provide MyApp.run(program):
 
    module MyApp
      def self.run(program)
@@ -20,28 +20,16 @@ Given a module file such as ./my_app.rb, the module is expected to at leat provi
        window.show_all
      end
    end
+   Gtk3App.main(MyApp)
 
 That's enough to get you going.
 The three examples in the ./examples[https://github.com/carlosjhr64/gtk3app/tree/master/examples]
 directory fully explains the rest of what Gtk3App can do for you.
 
-== HELP:
-
-   ### gtk3app application stub ###
-   Usage:
-      gtk3app [:options+] <appname>
-   Options:
-      -h --help   	Show this help and exit.
-      -v --version	Show the version and exit.
-      -q --quiet  	Set $VERBOSE to nil.
-      -V --verbose	Set $VERBOSE to true.
-      -d --debug  	Set $DEBUG to true.
-
 == FEATURES:
 
 * Such[https://github.com/carlosjhr64/Such] wrappers.
 * Rafini[https://github.com/carlosjhr64/rafini] refinements.
-* HelpParser[https://github.com/carlosjhr64/help_parser] command line options parsing.
 * UserSpace[https://github.com/carlosjhr64/user_space] XDG support.
 * MiniMe, an alternative to the deprecated Gtk::StatusIcon.
 * Popup Application Menu from window button 3 press event (standard left click on application).
@@ -54,7 +42,7 @@ directory fully explains the rest of what Gtk3App can do for you.
 
 (The MIT License)
 
-Copyright (c) 2014 
+Copyright (c) 2017
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
