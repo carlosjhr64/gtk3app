@@ -1,15 +1,18 @@
+gem 'help_parser', '~>5'
+require 'help_parser'
+require 'gtk3app'
+
 module ExpertApp
   using Rafini::String
 
-  # Gtk3App always recognizes options -h, -v, -V, -q, and -d,
-  # even though they are not mentioned in the help that follows:
-  HELP = <<-HELP
+  VERSION = '2.0.0'
+  OPTIONS = HelpParser[VERSION, <<-HELP]
 
 This is ExpertApp, an example module for Gtk3App.
 
 Usage:
 
-  [:options+]
+  #{File.basename($0)} [:options+]
 
 Options:
 
@@ -18,11 +21,8 @@ Options:
   HELP
 
   APPDIR = File.dirname __dir__
-  VERSION = '2.0.0'
 
   CONFIG = {
-
-    Help: HELP,
 
     thing: {
 
@@ -81,17 +81,9 @@ Options:
     },
   }
 
-  def self.options=(opts)
-    @@options = opts
-  end
-
-  def self.options
-    @@options
-  end
-
   ESPEAK = ((_=`which espeak 2> /dev/null`.strip) and (_.length>0) ? _ : nil)
   def self.says(wut)
-    if ESPEAK and ExpertApp.options.tts?
+    if ESPEAK and OPTIONS.tts?
       system "#{ESPEAK} \"#{wut}\" &"
     else
       puts wut
@@ -107,7 +99,7 @@ Options:
   def self.run(program)
     # Get program's main window and minime's menu.
     window, mini_menu = program.window, program.mini_menu
-    warn 'Espeak not available.' if ExpertApp.options.tts? and !ESPEAK
+    warn 'Espeak not available.' if OPTIONS.tts? and !ESPEAK
 
     # Such::MyBox is our new composite widget.
     # Remember that mybox itself will not generate any signals as told in the configuration.
@@ -135,3 +127,5 @@ Options:
     window.show_all
   end
 end
+
+Gtk3App.main(ExpertApp)
