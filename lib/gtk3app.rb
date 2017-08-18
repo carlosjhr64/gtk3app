@@ -2,11 +2,6 @@ module Gtk3App
   VERSION = '2.0.0'
 end
 
-# Rogues
-
-require 'json'
-require 'psych'
-
 # Standard Libraries
 
 require 'yaml'
