@@ -1,12 +1,25 @@
+gem 'help_parser', '~>5'
+require 'help_parser'
+require 'gtk3app'
+
 # In SimpleApp, most of the help Gtk3App provides was ignored.
 # Gtk3App can take care of:
-#    * command line option parsing
 #    * XDG directories CONFIG, CACHE, and DATA
 #    * configuration file
 #    * The about, help, quit, minime, and fullscreen applicaton menu items.
 # But you need to provide the right plugs as shown below.
 module IntermediateApp
   using Rafini::String
+
+  # Gtk3App tests the module's VERSION against that found in XDG[DATA]/gtk3app/modname/VERSION
+  # to check if it needs to install (or reinstall) the XDG directories.
+  VERSION = '2.0.0' # One can check this is the same as that in data/VERSION.
+
+  OPTIONS = HelpParser[VERSION, <<-HELP]
+This is IntermediaApp, an example module for Gtk3App.
+Options:
+  --tts\tUse espeak.
+  HELP
 
   # APPDIR tells Gtk3App where to look for "seeding" files for the user's XDG directories.
   # It will copy APPDIR/data, APPDIR/config, and APPDIR/cache to
@@ -17,26 +30,12 @@ module IntermediateApp
   # Whereas "file_name" is camelized to "FileName" to create the module's name,
   # the module's name is downcased to "filename" create the XDG directories.  :-??
 
-  # Gtk3App tests the module's VERSION against that found in XDG[DATA]/gtk3app/modname/VERSION
-  # to check if it needs to install (or reinstall) the XDG directories.
-  VERSION = '2.0.0' # One can check this is the same as that in data/VERSION.
 
   # Gtk3App will seed the user's configuration directory with the application's CONFIG hash.
   # It's a YAML dump into XDG[CONFIG]/gtk3app/modname/config.yml
   # For IntermediateApp in Fedora 20 Linux, it's
   #    ~/.config/gtk3app/intermediateapp/config.yml
   CONFIG = {
-
-    # The CONFIG hash SHOULD provide the help text for the command line options.
-    # If it's written in standard form, HelpParser will be able to parse it.
-    # Gtk3App enforces the semantics for -h, -v, -q, -V, and -d as explained in this help
-    # so one will need to add other letters for custom options.
-    # --tts will flag that we want to use espeak.
-    Help: <<-HELP,
-This is IntermediaApp, an example module for Gtk3App.
-Options:
-  --tts\tUse espeak.
-    HELP
 
     # Gtk3App was primarily design to use "Such", a wrapper for Gtk.
     # Gtk3App will use the CONFIG[:Thing] hash to configure Such::Thing::PARAMETERS.
@@ -86,22 +85,9 @@ Options:
 
   }
 
-  # Gtk3App will parse the CONFIG[:Help] and get the command line options.
-  # It needs to be able to pass these options to the application.
-  # This is how:
-  #   IntermediateApp.options = options
-  def self.options=(opts)
-    @@options = opts
-  end
-  # Because we have IntermediateApp.options=,
-  # we should have IntermediaApp.options, of course!
-  def self.options
-    @@options
-  end
-
   ESPEAK = ((_=`which espeak 2> /dev/null`.strip) and (_.length>0) ? _ : nil)
   def self.says(wut)
-    if ESPEAK and IntermediateApp.options.tts?
+    if ESPEAK and OPTIONS.tts?
       system "#{ESPEAK} \"#{wut}\" &"
     else
       puts wut
@@ -112,7 +98,7 @@ Options:
     # Get program's main window.
     window = program.window
     # Warn user that espeak is not available if asked for tts.
-    warn 'Espeak not available.' if IntermediateApp.options.tts? and !ESPEAK
+    warn 'Espeak not available.' if OPTIONS.tts? and !ESPEAK
 
     # By convention, I put the container first on the parameters list.
     # But order is not important, "Such" knows what to do based on the class given.
@@ -129,9 +115,4 @@ Options:
   end
 end
 
-# Lastly, note that HelpParser will use
-#    ~/.config/gtk3app/intermediateapp/config.yml
-# as the configuration once seeded there.
-# Any edits to CONFIG will not be updated, so
-# you'll need to remove the config.yml file
-# for the new edits to take effect.
+Gtk3App.main(IntermediateApp)
