@@ -1,4 +1,5 @@
 *.swp
 test/error.log
 *.gem
+TODO.txt
 tmp
