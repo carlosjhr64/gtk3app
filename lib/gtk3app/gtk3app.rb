@@ -3,9 +3,6 @@ module Gtk3App
   using Rafini::Hash
   using Rafini::Exception
 
-  UserSpace::OPTIONS[:parser] = YAML
-  UserSpace::OPTIONS[:ext]    = 'yml'
-
   def self.config(mod)
     # Let's get NameErrors out of the way first
     appdir  = mod::APPDIR
@@ -15,8 +12,13 @@ module Gtk3App
     appname = mod.name.downcase
     appname.prepend('gtk3app/') unless mod==Gtk3App
     # UserSpace does its thing...
-    UserSpace::OPTIONS[:config] = "config-#{version.semantic(0..1)}"
-    user_space = UserSpace.new(appname: appname, appdir: appdir)
+    user_space = UserSpace.new(
+      YAML,
+      ext: 'yml',
+      config: "config-#{version.semantic(0..1)}",
+      appname: appname,
+      appdir: appdir
+    )
     user_space.install unless user_space.version == version
     user_space.configures(config)
   rescue NameError
