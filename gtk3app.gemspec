@@ -1,14 +1,14 @@
 Gem::Specification.new do |s|
 
   s.name     = 'gtk3app'
-  s.version  = '2.0.0'
+  s.version  = '2.0.1'
 
   s.homepage = 'https://github.com/carlosjhr64/gtk3app'
 
   s.author   = 'carlosjhr64'
   s.email    = 'carlosjhr64@gmail.com'
 
-  s.date     = '2017-08-18'
+  s.date     = '2017-11-27'
   s.licenses = ['MIT']
 
   s.description = <<DESCRIPTION
@@ -39,10 +39,10 @@ lib/gtk3app/slot.rb
 lib/gtk3app/widget/widgets.rb
   )
 
-  s.add_runtime_dependency 'user_space', '~> 2.1', '>= 2.1.0'
+  s.add_runtime_dependency 'user_space', '~> 3.0', '>= 3.0.0'
   s.add_runtime_dependency 'rafini', '~> 1.2', '>= 1.2.1'
-  s.add_runtime_dependency 'gtk3', '~> 3.1', '>= 3.1.8'
+  s.add_runtime_dependency 'gtk3', '~> 3.2', '>= 3.2.1'
   s.add_runtime_dependency 'such', '~> 0.4', '>= 0.4.0'
-  s.requirements << 'ruby: ruby 2.4.1p111 (2017-03-22 revision 58053) [x86_64-linux]'
+  s.requirements << 'ruby: ruby 2.4.2p198 (2017-09-14 revision 59899) [x86_64-linux]'
 
 end
