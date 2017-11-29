@@ -23,3 +23,5 @@ f2bc41fd984d89fc8887e3ae416ed1b2  pkg/gtk3app-1.5.2.gem
 a451920094364204a2358b9da64c19a0  pkg/gtk3app-2.0.0.gem
 === 2.0.1 / 2017-11-29 13:59:23 -0800
 5f559dd8529ac79c9dcc54ad430324a9  pkg/gtk3app-2.0.1.gem
+=== 2.0.2 / 2017-11-29 14:20:45 -0800
+aa71e287a2dad31c9e3ecefaf95d4334  pkg/gtk3app-2.0.2.gem
