@@ -88,6 +88,8 @@ module Gtk3App
       # The app menu configuration.
       # The application MAY ONLY modify app_menu.append_menu_item
       # by removing un-wanted app menu items.
+      # Note that you can reference the item.key,
+      # see: Gtk3App::Widget::MenuItem < Such::MenuItem
       APP_MENU: a0,
       app_menu: {
         append_menu_item: [:fs!, :about!, :help!, :minime!, :quit!],
