@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
 
   s.name     = 'gtk3app'
-  s.version  = '2.1.0'
+  s.version  = '2.1.1'
 
   s.homepage = 'https://github.com/carlosjhr64/gtk3app'
 
@@ -38,7 +38,7 @@ lib/gtk3app/widget/widgets.rb
 
   s.add_runtime_dependency 'user_space', '~> 3.0', '>= 3.0.0'
   s.add_runtime_dependency 'rafini', '~> 1.2', '>= 1.2.1'
-  s.add_runtime_dependency 'gtk3', '~> 3.2', '>= 3.2.7'
+  s.add_runtime_dependency 'gtk3', '~> 3.2'
   s.add_runtime_dependency 'such', '~> 0.4', '>= 0.4.0'
   s.requirements << 'ruby: ruby 2.5.1p57 (2018-03-29 revision 63029) [x86_64-linux]'
 
