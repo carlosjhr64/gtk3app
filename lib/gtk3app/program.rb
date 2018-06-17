@@ -23,7 +23,7 @@ module Gtk3App
 
       @fs = false
       @slot = nil
-      app.run(self)
+      @gui = app.run(self)
     end
 
     def fs!
@@ -82,6 +82,7 @@ module Gtk3App
 
     def quit!
       release
+      @gui.finalize if @gui.respond_to? :finalize
       Gtk.main_quit
     end
   end

@@ -34,6 +34,12 @@ directory fully explains the rest of what Gtk3App can do for you.
 * MiniMe, an alternative to the deprecated Gtk::StatusIcon.
 * Popup Application Menu from window button 3 press event (standard left click on application).
 
+=== New for 2.1
+
+If in the above example MyApp.run return an object the responds to #finalize,
+the method will be called before the Gtk main quit.
+This allows for any cleanups the gui may need to do before exit.
+
 == INSTALL:
 
   $ sudo gem install gtk3app

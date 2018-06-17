@@ -5,7 +5,7 @@ require 'gtk3app'
 module ExpertApp
   using Rafini::String
 
-  VERSION = '2.0.2'
+  VERSION = '2.1.0'
   OPTIONS = HelpParser[VERSION, <<-HELP]
 
 This is ExpertApp, an example module for Gtk3App.

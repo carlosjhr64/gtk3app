@@ -13,7 +13,7 @@ module IntermediateApp
 
   # Gtk3App tests the module's VERSION against that found in XDG[DATA]/gtk3app/modname/VERSION
   # to check if it needs to install (or reinstall) the XDG directories.
-  VERSION = '2.0.2' # One can check this is the same as that in data/VERSION.
+  VERSION = '2.1.0' # One can check this is the same as that in data/VERSION.
 
   OPTIONS = HelpParser[VERSION, <<-HELP]
 This is IntermediaApp, an example module for Gtk3App.
