@@ -38,8 +38,8 @@ lib/gtk3app/widget/widgets.rb
 
   s.add_runtime_dependency 'user_space', '~> 3.0', '>= 3.0.0'
   s.add_runtime_dependency 'rafini', '~> 1.2', '>= 1.2.1'
-  s.add_runtime_dependency 'gtk3', '~> 3.2', '>= 3.2.1'
+  s.add_runtime_dependency 'gtk3', '~> 3.2', '>= 3.2.7'
   s.add_runtime_dependency 'such', '~> 0.4', '>= 0.4.0'
-  s.requirements << 'ruby: ruby 2.4.2p198 (2017-09-14 revision 59899) [x86_64-linux]'
+  s.requirements << 'ruby: ruby 2.5.1p57 (2018-03-29 revision 63029) [x86_64-linux]'
 
 end
