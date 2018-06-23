@@ -141,6 +141,11 @@ Options:
 
     mini_menu.show_all
     window.show_all
+    self # return self to provide a finalize method to run at quit time.
+  end
+
+  def self.finalize
+    $stderr.puts "TADA!"
   end
 end
 

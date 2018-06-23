@@ -4,6 +4,7 @@ module Gtk3App
 
     attr_reader :window, :app_menu, :mini, :mini_menu, :fs, :slot
     def initialize(app)
+      @gui = nil # Initialized
       Widget::MainWindow.set_icon Such::Thing::PARAMETERS[:Logo]
 
       @window = Widget::MainWindow.new(:window!, 'delete-event'){quit!}
