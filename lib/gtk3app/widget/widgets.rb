@@ -6,7 +6,7 @@ module Widget
   end
 
   class Menu < Such::Menu
-    def append_menu_item(key, &block)
+    def add_menu_item(key, &block)
       item = MenuItem.new(self, key, &block)
       item.key = key
       item.show
@@ -27,7 +27,7 @@ module Widget
       super(*par)
     end
 
-    def append_menu_item(key, &block)
+    def add_menu_item(key, &block)
       super(key, &(block || @block))
     end
   end

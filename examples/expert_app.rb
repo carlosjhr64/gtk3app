@@ -136,8 +136,8 @@ Options:
     end
 
     # Next we add to mini menu...
-    mini_menu.append_menu_item(:press_one!){mybox.one_Button.clicked}
-    mini_menu.append_menu_item(:press_two!){mybox.two_Button.clicked}
+    mini_menu.add_menu_item(:press_one!){mybox.one_Button.clicked}
+    mini_menu.add_menu_item(:press_two!){mybox.two_Button.clicked}
 
     mini_menu.show_all
     window.show_all

@@ -1,7 +1,6 @@
 TODO:
 
 Code review:
-  1) Deprecate :append_menu_item and stuff, use :into  instead.
   2) The gui#finalize needs documentation.
   3) Just go over the code for code smells.
   4) Review README
@@ -20,6 +19,10 @@ OLD:
 YAML security?  Check for ruby! in YAML?
 
 DONE:
+
+  1) Deprecate :append_menu_item and stuff, use :add_menu_item  instead.
+    "append" was confusing.  :into sets the add method to use.
+    Correct semantic is "add"... using :add_menu_item.
 
   5) Review @program.release:
     Verbose complain that @program was not initilizing. Fixed.

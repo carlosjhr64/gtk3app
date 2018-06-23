@@ -86,13 +86,13 @@ module Gtk3App
       quit!: [:QUIT, :quit, 'activate'],
 
       # The app menu configuration.
-      # The application MAY ONLY modify app_menu.append_menu_item
+      # The application MAY ONLY modify app_menu.add_menu_item
       # by removing un-wanted app menu items.
       # Note that you can reference the item.key,
       # see: Gtk3App::Widget::MenuItem < Such::MenuItem
       APP_MENU: a0,
       app_menu: {
-        append_menu_item: [:fs!, :about!, :help!, :minime!, :quit!],
+        add_menu_item: [:fs!, :about!, :help!, :minime!, :quit!],
       },
       app_menu!: [:APP_MENU, :app_menu, s0],
 
@@ -102,7 +102,7 @@ module Gtk3App
       # minime's app-menu directly).
       MINI_MENU: a0,
       mini_menu: {
-        append_menu_item: [:quit!],
+        add_menu_item: [:quit!],
       },
       mini_menu!: [:MINI_MENU, :mini_menu, s0],
 
