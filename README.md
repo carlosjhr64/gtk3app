@@ -1,52 +1,50 @@
-= gt3applib
+# gt3applib
 
-{<img src="https://badge.fury.io/rb/gtk3app.svg" alt="Gem Version" />}[http://badge.fury.io/rb/gtk3app]
-
-== DESCRIPTION:
+## DESCRIPTION:
 
 Gtk3App provides a Gtk3 application stub.
 
 It automatically provides for user configuration, and minime windows.
 
-== SYNOPSIS:
+## SYNOPSIS:
 
-Given a module file such as ./my_app.rb, the module is expected to at least provide MyApp.run(program):
+Given a module file such as `~./my_app.rb`, the module is expected to at least provide MyApp.run(program):
 
-   module MyApp
+    module MyApp
      def self.run(program)
        window = program.window
        # develop as you would on a Gtk3::Window object...
        # ...probably a good idea to show all your work.
        window.show_all
      end
-   end
-   Gtk3App.main(MyApp)
+    end
+    Gtk3App.main(MyApp)
 
 That's enough to get you going.
-The three examples in the ./examples[https://github.com/carlosjhr64/gtk3app/tree/master/examples]
+The three examples in the [./examples](https://github.com/carlosjhr64/gtk3app/tree/master/examples)
 directory fully explains the rest of what Gtk3App can do for you.
 
-== FEATURES:
+## FEATURES:
 
-* Such[https://github.com/carlosjhr64/Such] wrappers.
-* Rafini[https://github.com/carlosjhr64/rafini] refinements.
-* UserSpace[https://github.com/carlosjhr64/user_space] XDG support.
+* [Such](https://github.com/carlosjhr64/Such) wrappers.
+* [Rafini](https://github.com/carlosjhr64/rafini) refinements.
+* [UserSpace](https://github.com/carlosjhr64/user_space) XDG support.
 * MiniMe, an alternative to the deprecated Gtk::StatusIcon.
 * Popup Application Menu from window button 3 press event (standard left click on application).
 
-=== New for 2.1
+### New for 2.1
 
 If in the above example MyApp.run return an object the responds to #finalize,
 the method will be called before the Gtk main quit.
 This allows for any cleanups the gui may need to do before exit.
 
-== INSTALL:
+## INSTALL:
 
-  $ sudo gem install gtk3app
+    $ sudo gem install gtk3app
 
-== LICENSE:
+## LICENSE:
 
-(The MIT License)
+* The MIT License
 
 Copyright (c) 2017
 
@@ -69,9 +67,9 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-== CREDITS
+## CREDITS
 
 Stuff here I may have taken from:
 
-   http://www.softicons.com/application-icons/ruby-programming-icons-by-ahmad-galal/ruby-gtk-icon
-   http://zetcode.com/gui/rubygtk/
+* [softicons](http://www.softicons.com/application-icons/ruby-programming-icons-by-ahmad-galal/ruby-gtk-icon)
+* [zetcode](http://zetcode.com/gui/rubygtk/)

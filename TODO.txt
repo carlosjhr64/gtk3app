@@ -1,0 +1,27 @@
+TODO:
+
+Code review:
+  1) Deprecate :append_menu_item and stuff, use :into  instead.
+  2) The gui#finalize needs documentation.
+  3) Just go over the code for code smells.
+  4) Review README
+  5) Review @program.release
+
+Slots did not clear on a system crash... double check it as I thought I had this covered.
+  This is very rare unlikely conditions where this can happen.
+  Can't think of a fix.
+
+OLD:
+
+# Missing #
+  Gdk::Event::BUTTON_PRESS_MASK
+  Gdk::Selection::CLIPBOARD
+  Gdk::Selection::PRIMARY
+
+YAML security?  Check for ruby! in YAML?
+
+DONE:
+
+== File List
+
+

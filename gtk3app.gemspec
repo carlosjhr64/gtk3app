@@ -1,14 +1,14 @@
 Gem::Specification.new do |s|
 
   s.name     = 'gtk3app'
-  s.version  = '2.1.1'
+  s.version  = '3.0.0'
 
   s.homepage = 'https://github.com/carlosjhr64/gtk3app'
 
   s.author   = 'carlosjhr64'
   s.email    = 'carlosjhr64@gmail.com'
 
-  s.date     = '2018-06-17'
+  s.date     = '2018-06-23'
   s.licenses = ['MIT']
 
   s.description = <<DESCRIPTION
@@ -29,7 +29,6 @@ data/logo.png
 data/ruby.png
 lib/gtk3app.rb
 lib/gtk3app/config.rb
-lib/gtk3app/dialog/dialogs.rb
 lib/gtk3app/gtk3app.rb
 lib/gtk3app/program.rb
 lib/gtk3app/slot.rb

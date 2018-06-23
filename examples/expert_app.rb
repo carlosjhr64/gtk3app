@@ -3,9 +3,23 @@ require 'help_parser'
 require 'gtk3app'
 
 module ExpertApp
-  using Rafini::String
+  class NoYes < Such::Dialog
+    def initialize(*par)
+      super
+      Such::Label.new child, :no_yes_label
+      add_button('_No', Gtk::ResponseType::CANCEL)
+      add_button('_Yes', Gtk::ResponseType::OK)
+    end
 
-  VERSION = '2.1.1'
+    def runs
+      show_all
+      response = run
+      destroy
+      response==Gtk::ResponseType::OK
+    end
+  end
+
+  VERSION = '3.0.0'
   OPTIONS = HelpParser[VERSION, <<-HELP]
 
 This is ExpertApp, an example module for Gtk3App.
@@ -22,6 +36,7 @@ Options:
 
   APPDIR = File.dirname __dir__
 
+  using Rafini::String
   CONFIG = {
 
     thing: {
@@ -78,6 +93,8 @@ Options:
       PRESS_TWO: [label: 'Press Two!'],
       press_two: Rafini::Empty::HASH,
       press_two!: [:PRESS_TWO, :press_two, 'activate'],
+
+      no_yes_label: {set_text: "Should I say!?"},
     },
   }
 
@@ -112,10 +129,9 @@ Options:
       when mybox.one_Button
         ExpertApp.says "You've pressed button number 1!"
       when mybox.two_Button
-        no_yes = Gtk3App::Dialog::NoYes.new
-        no_yes.transient_for = window
-        no_yes.label.text = "Should I say!?"
-        ExpertApp.says "You've pressed button number 2!" if no_yes.runs
+        if NoYes.new([parent: window]).runs
+          ExpertApp.says "You've pressed button number 2!"
+        end
       end
     end
 
