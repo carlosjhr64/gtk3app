@@ -35,6 +35,7 @@ module Gtk3App
   end
 
   def self.main(app)
+    @program = nil # initialized
     Gtk3App.init Gtk3App
     Gtk3App.init app
     @program = Program.new app

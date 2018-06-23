@@ -5,7 +5,6 @@ Code review:
   2) The gui#finalize needs documentation.
   3) Just go over the code for code smells.
   4) Review README
-  5) Review @program.release
 
 Slots did not clear on a system crash... double check it as I thought I had this covered.
   This is very rare unlikely conditions where this can happen.
@@ -21,6 +20,9 @@ OLD:
 YAML security?  Check for ruby! in YAML?
 
 DONE:
+
+  5) Review @program.release:
+    Verbose complain that @program was not initilizing. Fixed.
 
 == File List
 
