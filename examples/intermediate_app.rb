@@ -70,7 +70,7 @@ Options:
       about_dialog: {
         set_program_name: 'Intermediate App',
         set_version: VERSION.semantic(0..1),
-        set_copyright: '(c) 2017 CarlosJHR64',
+        set_copyright: '(c) 2018 CarlosJHR64',
         set_comments: 'A Gtk3App Intermediate Example',
         set_website: 'https://github.com/carlosjhr64/gtk3app',
         set_website_label: 'See it at GitHub!',
