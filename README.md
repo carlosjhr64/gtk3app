@@ -2,21 +2,26 @@
 
 ## DESCRIPTION:
 
-Gtk3App provides a Gtk3 application stub.
-
-It automatically provides for user configuration, and minime windows.
+Gtk3App provides a
+[Ruby Gnome Gtk3](https://rubygems.org/gems/gtk3)
+application stub.
+It automatically provides for user configuration, application menu, and minime window.
 
 ## SYNOPSIS:
 
-Given a module file such as `~./my_app.rb`, the module is expected to at least provide MyApp.run(program):
+Given a module file such as `~./my_app.rb` providing `MyApp`, the module is expected to at least provide MyApp.run(program):
 
     module MyApp
-     def self.run(program)
+      def self.run(program)
        window = program.window
        # develop as you would on a Gtk3::Window object...
        # ...probably a good idea to show all your work.
        window.show_all
-     end
+       self
+      end
+      def self.finalyze
+        # do any cleanups needed at quit time...
+      end
     end
     Gtk3App.main(MyApp)
 
@@ -31,12 +36,6 @@ directory fully explains the rest of what Gtk3App can do for you.
 * [UserSpace](https://github.com/carlosjhr64/user_space) XDG support.
 * MiniMe, an alternative to the deprecated Gtk::StatusIcon.
 * Popup Application Menu from window button 3 press event (standard left click on application).
-
-### New for 2.1
-
-If in the above example MyApp.run return an object the responds to #finalize,
-the method will be called before the Gtk main quit.
-This allows for any cleanups the gui may need to do before exit.
 
 ## INSTALL:
 
