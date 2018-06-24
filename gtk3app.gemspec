@@ -23,7 +23,7 @@ SUMMARY
 
   s.require_paths = ['lib']
   s.files = %w(
-README.rdoc
+README.md
 data/VERSION
 data/logo.png
 data/ruby.png
