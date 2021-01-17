@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 EXAMPLES = './examples'
-LOG = './test/error.log'
+LOG = './tmp/error.log'
 
 RUBY = 'ruby -W0 -I ./lib'
 

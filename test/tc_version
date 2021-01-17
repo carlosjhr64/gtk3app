@@ -1,17 +1,21 @@
 #! ruby
 require 'test/unit'
-require 'gtk3app'
 
 class TestVersion < Test::Unit::TestCase
   def test_version
-    assert_nothing_raised() do
-      version = '3.0.0'
-      assert_equal version, Gtk3App::VERSION
-      assert_equal version, File.read('./data/VERSION').strip
-      # Ensure that everything that looks like version agrees
-      `egrep -o '[0-9]+\\.[0-9]+\\.[0-9]+' examples/*.* lib/**.* data/VERSION`.strip.split(/\n/).each do |line|
-        assert_equal version, line.strip.split(/:/).last, line
-      end
+    version = '4.0.210117'
+    assert_equal(version, `egrep -o '[0-9]+\\.[0-9]+\\.[0-9]+' lib/*.rb`.split.first)
+    if File.exist?('data/VERSION')
+      assert_equal(version, File.read('data/VERSION').strip)
+    end
+    if executable = `ls bin/* 2> /dev/null`.split.first
+      assert_equal(version, `#{executable} --version`.strip)
+    end
+    if gemspec = `ls *.gemspec 2> /dev/null`.split.first
+      assert_equal(version, `egrep -o '[0-9]+\\.[0-9]+\\.[0-9]+' #{gemspec}`.split.first)
+    end
+    if readme = `ls README.* 2> /dev/null`.split.first
+      assert_equal(version, `egrep -o '[0-9]+\\.[0-9]+\\.[0-9]+' #{readme}`.split.first)
     end
   end
 end

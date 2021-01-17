@@ -1,5 +1,5 @@
 module Gtk3App
-  VERSION = '3.0.0'
+  VERSION = '4.0.210117'
 end
 
 # Standard Libraries

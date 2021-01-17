@@ -1,4 +1,5 @@
+TODO.txt
 *.swp
-test/error.log
-*.gem
+pkg
+tags
 tmp

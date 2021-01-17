@@ -1,0 +1,81 @@
+#!/usr/bin/ruby
+require 'test/unit'
+require 'colorize'
+
+README = 'README.md'
+
+ROCKET      = /\s*#=>\s*/
+MATCH       = /\s*#~>\s*/
+DECLARATION = /\s*#!>\s*/
+
+BINDING = binding
+
+def step_thru_script(fh=$stdin)
+  script, line_number, is_ruby  =  '', 0, false
+  while line = fh.gets
+    line_number += 1
+    # Are we ruby yet?
+    case line
+    when /^```ruby\b/
+      is_ruby = true; next
+    when /^```$/
+      is_ruby = false; next
+    end
+    next unless is_ruby
+    # Build up script
+    script << line  unless line.match? /^\s*#/
+    # Ready to do something?
+    case line
+    when DECLARATION
+      declaration = line.split(DECLARATION, 2).last.chomp
+      case declaration
+      when /^TODO/
+        puts "Rocket line number #{line_number}:".colorize(:yellow)
+        puts declaration.colorize(:yellow)
+        break
+      end
+    when ROCKET, MATCH
+      actual = nil
+    else next
+    end
+    # OK, do it!
+    begin
+      actual = BINDING.eval(script)
+    rescue
+      actual = $!.message
+    end
+    string = actual.to_s
+    # Did we get what we expected?
+    case line
+    when ROCKET
+      expected = line.split(ROCKET, 2).last.chomp
+      actual = (expected == string)? string : actual.inspect
+    when MATCH
+      expected = line.split(MATCH, 2).last.chomp
+      expected = Regexp.new expected
+      actual = (expected.match? string)? string : actual.inspect
+    else
+      raise "WUT!?" # This should not happen!
+    end
+    # Report it
+    yield line_number, line.lstrip.chomp, expected, actual, script
+    script = ''
+  end
+end
+
+class TestReadmeRocketTest < Test::Unit::TestCase
+  def test_readme_rocket_test
+    return unless File.exist? README
+    File.open(README, 'r') do |fh|
+      step_thru_script(fh) do |line_number, line, expected, actual, script|
+        # Note: script currently not being used
+        case expected
+        when String
+          assert_equal expected, actual, "#{line_number}: #{line}"
+        when Regexp
+          assert_match expected, actual, "#{line_number}: #{line}"
+        end
+      end
+    end
+  end
+end
