@@ -1,6 +1,4 @@
 module Gtk3App
-module Widget
-
   class MenuItem < Such::MenuItem
     attr_accessor :key
   end
@@ -19,7 +17,8 @@ module Widget
       window.add_events(Gdk::EventMask::BUTTON_PRESS_MASK)
       window.signal_connect('button_press_event') do |w,e|
         if e.button == 3
-          self.popup(nil, nil, 3, e.time)
+          #self.popup(nil, nil, 3, e.time)
+          self.popup_at_pointer #(nil, nil, 3, e.time)
         else
           block.call(w,e,'button_press_event')
         end
@@ -32,25 +31,29 @@ module Widget
     end
   end
 
-  class MainWindow < Such::Window
-    def self.set_icon(file)
-      @@icon = GdkPixbuf::Pixbuf.new(file: file)
-    end
-
-    def self.icon
-      @@icon
-    end
-
-    def initialize(*par, &block)
-      super(*par, &block)
-      self.set_icon MainWindow.icon
-    end
-
-    def minime(x=CONFIG[:SlotsScale])
-      self.set_default_size(x,x)
-      self.add Gtk::Image.new(pixbuf: MainWindow.icon.scale(x,x)).show
+  class EventImage < Such::EventBox
+    def initialize(container, ...)
+      super container
+      Such::Image.new(self, ...)
     end
   end
 
-end
+  class YesNoDialog < Such::Dialog
+    def initialize(...)
+      super(...)
+      add_button '_No', Gtk::ResponseType::CANCEL
+      add_button '_Yes', Gtk::ResponseType::OK
+    end
+
+    def add_label(text)
+      Such::Label.new(child).text = text
+    end
+
+    def ok?
+      show_all
+      response = run
+      destroy
+      response == Gtk::ResponseType::OK
+    end
+  end
 end

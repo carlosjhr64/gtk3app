@@ -1,12 +1,17 @@
 module Gtk3App
-  using Rafini::String
+  using Rafini::String # provides String#semantic
+  extend Rafini::Empty # provides s0, a0, and h0.
+
+  HELP = <<~HELP
+    Usage:
+      #{File.basename $0} [:options+]
+    Options:
+      --notoggle    	Minime wont toggle decorated and keep above
+      --notdecorated	Dont decorate window
+  HELP
 
   # The gem's root directory
   APPDIR = File.dirname File.dirname __dir__
-
-  a0 = Rafini::Empty::ARRAY
-  h0 = Rafini::Empty::HASH
-  s0 = Rafini::Empty::STRING
 
   # CONFIG follows the following conventions:
   # * Strings and numbers are mixed case.
@@ -15,97 +20,79 @@ module Gtk3App
   # * Lower case bang! keys have special meaning in Such.
   # * Note that method keys may have mixed case as the method itself.
   CONFIG = {
+    # Application SHOULD modify LOGO to use it's own logo image.
+    Logo: "#{UserSpace::XDG['data']}/gtk3app/logo.png",
+    # Scale logo to this size.
+    LogoSize: 25,
 
     # The command to open with default application
-    Open: 'gnome-open',
+    Open: 'xdg-open',
 
-    Slots: 13, # The number of minime slots
-    SlotsDBM: "#{XDG['CACHE']}/gtk3app/slots.sdbm", # slot management database
-    SLOTS_OFFSET: [0,0], # The offset from the bottom right corner
-    SlotsScale: 25, # The size of the slots
-    SlotsOrientation: :horizontal,
+    # Main window configuration
+    MAIN: a0, # Window.new's parameters
+    main: h0, # window settings
+    main!: [:MAIN,:main],
 
-    thing: { # The application MAY overwrite some these
+    # Expander container configuration
+    EXPANDER: a0,
+    expander: h0,
+    expander!: [:EXPANDER, :expander],
 
-      # Main window configuration
-      WINDOW: a0, # Window.new's parameters
-      window: h0, # window settings
-      window!: [:WINDOW,:window],
+    # Fullscreen app-menu item
+    # Application MAY modify :FS for language
+    FS: [label: 'Full Screen'],
+    fs: h0,
+    fs!: [:FS, :fs, 'activate'],
 
-      # Minime's configuration
-      # Application SHOULD NOT modify these.
-      MINI: a0,
-      mini: {
-        set_decorated: false,
-        minime: a0,
-      },
-      mini!: [:MINI,:mini],
-
-      # Fullscreen app-menu item
-      # Application MAY modify :FS for language
-      FS: [label: 'Full Screen'],
-      fs: h0,
-      fs!: [:FS, :fs, 'activate'],
-
-      # About app-menu item
-      # Application MAY modify :ABOUT for language
-      # Application SHOULD modify :about_dialog
-      ABOUT: [label: 'About'],
-      about: h0,
-      about!: [:ABOUT, :about, 'activate'],
-      about_dialog: {
-        set_program_name: 'Gtk3App',
-        set_version: VERSION.semantic(0..1),
-        set_copyright: '(c) 2018 CarlosJHR64',
-        set_comments: 'A Gtk3 Application Stub',
-        set_website: 'https://github.com/carlosjhr64/gtk3app',
-        set_website_label: 'See it at GitHub!',
-      },
-      # Application SHOULD modify LOGO to use it's own logo image.
-      Logo: "#{XDG['DATA']}/gtk3app/logo.png",
-      # Application SHOULD modify :HelpFile to their own help page.
-      HelpFile: 'https://github.com/carlosjhr64/gtk3app',
-      # By convention, I'm using mix case for simple String configurations in here thing.
-
-      # Help app-menu item
-      # Application MAY modify :HELP for language
-      HELP: [label: 'Help'],
-      help: h0,
-      help!: [:HELP, :help, 'activate'],
-
-      # Minime's app-menu item.
-      # Application MAY modify :MINIME for language.
-      MINIME: [label: 'Mini-me'],
-      minime: h0,
-      minime!: [:MINIME, :minime, 'activate'],
-
-      # Quit app-menu item.
-      # Application MAY modify :QUIT for language.
-      QUIT: [label: 'Quit'],
-      quit: h0,
-      quit!: [:QUIT, :quit, 'activate'],
-
-      # The app menu configuration.
-      # The application MAY ONLY modify app_menu.add_menu_item
-      # by removing un-wanted app menu items.
-      # Note that you can reference the item.key,
-      # see: Gtk3App::Widget::MenuItem < Such::MenuItem
-      APP_MENU: a0,
-      app_menu: {
-        add_menu_item: [:fs!, :about!, :help!, :minime!, :quit!],
-      },
-      app_menu!: [:APP_MENU, :app_menu, s0],
-
-      # Minime's app-menu configuration.
-      # The application SHOULD NOT modify
-      # (the application will have the opportunity later to modify
-      # minime's app-menu directly).
-      MINI_MENU: a0,
-      mini_menu: {
-        add_menu_item: [:quit!],
-      },
-      mini_menu!: [:MINI_MENU, :mini_menu, s0],
-
+    # About app-menu item
+    # Application MAY modify :ABOUT for language
+    # Application SHOULD modify :about_dialog
+    ABOUT: [label: 'About'],
+    about: h0,
+    about!: [:ABOUT, :about, 'activate'],
+    about_dialog: {
+      set_program_name: 'Gtk3App',
+      set_version: VERSION.semantic(0..1),
+      set_copyright: '(c) 2021 CarlosJHR64',
+      set_comments: 'A Gtk3 Application Stub',
+      set_website: 'https://github.com/carlosjhr64/gtk3app',
+      set_website_label: 'See it at GitHub!',
     },
+    # Application SHOULD modify :HelpFile to their own help page.
+    HelpFile: 'https://github.com/carlosjhr64/gtk3app',
+
+    # Help app-menu item
+    # Application MAY modify :HELP for language
+    HELP: [label: 'Help'],
+    help: h0,
+    help!: [:HELP, :help, 'activate'],
+
+    # Minime's app-menu item.
+    # Application MAY modify :MINIME for language.
+    MINIME: [label: 'Minime'],
+    minime: h0,
+    minime!: [:MINIME, :minime, 'activate'],
+
+    # Quit app-menu item.
+    # Application MAY modify :QUIT for language.
+    QUIT: [label: 'Quit'],
+    quit: h0,
+    quit!: [:QUIT, :quit, 'activate'],
+
+    # Quit confirmation dialog.
+    QUIT_URSURE: a0,
+    quit_ursure: {add_label: 'Quit?'},
+    quit_ursure!: [:QUIT_URSURE, :quit_ursure],
+
+    # The app menu configuration.
+    # The application MAY ONLY modify app_menu.add_menu_item
+    # by removing un-wanted app menu items.
+    # Note that you can reference the item.key,
+    # see: Gtk3App::Widget::MenuItem < Such::MenuItem
+    APP_MENU: a0,
+    app_menu: {
+      add_menu_item: [ :minime!, :fs!, :help!, :about!, :quit!  ],
+    },
+    app_menu!: [:APP_MENU, :app_menu, s0],
   }
 end

@@ -1,62 +1,50 @@
 #! ruby
 require 'test/unit'
-require 'rafini'
-require 'xdg'
 require 'gtk3app'
 using Rafini::String
 
 class TestConfig < Test::Unit::TestCase
   def test_config
-    assert_nothing_raised() do
+    dir = File.dirname __dir__
+    assert_equal dir, Gtk3App::APPDIR
 
-      dir = File.dirname __dir__
-      assert_equal dir, Gtk3App::APPDIR
+    assert_equal Hash, Gtk3App::CONFIG.class
 
-      assert_equal Hash, Gtk3App::CONFIG.class
+    gopen = Gtk3App::CONFIG[:Open]
+    assert_equal 'xdg-open', gopen
+    assert system("which #{gopen}")
 
-      gopen = Gtk3App::CONFIG[:Open]
-      assert_equal 'gnome-open', gopen
-      assert system("which #{gopen}")
-
-      assert_equal 13, Gtk3App::CONFIG[:Slots]
-      assert_match(/\/gtk3app\/slots\.sdbm$/, Gtk3App::CONFIG[:SlotsDBM])
-      assert_equal 25, Gtk3App::CONFIG[:SlotsScale]
-
-      thing = Gtk3App::CONFIG[:thing]
-      assert_not_nil thing
-      assert_equal Hash, thing.class
-
-      # Checking that our bangs! are all there.
-      ['window!','mini!','fs!',
-       'about!','help!','minime!',
-       'quit!','app_menu!','mini_menu!',
-      ].each do |s|
-        k = s.to_sym # :key!
-        assert_not_nil thing[k], k
-        k = s.chop.to_sym # :key
-        assert_not_nil thing[k], k
-        k = s.chop.upcase.to_sym # :KEY
-        assert_not_nil thing[k], k
-      end
-
-      # Checking convention use
-      thing.each do |k,v|
-        case k
-        when /^[A-Z_]+$/
-          assert_equal Array, v.class
-        when /^[a-z_]+$/
-          assert_equal Hash, v.class
-        when /^[a-zA-Z]+$/
-          assert((v.class==String) || (v.class==Fixnum))
-        when /^\w+\!$/
-          assert_equal Array, v.class
-        else
-          raise "Got bad thing key :#{k}."
-        end
-      end
-
-      # sanity check
-      assert_equal Gtk3App::VERSION.semantic(0..1), thing[:about_dialog][:set_version]
+    cnf = Gtk3App::CONFIG
+    # Checking that our bangs! are all there.
+    ['main!','expander!','fs!',
+     'about!','help!','minime!',
+     'quit!','app_menu!',
+    ].each do |s|
+      k = s.to_sym # :key!
+      assert_not_nil cnf[k], k
+      k = s.chop.to_sym # :key
+      assert_not_nil cnf[k], k
+      k = s.chop.upcase.to_sym # :KEY
+      assert_not_nil cnf[k], k
     end
+
+    # Checking convention use
+    cnf.each do |k,v|
+      case k
+      when /^[A-Z_]+$/
+        assert_equal Array, v.class
+      when /^[a-z_]+$/
+        assert_equal Hash, v.class
+      when /^[a-zA-Z]+$/
+        assert((v.class==String) || (v.class==Fixnum))
+      when /^\w+\!$/
+        assert_equal Array, v.class
+      else
+        raise "Got bad CONFIG key :#{k}."
+      end
+    end
+
+    # sanity check
+    assert_equal Gtk3App::VERSION.semantic(0..1), cnf[:about_dialog][:set_version]
   end
 end

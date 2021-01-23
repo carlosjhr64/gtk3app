@@ -1,6 +1,6 @@
 # Gtk3App
 
-* [VERSION 4.0.210117](https://github.com/carlosjhr64/gtk3app/releases)
+* [VERSION 4.0.210123](https://github.com/carlosjhr64/gtk3app/releases)
 * [github](https://www.github.com/carlosjhr64/gtk3app)
 * [rubygems](https://rubygems.org/gems/gtk3app)
 
@@ -9,7 +9,12 @@
 Gtk3App provides a
 [Ruby Gnome Gtk3](https://rubygems.org/gems/gtk3)
 application stub.
-It automatically provides for user configuration, application menu, and minime window.
+
+The stub provides you with two Expander containers.
+One for a horizontal toolbar.
+The other for your main box.
+
+![stub](examples/stub.png)
 
 ## INSTALL:
 
@@ -19,22 +24,14 @@ $ sudo gem install gtk3app
 
 ## SYNOPSIS:
 
-Given a module file such as `~./my_app.rb` providing `MyApp`, the module is expected to at least provide MyApp.run(program):
-
 ```ruby
-module MyApp
-  def self.run(program)
-   window = program.window
-   # develop as you would on a Gtk3::Window object...
-   # ...probably a good idea to show all your work.
-   window.show_all
-   self
-  end
-  def self.finalyze
-    # do any cleanups needed at quit time...
-  end
+require 'gtk3app'
+# Expander = Such::Expander < Gtk::Expander
+# Gtk3App.run do |Expander container, Expander toolbar, HelpParser options|
+Gtk3App.run do |container, toolbar, options|
+  # add stuff to container and toolbar 
 end
-Gtk3App.main(MyApp)
+#=> nil
 ```
 
 That's enough to get you going.
@@ -43,11 +40,13 @@ directory fully explains the rest of what Gtk3App can do for you.
 
 ## FEATURES:
 
-* [Such](https://github.com/carlosjhr64/Such) wrappers.
-* [Rafini](https://github.com/carlosjhr64/rafini) refinements.
-* [UserSpace](https://github.com/carlosjhr64/user_space) XDG support.
-* MiniMe, an alternative to the deprecated Gtk::StatusIcon.
-* Popup Application Menu from window button 3 press event (standard left click on application).
+* xdg directory maintainance via [UserSpace](https://www.github.com/carlosjhr64/user_space)
+* cofiguration via [RBON](https://www.github.com/carlosjhr64/rbon)
+* command line options via [HelpParser](https://www.github.com/carlosjhr64/Ruby-HelpParser)
+* application menus
+* minime window
+* [Such](https://github.com/carlosjhr64/Such) Gtk::Widget wrappers.
+
 
 ## LICENSE:
 
