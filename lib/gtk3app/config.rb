@@ -10,9 +10,6 @@ module Gtk3App
       --notdecorated	Dont decorate window
   HELP
 
-  # The gem's root directory
-  APPDIR = File.dirname File.dirname __dir__
-
   # CONFIG follows the following conventions:
   # * Strings and numbers are mixed case.
   # * Arrays are all upper case (may except for arrays of length 1, see Such).

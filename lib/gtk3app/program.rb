@@ -1,8 +1,10 @@
 module Gtk3App
 class << self
-  def run
+  # Gtk2App.run(appdir:String?, appname:String?, version:String?, config:Hash?, klass:(Class | Module)?)
+  def run(**kw)
     @options = get_options
-    install
+    kw[:appdir] = UserSpace.appdir unless kw.empty? or kw[:appdir]
+    install(**kw)
 
     Such::Thing.configure CONFIG
     @main    = Such::Window.new  :main!, 'delete-event' do quit! end
@@ -90,12 +92,35 @@ class << self
   end
 
   using Rafini::String
-  def install
-    _ = UserSpace.new parser:RBON,
-                      appname:'gtk3app',
-                      config:"config-#{VERSION.semantic(0..1)}",
-                      appdir:APPDIR
-    _.configures CONFIG
+  def install(**kw)
+    stub = UserSpace.new parser:RBON,
+                         appname:'gtk3app',
+                         config:"config-#{VERSION.semantic(0..1)}"
+    stub.configures CONFIG
+    unless kw.empty?
+      if klass=kw[:klass]
+        kw[:appname] ||= klass.name.downcase
+        kw[:version] ||= klass::VERSION
+        kw[:config]  ||= klass::CONFIG
+      end
+      keys = [:klass,:appdir,:appname,:version,:config]
+      if kw.keys.any?{not keys.include?_1} or not keys[1..-1].all?{kw[_1]}
+        $stderr.puts 'Expected Signatures:'
+        $stderr.puts '  Gtk3App.run'
+        $stderr.puts '  Gtk3App.run(appname:String, version:String, config:Hash, appdir:String?)'
+        $stderr.puts '  Gtk3App.run(klass:(Class|Module), appdir:String?)'
+        $stderr.puts 'Defaults appdir to UserSpace.appdir.'
+        $stderr.puts "Got: #{kw.inspect}."
+        raise ArgumentError
+      end
+      app = UserSpace.new parser:RBON,
+                          # Will be a subdirectory in gtk3app:
+                          appname:"gtk3app/#{kw[:appname]}",
+                          appdir:kw[:appdir],
+                          config:"config-#{kw[:version].semantic(0..1)}"
+      app.configures kw[:config]
+      CONFIG.merge! kw[:config]
+    end
   end
 end
 end

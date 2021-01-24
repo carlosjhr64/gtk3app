@@ -5,9 +5,6 @@ using Rafini::String
 
 class TestConfig < Test::Unit::TestCase
   def test_config
-    dir = File.dirname __dir__
-    assert_equal dir, Gtk3App::APPDIR
-
     assert_equal Hash, Gtk3App::CONFIG.class
 
     gopen = Gtk3App::CONFIG[:Open]

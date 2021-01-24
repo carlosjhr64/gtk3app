@@ -2,9 +2,9 @@ AboutDialog
 accessor
 ahmad
 appdir
-APPDIR
 AppMenu
 appname
+ArgumentError
 attr
 basename
 carlosjhr
@@ -12,9 +12,8 @@ CarlosJHR
 cofiguration
 config
 CONFIG
-dir
-dirname
 Dont
+downcase
 EventBox
 EventImage
 EventMask
@@ -38,6 +37,7 @@ HelpFile
 HelpParser
 http
 https
+klass
 LogoSize
 maintainance
 MenuItem
@@ -61,6 +61,8 @@ ResponseType
 rubygems
 rubygtk
 softicons
+stderr
+subdirectory
 sublicense
 sudo
 un
