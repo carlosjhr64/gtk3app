@@ -3,7 +3,7 @@ require 'test/unit'
 
 class TestVersion < Test::Unit::TestCase
   def test_version
-    version = '4.0.210123'
+    version = '4.0.210124'
     assert_equal(version, `egrep -o '[0-9]+\\.[0-9]+\\.[0-9]+' lib/*.rb`.split.first)
     if File.exist?('data/VERSION')
       assert_equal(version, File.read('data/VERSION').strip)

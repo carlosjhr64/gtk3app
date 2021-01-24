@@ -93,6 +93,6 @@ module Gtk3App
     app_menu: {
       add_menu_item: [ :minime!, :fs!, :help!, :about!, :quit!  ],
     },
-    app_menu!: [:APP_MENU, :app_menu, s0],
+    app_menu!: [:APP_MENU, :app_menu],
   }
 end

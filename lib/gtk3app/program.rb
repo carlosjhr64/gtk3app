@@ -14,8 +14,8 @@ class << self
     size    = CONFIG[:LogoSize]
     @pixbuf = GdkPixbuf::Pixbuf.new(file:CONFIG[:Logo]).scale(size,size)
     logo    = Gtk3App::EventImage.new hbox, [pixbuf:@pixbuf]
-    Gtk3App::AppMenu.new(logo, :app_menu!) do |w,*_,s|
-      send(w.key) if s=='activate'
+    Gtk3App::AppMenu.new(logo, :app_menu!) do |menu_item,*_,signal|
+      send(menu_item.key) if signal=='activate'
     end
 
     @container = Such::Expander.new vbox, :expander!
