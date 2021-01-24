@@ -75,11 +75,18 @@ class << self
   def quit!
     ursure = Gtk3App::YesNoDialog.new :quit_ursure!
     ursure.transient_for = @main
-    return unless ursure.ok?
+    return true unless ursure.ok?
     Gtk3App.finalize if Gtk3App.respond_to? :finalize
     Gtk.main_quit
-  rescue
+    return false
+  rescue # finalize raised exception
     $!.puts
+    dialog = Such::MessageDialog.new
+    dialog.transient_for = @main
+    dialog.set_text $!.message
+    dialog.run
+    dialog.destroy
+    return true
   end
 
   using Rafini::String

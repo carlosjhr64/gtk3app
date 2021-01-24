@@ -84,6 +84,11 @@ module Gtk3App
     quit_ursure: {add_label: 'Quit?'},
     quit_ursure!: [:QUIT_URSURE, :quit_ursure],
 
+    # Quit Exception(raised by finalizer) message
+    QUIT_EXCEPTION: a0,
+    quit_exception: {set_message_type: :info},
+    quit_exception!: [:QUIT_EXCEPTION, :quit_exception],
+
     # The app menu configuration.
     # The application MAY ONLY modify app_menu.add_menu_item
     # by removing un-wanted app menu items.
@@ -93,6 +98,7 @@ module Gtk3App
     app_menu: {
       add_menu_item: [ :minime!, :fs!, :help!, :about!, :quit!  ],
     },
-    app_menu!: [:APP_MENU, :app_menu],
+    # s0 tells AppMenu not to connect to any signal, otherwise it assumes "clicked".
+    app_menu!: [:APP_MENU, :app_menu, s0],
   }
 end
