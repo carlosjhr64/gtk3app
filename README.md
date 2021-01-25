@@ -4,6 +4,8 @@
 * [github](https://www.github.com/carlosjhr64/gtk3app)
 * [rubygems](https://rubygems.org/gems/gtk3app)
 
+![stub](examples/stub.png)
+
 ## DESCRIPTION:
 
 Gtk3App provides a
@@ -12,9 +14,7 @@ application stub.
 
 The stub provides you with two Expander containers.
 One for a horizontal toolbar.
-The other for your main box.
-
-![stub](examples/stub.png)
+The other for your main stage area.
 
 ## INSTALL:
 
@@ -28,8 +28,8 @@ $ sudo gem install gtk3app
 require 'gtk3app'
 # Expander = Such::Expander < Gtk::Expander
 # Gtk3App.run do |Expander container, Expander toolbar, HelpParser options|
-Gtk3App.run do |container, toolbar, options|
-  # add stuff to container and toolbar 
+Gtk3App.run do |stage, toolbar, options|
+  # add stuff to stage and toolbar 
 end
 ```
 
@@ -42,9 +42,9 @@ directory fully explains the rest of what Gtk3App can do for you.
 * xdg directory maintainance via [UserSpace](https://www.github.com/carlosjhr64/user_space)
 * cofiguration via [RBON](https://www.github.com/carlosjhr64/rbon)
 * command line options via [HelpParser](https://www.github.com/carlosjhr64/Ruby-HelpParser)
-* application menus
-* minime window
 * [Such](https://github.com/carlosjhr64/Such) Gtk::Widget wrappers.
+* default application menu
+* minime window
 
 
 ## LICENSE:
