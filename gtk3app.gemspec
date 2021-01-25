@@ -40,7 +40,7 @@ lib/gtk3app/widgets.rb
   s.add_runtime_dependency 'help_parser', '~> 7.0', '>= 7.0.200907'
   s.add_runtime_dependency 'user_space', '~> 5.0', '>= 5.0.210123'
   s.add_runtime_dependency 'rafini', '~> 3.0', '>= 3.0.210112'
-  s.add_runtime_dependency 'rbon', '~> 0.1', '>= 0.1.210123'
+  s.add_runtime_dependency 'rbon', '~> 0.2', '>= 0.2.210125'
   s.add_runtime_dependency 'gtk3', '~> 3.4', '>= 3.4.3'
   s.add_runtime_dependency 'such', '~> 1.0', '>= 1.0.210117'
   s.requirements << 'ruby: ruby 3.0.0p0 (2020-12-25 revision 95aff21468) [x86_64-linux]'
