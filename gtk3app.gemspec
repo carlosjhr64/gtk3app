@@ -31,7 +31,6 @@ SUMMARY
   s.files = %w(
 README.md
 data/logo.png
-data/ruby.png
 lib/gtk3app.rb
 lib/gtk3app/config.rb
 lib/gtk3app/program.rb
