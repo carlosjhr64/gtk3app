@@ -32,7 +32,7 @@ module Gtk3App
 
     # Expander container configuration
     EXPANDER: a0,
-    expander: h0,
+    expander: {set_expanded:true},
     expander!: [:EXPANDER, :expander],
 
     # Fullscreen app-menu item

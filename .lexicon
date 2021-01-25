@@ -37,7 +37,6 @@ dialog
 Dialog
 downcase
 e
-empty
 Empty
 EventBox
 EventImage
@@ -116,6 +115,7 @@ quit_ursure
 QUIT_URSURE
 Rafini
 raise
+raise_argument_error
 RBON
 require
 resize

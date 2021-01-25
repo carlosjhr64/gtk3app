@@ -3,7 +3,7 @@ class << self
   # Gtk2App.run(appdir:String?, appname:String?, version:String?, config:Hash?, klass:(Class | Module)?)
   def run(**kw)
     @options = get_options
-    kw[:appdir] = UserSpace.appdir unless kw.empty? or kw[:appdir]
+    kw[:appdir] = UserSpace.appdir unless kw[:appdir]
     install(**kw)
 
     Such::Thing.configure CONFIG
@@ -91,36 +91,42 @@ class << self
     return true
   end
 
+  def raise_argument_error
+    $stderr.puts 'Expected Signatures:'
+    $stderr.puts '  Gtk3App.run'
+    $stderr.puts '  Gtk3App.run(config:Hash)'
+    $stderr.puts '  Gtk3App.run(appname:String, version:String, config:Hash, appdir:String?)'
+    $stderr.puts '  Gtk3App.run(klass:(Class|Module), appdir:String?)'
+    $stderr.puts 'Defaults appdir to UserSpace.appdir.'
+    $stderr.puts "Got: #{kw.inspect}."
+    raise ArgumentError
+  end
+
   using Rafini::String
   def install(**kw)
+    keys = [:klass,:appdir,:appname,:version,:config]
+    raise_argument_error if kw.keys.any?{not keys.include?_1}
+    if klass=kw[:klass]
+      kw[:appname] ||= klass.name.downcase
+      kw[:version] ||= klass::VERSION
+      kw[:config]  ||= klass::CONFIG
+    end
+    raise_argument_error if keys[2..-2].any?{kw[_1]} and not keys[1..-1].all?{kw[_1]}
+
     stub = UserSpace.new parser:RBON,
                          appname:'gtk3app',
                          config:"config-#{VERSION.semantic(0..1)}"
     stub.configures CONFIG
-    unless kw.empty?
-      if klass=kw[:klass]
-        kw[:appname] ||= klass.name.downcase
-        kw[:version] ||= klass::VERSION
-        kw[:config]  ||= klass::CONFIG
-      end
-      keys = [:klass,:appdir,:appname,:version,:config]
-      if kw.keys.any?{not keys.include?_1} or not keys[1..-1].all?{kw[_1]}
-        $stderr.puts 'Expected Signatures:'
-        $stderr.puts '  Gtk3App.run'
-        $stderr.puts '  Gtk3App.run(appname:String, version:String, config:Hash, appdir:String?)'
-        $stderr.puts '  Gtk3App.run(klass:(Class|Module), appdir:String?)'
-        $stderr.puts 'Defaults appdir to UserSpace.appdir.'
-        $stderr.puts "Got: #{kw.inspect}."
-        raise ArgumentError
-      end
+
+    if keys[1..-1].all?{kw[_1]}
       app = UserSpace.new parser:RBON,
                           # Will be a subdirectory in gtk3app:
                           appname:"gtk3app/#{kw[:appname]}",
                           appdir:kw[:appdir],
                           config:"config-#{kw[:version].semantic(0..1)}"
       app.configures kw[:config]
-      CONFIG.merge! kw[:config]
     end
+    CONFIG.merge! kw[:config] if kw[:config]
   end
 end
 end
