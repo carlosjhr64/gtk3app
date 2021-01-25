@@ -38,4 +38,4 @@ Gtk3App.run do |stage, toolbar|
   vbox.pack_start button2
 end
 
-exit # Ensure a clean exit(0)
+exit # Ensure a clean exit

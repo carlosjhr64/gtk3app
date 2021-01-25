@@ -3,6 +3,7 @@ require 'gtk3app'
 # Gtk3App uses HelpParser.
 # If you provide ::HELP and ::VERSION,
 # Gtk3App will use them.
+# In this HELP I just add --notfour to the default help.
 HELP = <<HELP
 Usage:
   #{File.basename $0} [:options+]
@@ -13,12 +14,8 @@ Options:
 HELP
 VERSION = '1.0.0'
 
-# Using the "I don't care" `_` variable to temporarily hold
-# which's `espeak` path to test if it's there to give to the ESPEAK constant.
 ESPEAK = ((_=`which espeak 2> /dev/null`.strip) and (_!='') ? _ : nil)
 
-# If the system has `espeak`,
-# `espeak wut`, else `puts wut`.
 def says(wut)
   if ESPEAK
     spawn(ESPEAK, wut)
@@ -28,14 +25,14 @@ def says(wut)
 end
 
 # Use `finalize` to do any final cleanups
-def Gtk3App.finalize
+Gtk3App.finalize do
   says 'Goodbye!'
 end
 
 # Mouse button 3 on logo will give Gtk3App's main menu, but
 # you can add you own actions on button 1 and 2 using
 # `logo_press_event`.
-def Gtk3App.logo_press_event(button)
+Gtk3App.logo_press_event do |button|
   dialog = Such::MessageDialog.new
   # dialog is transient for main window
   Gtk3App.transient dialog
@@ -88,5 +85,4 @@ Gtk3App.run(config:config) do |stage, toolbar, options|
   end
 end
 
-# Ensure a clean exit(0)
-exit
+exit # Ensure a clean exit

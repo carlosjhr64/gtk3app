@@ -2,7 +2,7 @@ module Gtk3App
 class << self
   # Gtk2App.run(appdir:String?, appname:String?, version:String?, config:Hash?, klass:(Class | Module)?)
   def run(**kw)
-    @options = get_options
+    @options = get_options(klass=kw[:klass])
     kw[:appdir] = UserSpace.appdir unless kw[:appdir]
     install(**kw)
 
@@ -21,27 +21,41 @@ class << self
       when 'activate'
         send widget.key
       when 'button_press_event'
-        Gtk3App.logo_press_event(e[0].button) if Gtk3App.respond_to? :logo_press_event
+        @logo_press_event.call(e[0].button) if @logo_press_event
       end
     end
 
-    @stage =   Such::Expander.new vbox, :stage!
+    @stage   = Such::Expander.new vbox, :stage!
     @toolbar = Such::Expander.new hbox, :toolbar!
-    yield @stage, @toolbar, @options
+
+    if klass
+      klass.new @stage, @toolbar, @options
+    else
+      yield @stage, @toolbar, @options
+    end
 
     @minime = @fs = false
     @main.show_all
     Gtk.main
   end
 
-  def get_options
-    help     = (defined? ::HELP)?    ::HELP    : HELP
-    version  = (defined? ::VERSION)? ::VERSION : VERSION
+  def get_options(klass)
+    help = version = nil
+    if klass
+      help    = klass::HELP    if defined? klass::HELP
+      version = klass::VERSION if defined? klass::VERSION
+    end
+    help    ||= (defined? ::HELP)?    ::HELP    : HELP
+    version ||= (defined? ::VERSION)? ::VERSION : VERSION
     HelpParser[version, help]
   end
 
   def transient(window)
     window.transient_for = @main
+  end
+
+  def logo_press_event(&block)
+    @logo_press_event = block
   end
 
   def fs!
@@ -87,7 +101,7 @@ class << self
     ursure = Gtk3App::YesNoDialog.new :quit_ursure!
     transient ursure
     return true unless ursure.ok?
-    Gtk3App.finalize if Gtk3App.respond_to? :finalize
+    @finalize.call if @finalize
     Gtk.main_quit
     return false
   rescue # finalize raised exception
@@ -98,6 +112,10 @@ class << self
     dialog.run
     dialog.destroy
     return true
+  end
+
+  def finalize(&block)
+    @finalize = block
   end
 
   def raise_argument_error

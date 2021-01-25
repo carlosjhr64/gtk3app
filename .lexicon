@@ -116,7 +116,6 @@ raise_argument_error
 RBON
 require
 resize
-respond_to
 response
 ResponseType
 Ruby30

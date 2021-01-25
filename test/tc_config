@@ -13,9 +13,11 @@ class TestConfig < Test::Unit::TestCase
 
     cnf = Gtk3App::CONFIG
     # Checking that our bangs! are all there.
-    ['main!','expander!','fs!',
-     'about!','help!','minime!',
-     'quit!','app_menu!',
+    ['main!',
+     'stage!','toolbar!',
+     'fs!','about!','help!','minime!','quit!',
+     'app_menu!',
+     'quit_ursure!','quit_exception!',
     ].each do |s|
       k = s.to_sym # :key!
       assert_not_nil cnf[k], k
