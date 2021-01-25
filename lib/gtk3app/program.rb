@@ -35,6 +35,10 @@ class << self
     HelpParser[version, help]
   end
 
+  def transient(window)
+    window.transient_for = @main
+  end
+
   def fs!
     @fs ? @main.unfullscreen : @main.fullscreen
     @fs = !@fs
@@ -42,7 +46,7 @@ class << self
 
   def about!
     about = Such::AboutDialog.new :about_dialog
-    about.transient_for = @main
+    transient about
     about.set_logo @pixbuf
     about.run
     about.destroy
@@ -76,7 +80,7 @@ class << self
   using Rafini::Exception
   def quit!
     ursure = Gtk3App::YesNoDialog.new :quit_ursure!
-    ursure.transient_for = @main
+    transient ursure
     return true unless ursure.ok?
     Gtk3App.finalize if Gtk3App.respond_to? :finalize
     Gtk.main_quit
@@ -84,7 +88,7 @@ class << self
   rescue # finalize raised exception
     $!.puts
     dialog = Such::MessageDialog.new
-    dialog.transient_for = @main
+    transient dialog
     dialog.set_text $!.message
     dialog.run
     dialog.destroy
