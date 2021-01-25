@@ -36,7 +36,7 @@ def Gtk3App.logo_press_event(button)
   dialog.destroy
 end
 
-Gtk3App.run(config:config) do |container, toolbar|
+Gtk3App.run(config:config) do |stage, toolbar|
   hbox = Such::Box.new toolbar, [:horizontal]
   Such::Button.new hbox, [label: 'Button #1'] do
     says "You've pressed button number 1!"
@@ -44,7 +44,7 @@ Gtk3App.run(config:config) do |container, toolbar|
   Such::Button.new hbox, [label: 'Button #2'] do
     says "You've pressed button number 2!"
   end
-  vbox = Such::Box.new container, [:vertical]
+  vbox = Such::Box.new stage, [:vertical]
   Such::Button.new vbox, [label: 'Button #3'] do
     says "You've pressed button number 3!"
   end

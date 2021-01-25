@@ -25,9 +25,9 @@ class << self
       end
     end
 
-    @container = Such::Expander.new vbox, :expander!
-    @toolbar   = Such::Expander.new hbox, :expander!
-    yield @container, @toolbar, @options
+    @stage = Such::Expander.new vbox, :stage!
+    @toolbar   = Such::Expander.new hbox, :toolbar!
+    yield @stage, @toolbar, @options
 
     @minime = @fs = false
     @main.show_all
@@ -68,7 +68,7 @@ class << self
         @main.set_decorated true unless @options.notdecorated
         @main.set_keep_above false
       end
-      @container.set_expanded true
+      @stage.set_expanded true
       @toolbar.set_expanded true
     else
       @minime = true
@@ -76,7 +76,7 @@ class << self
         @main.set_decorated false unless @options.notdecorated
         @main.set_keep_above true
       end
-      @container.set_expanded false
+      @stage.set_expanded false
       @toolbar.set_expanded false
       @main.resize 1,1
     end

@@ -30,10 +30,15 @@ module Gtk3App
     main: h0, # window settings
     main!: [:MAIN,:main],
 
-    # Expander container configuration
-    EXPANDER: a0,
-    expander: {set_expanded:true},
-    expander!: [:EXPANDER, :expander],
+    # Expander stage configuration
+    STAGE: a0,
+    stage: {set_expanded:true},
+    stage!: [:STAGE, :stage],
+
+    # Expander toolbar configuration
+    TOOLBAR: a0,
+    toolbar: {set_expanded:true},
+    toolbar!: [:TOOLBAR, :toolbar],
 
     # Fullscreen app-menu item
     # Application MAY modify :FS for language

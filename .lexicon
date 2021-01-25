@@ -41,9 +41,7 @@ EventBox
 EventImage
 EventMask
 Exception
-expander
 Expander
-EXPANDER
 extend
 file
 File
@@ -144,6 +142,8 @@ show_all
 signal
 signal_connect
 size
+stage
+STAGE
 String
 stub
 Such
@@ -151,6 +151,8 @@ system
 text
 Thing
 Things
+toolbar
+TOOLBAR
 transient
 transient_for
 unfullscreen
