@@ -18,7 +18,7 @@ application stub.
 
 The stub provides you with two Expander containers.
 One for a horizontal toolbar.
-The other for your main box.
+The other for your main stage area.
 DESCRIPTION
 
   s.summary = <<SUMMARY
