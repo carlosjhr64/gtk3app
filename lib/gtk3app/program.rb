@@ -25,8 +25,8 @@ class << self
       end
     end
 
-    @stage = Such::Expander.new vbox, :stage!
-    @toolbar   = Such::Expander.new hbox, :toolbar!
+    @stage =   Such::Expander.new vbox, :stage!
+    @toolbar = Such::Expander.new hbox, :toolbar!
     yield @stage, @toolbar, @options
 
     @minime = @fs = false
