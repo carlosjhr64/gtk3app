@@ -1,11 +1,11 @@
 require 'gtk3app'
 
-# Using the "I don't care" underscore variable to temporarily hold
+# Using the "I don't care" `_` variable to temporarily hold
 # which's espeak path to test if it's there to give to the ESPEAK constant.
 ESPEAK = ((_=`which espeak 2> /dev/null`.strip) and (_!='') ? _ : nil)
 
 # If the system has espeak,
-# says wut, else puts wut.
+# espeak wut, else puts wut.
 def says(wut)
   if ESPEAK
     spawn(ESPEAK, wut)
@@ -20,6 +20,21 @@ config = {
     set_window_position: :center,
   }
 }
+
+def Gtk3App.logo_press_event(button)
+  dialog = Such::MessageDialog.new
+  # dialog is transient for main window
+  Gtk3App.transient dialog
+  case button
+  when 1
+    message = "Mouse button 1 on logo!"
+  when 2
+    message = "Mouse button 2 on logo!"
+  end
+  dialog.set_text message
+  dialog.run
+  dialog.destroy
+end
 
 Gtk3App.run(config:config) do |container, toolbar|
   hbox = Such::Box.new toolbar, [:horizontal]

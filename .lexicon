@@ -1,4 +1,3 @@
-_
 _1
 a0
 about
@@ -81,12 +80,12 @@ label
 Label
 logo
 Logo
+logo_press_event
 LogoSize
 main
 MAIN
 main_quit
 Menu
-menu_item
 MenuItem
 merge
 message
@@ -163,6 +162,7 @@ version
 VERSION
 vertical
 w
+widget
 Widget
 window
 Window
