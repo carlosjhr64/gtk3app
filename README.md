@@ -31,7 +31,6 @@ require 'gtk3app'
 Gtk3App.run do |container, toolbar, options|
   # add stuff to container and toolbar 
 end
-#=> nil
 ```
 
 That's enough to get you going.

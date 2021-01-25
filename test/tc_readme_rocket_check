@@ -61,6 +61,12 @@ def step_thru_script(fh=$stdin)
     yield line_number, line.lstrip.chomp, expected, actual, script
     script = ''
   end
+  unless script==''
+    IO.popen('ruby -c','w') do |io|
+      io.puts script
+    end
+    assert_equal 0, $?.exitstatus
+  end
 end
 
 class TestReadmeRocketTest < Test::Unit::TestCase
