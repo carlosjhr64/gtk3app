@@ -7,9 +7,9 @@ class TestUserSpace < Test::Unit::TestCase
   # Presumably, the examples have be run.
   # Going to test the XDG files are as expected.
   def test_user_space
-    data   = UserSpace::XDG['data'].to_s
-    config = UserSpace::XDG['config'].to_s
-    cache  = UserSpace::XDG['cache'].to_s
+    data   = UserSpace::XDG['data']
+    config = UserSpace::XDG['config']
+    cache  = UserSpace::XDG['cache']
 
     assert File.exist?(data),   data
     assert File.exist?(config), config
@@ -31,32 +31,23 @@ class TestUserSpace < Test::Unit::TestCase
     assert_equal '665f1555c9ee858c683136881a312004',
       `md5sum '#{file}'`.strip.split(/\s+/).first
 
-# TODO:
-=begin
     [data,config,cache].each do |dir|
-      # Note that SimpleApp does not trigger UserSpace
-      ['intermediateapp','expertapp'].each do |x|
+      # Currently, only expert triggers xdg files:
+      ['expert'].each do |x|
         xdir = File.join dir, x
         assert File.exist?(xdir), xdir
         case dir
         when data
-          file = File.join xdir, 'VERSION'
+          file = File.join xdir, 'logo.png'
           assert File.exist?(file), file
-          assert_equal Gtk3App::VERSION, File.read(file).strip
         when config
-          file = File.join xdir, configfilename
+          # Examples should be be version "1.2.3"
+          # Build changes should not alter config.
+          file = File.join xdir, 'config-1.2.rbon'
+          $stderr.puts file
           assert File.exist?(file), file
-          case x
-          when 'intermediateapp'
-            assert_equal 'd9a4f8de2f9a0f0e0f7ce97fb1271421',
-              `md5sum '#{file}'`.strip.split(/\s+/).first
-          when 'expertapp'
-            assert_equal 'f38b9efd0306b2577017ae3abfbaa092',
-              `md5sum '#{file}'`.strip.split(/\s+/).first
-          end
         end
       end
     end
-=end
   end
 end

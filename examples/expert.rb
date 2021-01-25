@@ -10,7 +10,7 @@ class Expert
       --notfour     \tDont show button four
   HELP
 
-  VERSION = '1.0.0'
+  VERSION = '1.2.3'
 
   CONFIG = {
     main: { # Main Window

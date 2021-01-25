@@ -12,7 +12,7 @@ Options:
   --notdecorated\tDont decorate window
   --notfour     \tDont show button four
 HELP
-VERSION = '1.0.0'
+VERSION = '1.2.3'
 
 ESPEAK = ((_=`which espeak 2> /dev/null`.strip) and (_!='') ? _ : nil)
 
