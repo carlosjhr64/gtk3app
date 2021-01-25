@@ -75,8 +75,11 @@ class Expert
   end
 end
 
-
-# Just pass your app's Class
+# Just pass your app's Class to Gtk3App.run.
+# Gtk3App will automatically maintain XDG files via UserSpace:
+#   config => ~/.config/gtk3app/expert/
+#   cache  => ~/.cache/gtk3app/expert/
+#   data   => ~/.local/share/gtk3app/expert/
 Gtk3App.run(klass:Expert)
 
 exit # Ensure a clean exit
