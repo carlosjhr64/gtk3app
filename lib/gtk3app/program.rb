@@ -1,10 +1,11 @@
 module Gtk3App
 class << self
-  # Gtk2App.run(appdir:String?, appname:String?, version:String?, config:Hash?, klass:(Class | Module)?)
+  # Gtk2App.run(version:String?, help:String?, klass:(Class | Module)?), appdir:String?, appname:String?, config:Hash?)
   def run(**kw)
-    @options = get_options(klass=kw[:klass])
-    kw[:appdir] = UserSpace.appdir unless kw[:appdir]
-    install(**kw)
+    kw[:appdir] ||= UserSpace.appdir
+    ensure_keywords(kw)
+    @options = HelpParser[kw[:version], kw[:help]]
+    install(kw)
 
     Such::Thing.configure CONFIG
     @main    = Such::Window.new  :main!, 'delete-event' do quit! end
@@ -28,26 +29,47 @@ class << self
     @stage   = Such::Expander.new vbox, :stage!
     @toolbar = Such::Expander.new hbox, :toolbar!
 
-    if klass
-      klass.new @stage, @toolbar, @options
-    else
-      yield @stage, @toolbar, @options
-    end
+    kw[:klass]&.new(@stage, @toolbar, @options) or yield(@stage, @toolbar, @options)
 
     @minime = @fs = false
     @main.show_all
     Gtk.main
   end
 
-  def get_options(klass)
-    help = version = nil
-    if klass
-      help    = klass::HELP    if defined? klass::HELP
-      version = klass::VERSION if defined? klass::VERSION
+  def raise_argument_error(kw)
+    $stderr.puts 'Expected Signature:'
+    $stderr.puts '  Gtk3App.run(version:String?, help:String?, :klass:Class?, appdir:String?, :appname:String? config:Hash?)'
+    raise ArgumentError, kw.inspect
+  end
+
+  def ensure_keywords(kw)
+    keys = [:version, :help, :klass, :appdir, :appname, :config]
+    raise_argument_error(kw) if kw.keys.any?{not keys.include?_1}
+    klass = kw[:klass]
+
+    unless kw[:version]
+      if klass and defined? klass::VERSION
+        kw[:version] = klass::VERSION
+      else
+        kw[:version] = (defined? ::VERSION)? ::VERSION : VERSION
+      end
     end
-    help    ||= (defined? ::HELP)?    ::HELP    : HELP
-    version ||= (defined? ::VERSION)? ::VERSION : VERSION
-    HelpParser[version, help]
+
+    unless kw[:help]
+      if klass and defined? klass::HELP
+        kw[:help] = klass::HELP
+      else
+        kw[:help] = (defined? ::HELP)? ::HELP : HELP
+      end
+    end
+
+    kw[:appname] ||= klass&.name&.downcase || File.basename($0)
+
+    unless kw[:config]
+      if klass and defined? klass::CONFIG
+        kw[:config] = klass::CONFIG
+      end
+    end
   end
 
   def transient(window)
@@ -118,34 +140,17 @@ class << self
     @finalize = block
   end
 
-  def raise_argument_error
-    $stderr.puts 'Expected Signatures:'
-    $stderr.puts '  Gtk3App.run'
-    $stderr.puts '  Gtk3App.run(config:Hash)'
-    $stderr.puts '  Gtk3App.run(appname:String, version:String, config:Hash, appdir:String?)'
-    $stderr.puts '  Gtk3App.run(klass:(Class|Module), appdir:String?)'
-    $stderr.puts 'Defaults appdir to UserSpace.appdir.'
-    $stderr.puts "Got: #{kw.inspect}."
-    raise ArgumentError
-  end
 
   using Rafini::String
-  def install(**kw)
-    keys = [:klass,:appdir,:appname,:version,:config]
-    raise_argument_error if kw.keys.any?{not keys.include?_1}
-    if klass=kw[:klass]
-      kw[:appname] ||= klass.name.downcase
-      kw[:version] ||= klass::VERSION
-      kw[:config]  ||= klass::CONFIG
-    end
-    raise_argument_error if keys[2..-2].any?{kw[_1]} and not keys[1..-1].all?{kw[_1]}
-
+  def install(kw)
     stub = UserSpace.new parser:RBON,
                          appname:'gtk3app',
                          config:"config-#{VERSION.semantic(0..1)}"
     stub.configures CONFIG
 
-    if keys[1..-1].all?{kw[_1]}
+    # :klass and :config flags user wants xdg maintainance.
+    # :appname, :appdir, and :version are sanity checks.
+    if [:klass,:config,:appname,:appdir,:version].all?{kw[_1]}
       app = UserSpace.new parser:RBON,
                           # Will be a subdirectory in gtk3app:
                           appname:"gtk3app/#{kw[:appname]}",

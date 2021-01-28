@@ -1,14 +1,14 @@
 Gem::Specification.new do |s|
 
   s.name     = 'gtk3app'
-  s.version  = '4.0.210125'
+  s.version  = '4.0.210128'
 
   s.homepage = 'https://github.com/carlosjhr64/gtk3app'
 
   s.author   = 'carlosjhr64'
   s.email    = 'carlosjhr64@gmail.com'
 
-  s.date     = '2021-01-25'
+  s.date     = '2021-01-28'
   s.licenses = ['MIT']
 
   s.description = <<DESCRIPTION

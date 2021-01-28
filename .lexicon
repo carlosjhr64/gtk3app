@@ -26,6 +26,7 @@ BUTTON_PRESS_MASK
 call
 CANCEL
 child
+Class
 config
 CONFIG
 configure
@@ -37,6 +38,7 @@ Dialog
 downcase
 e
 Empty
+ensure_keywords
 EventBox
 EventImage
 EventMask
@@ -51,7 +53,6 @@ FS
 fullscreen
 Gdk
 GdkPixbuf
-get_options
 Gtk
 Gtk3App
 h0

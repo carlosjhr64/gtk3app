@@ -11,7 +11,7 @@ Such::Things.in Gtk::Widget
 
 # This Gem
 module Gtk3App
-  VERSION = '4.0.210125'
+  VERSION = '4.0.210128'
 
   require 'gtk3app/config'
   require 'gtk3app/widgets'

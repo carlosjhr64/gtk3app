@@ -1,0 +1,72 @@
+#! ruby
+require 'test/unit'
+require 'gtk3app'
+
+HELP = 'Nooo.'
+
+class A
+end
+
+class B
+  HELP    = 'OK'
+  VERSION = '1.2.3'
+  CONFIG  = 'Config'
+end
+
+class TestMore < Test::Unit::TestCase
+  def test_argument_error
+    # Direct raise_argument_error
+    error = assert_raises ArgumentError do
+      kw = {caca: 'huates'}
+      Gtk3App.raise_argument_error(kw)
+    end
+    assert_equal '{:caca=>"huates"}', error.message
+    # Indirect ensure_keywords --> raise_argument_error
+    error = assert_raises ArgumentError do
+      kw = {caca: 'huates'}
+      Gtk3App.ensure_keywords(kw)
+    end
+    assert_equal '{:caca=>"huates"}', error.message
+  end
+
+  def test_ensure_keywords
+    kw = {}
+    Gtk3App.ensure_keywords kw
+    defaults = {
+      appname: 'tc_more', # File.basename $0
+      version: Gtk3App::VERSION,
+      help:    'Nooo.',
+    }
+    assert_equal defaults, kw
+
+    kw = {help: 'Sure'}
+    Gtk3App.ensure_keywords kw
+    defaults = {
+      appname: 'tc_more', # File.basename $0
+      version: Gtk3App::VERSION,
+      help:    'Sure',
+    }
+    assert_equal defaults, kw
+
+    kw = {klass:A}
+    Gtk3App.ensure_keywords kw
+    expected = {
+      klass:   A,
+      appname: 'a',
+      version: Gtk3App::VERSION,
+      help:    'Nooo.',
+    }
+    assert_equal expected, kw
+
+    kw = {klass:B}
+    Gtk3App.ensure_keywords kw
+    expected = {
+      klass:   B,
+      appname: 'b',
+      version: '1.2.3',
+      help:    'OK',
+      config:  'Config',
+    }
+    assert_equal expected, kw
+  end
+end
