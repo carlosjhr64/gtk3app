@@ -5,13 +5,14 @@ using Rafini::String
 
 class TestConfig < Test::Unit::TestCase
   def test_config
-    assert_equal Hash, Gtk3App::CONFIG.class
+    assert_equal Proc, Gtk3App::CONFIG.class
+    assert_equal Hash, Gtk3App::CONFIG.to_h.class
 
     gopen = Gtk3App::CONFIG[:Open]
     assert_equal 'xdg-open', gopen
     assert system("which #{gopen}")
 
-    cnf = Gtk3App::CONFIG
+    cnf = Gtk3App::CONFIG.to_h
     # Checking that our bangs! are all there.
     ['main!',
      'stage!','toolbar!',

@@ -28,7 +28,7 @@ class TestUserSpace < Test::Unit::TestCase
     file = File.join config, configfilename
     assert File.exist?(file), file
     # If anything changes the config file, want to know about it!
-    assert_equal '665f1555c9ee858c683136881a312004',
+    assert_equal '66b06a294ba411e7db8824e442a0b98c',
       `md5sum '#{file}'`.strip.split(/\s+/).first
 
     [data,config,cache].each do |dir|

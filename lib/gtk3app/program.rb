@@ -7,15 +7,15 @@ class << self
     @options = HelpParser[kw[:version], kw[:help]]
     install(kw)
 
-    Such::Thing.configure CONFIG
+    Such::Thing.configure @@CONFIG
     @main    = Such::Window.new  :main!, 'delete-event' do quit! end
     @main.set_decorated false if @options.notdecorated
 
     vbox     = Such::Box.new     @main,  [:vertical]
     hbox     = Such::Box.new      vbox,  [:horizontal]
 
-    size    = CONFIG[:LogoSize]
-    @pixbuf = GdkPixbuf::Pixbuf.new(file:CONFIG[:Logo]).scale(size,size)
+    size    = @@CONFIG[:LogoSize]
+    @pixbuf = GdkPixbuf::Pixbuf.new(file: @@CONFIG[:Logo]).scale(size,size)
     logo    = Gtk3App::EventImage.new hbox, [pixbuf:@pixbuf]
     Gtk3App::AppMenu.new(logo, :app_menu!) do |widget,*e,signal|
       case signal
@@ -94,7 +94,7 @@ class << self
   end
 
   def help!
-    system "#{CONFIG[:Open]} '#{CONFIG[:HelpFile]}'"
+    system(@@CONFIG[:Open], @@CONFIG[:HelpFile])
   end
 
   def minime!
@@ -146,7 +146,7 @@ class << self
     stub = UserSpace.new parser:RBON,
                          appname:'gtk3app',
                          config:"config-#{VERSION.semantic(0..1)}"
-    stub.configures CONFIG
+    stub.configures @@CONFIG
 
     # :klass and :config flags user wants xdg maintainance.
     # :appname, :appdir, and :version are sanity checks.
@@ -158,7 +158,17 @@ class << self
                           config:"config-#{kw[:version].semantic(0..1)}"
       app.configures kw[:config]
     end
-    CONFIG.merge! kw[:config] if kw[:config]
+    # Pad-up klass::CONFIG and switch to it:
+    if cfg = kw[:config]
+      @@CONFIG.each do |k,v|
+        if cfg.key? k
+          $stderr.puts "Overriding Gtk3App::CONFIG[#{k}]" if $VERBOSE
+        else
+          cfg[k]=v
+        end
+      end
+      @@CONFIG = cfg
+    end
   end
 end
 end

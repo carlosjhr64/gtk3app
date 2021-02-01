@@ -16,7 +16,7 @@ module Gtk3App
   # * Hashes are all lower case.
   # * Lower case bang! keys have special meaning in Such.
   # * Note that method keys may have mixed case as the method itself.
-  CONFIG = {
+  @@CONFIG = {
     # Application SHOULD modify LOGO to use it's own logo image.
     Logo: "#{UserSpace::XDG['data']}/gtk3app/logo.png",
     # Scale logo to this size.
@@ -103,4 +103,6 @@ module Gtk3App
     # s0 tells AppMenu not to connect to any signal, otherwise it assumes "clicked".
     app_menu!: [:APP_MENU, :app_menu, s0],
   }
+  CONFIG = lambda{|k| @@CONFIG[k]}
+  def CONFIG.to_h = @@CONFIG
 end

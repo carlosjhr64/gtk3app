@@ -25,6 +25,7 @@ button
 BUTTON_PRESS_MASK
 call
 CANCEL
+cfg
 child
 Class
 config
@@ -37,6 +38,7 @@ dialog
 Dialog
 downcase
 e
+each
 Empty
 ensure_keywords
 EventBox
@@ -71,12 +73,14 @@ initialize
 inspect
 install
 item
+k
 key
 keys
 klass
 kw
 label
 Label
+lambda
 logo
 Logo
 logo_press_event
@@ -86,7 +90,6 @@ MAIN
 main_quit
 Menu
 MenuItem
-merge
 message
 MessageDialog
 minime
@@ -151,6 +154,7 @@ system
 text
 Thing
 Things
+to_h
 toolbar
 TOOLBAR
 transient
@@ -159,6 +163,7 @@ unfullscreen
 ursure
 UserSpace
 using
+v
 vbox
 version
 VERSION
