@@ -106,6 +106,10 @@ class << self
       end
       @stage.set_expanded true
       @toolbar.set_expanded true
+      if @options.minime?
+        @stage.show
+        @toolbar.show
+      end
     else
       @minime = true
       unless @options.notoggle
@@ -114,6 +118,10 @@ class << self
       end
       @stage.set_expanded false
       @toolbar.set_expanded false
+      if @options.minime?
+        @stage.hide
+        @toolbar.hide
+      end
       @main.resize 1,1
     end
   end

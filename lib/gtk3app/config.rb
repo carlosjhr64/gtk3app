@@ -6,8 +6,9 @@ module Gtk3App
     Usage:
       #{File.basename $0} [:options+]
     Options:
-      --notoggle    	Minime wont toggle decorated and keep above
-      --notdecorated	Dont decorate window
+      --minime      \tReal minime
+      --notoggle    \tMinime wont toggle decorated and keep above
+      --notdecorated\tDont decorate window
   HELP
 
   # CONFIG follows the following conventions:
