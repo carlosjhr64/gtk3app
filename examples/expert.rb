@@ -5,6 +5,7 @@ class Expert
     Usage:
       #{File.basename $0} [:options+]
     Options:
+      --minime      \tReal minime
       --notoggle    \tMinime wont toggle decorated and keep above
       --notdecorated\tDont decorate window
       --notfour     \tDont show button four
