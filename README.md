@@ -46,6 +46,11 @@ directory fully explains the rest of what Gtk3App can do for you.
 * default application menu
 * minime window
 
+## EXEMPLAR:
+
+* [gtk2passwordapp](https://github.com/carlosjhr64/gtk2passwordapp)
+
+![demo](examples/demo.png)
 
 ## LICENSE:
 
