@@ -18,7 +18,7 @@ The other for your main stage area.
 
 ## INSTALL:
 
-```shell
+```console
 $ sudo gem install gtk3app
 ```
 
