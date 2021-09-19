@@ -11,7 +11,7 @@ Such::Things.in Gtk::Widget
 
 # This Gem
 module Gtk3App
-  VERSION = '5.2.210918'
+  VERSION = '5.3.210919'
 
   require 'gtk3app/config'
   require 'gtk3app/widgets'

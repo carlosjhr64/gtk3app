@@ -20,6 +20,7 @@ ArgumentError
 attr_accessor
 basename
 block
+block_given
 Box
 button
 BUTTON_PRESS_MASK

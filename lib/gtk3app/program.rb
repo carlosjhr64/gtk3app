@@ -1,6 +1,6 @@
 module Gtk3App
 class << self
-  # Gtk2App.run(version:String?, help:String?, klass:(Class | Module)?), appdir:String?, appname:String?, config:Hash?)
+  # Gtk3App.run(version:String?, help:String?, klass:(Class | Module)?), appdir:String?, appname:String?, config:Hash?)
   def run(**kw)
     kw[:appdir] ||= UserSpace.appdir
     ensure_keywords(kw)
@@ -29,7 +29,11 @@ class << self
     @stage   = Such::Expander.new vbox, :stage!
     @toolbar = Such::Expander.new hbox, :toolbar!
 
-    kw[:klass]&.new(@stage, @toolbar, @options) or yield(@stage, @toolbar, @options)
+    if block_given?
+      yield(@stage, @toolbar, @options)
+    else
+      kw[:klass]&.new(@stage, @toolbar, @options)
+    end
 
     @minime = @fs = false
     @main.show_all
