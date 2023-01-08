@@ -8,7 +8,7 @@
 
 ## DESCRIPTION:
 
-Gtk3App provides a
+`Gtk3App` provides a
 [Ruby Gnome Gtk3](https://rubygems.org/gems/gtk3)
 application stub.
 
@@ -17,13 +17,10 @@ One for a horizontal toolbar.
 The other for your main stage area.
 
 ## INSTALL:
-
 ```console
 $ sudo gem install gtk3app
 ```
-
 ## SYNOPSIS:
-
 ```ruby
 require 'gtk3app'
 # Expander = Such::Expander < Gtk::Expander
@@ -32,10 +29,9 @@ Gtk3App.run do |stage, toolbar, options|
   # add stuff to stage and toolbar 
 end
 ```
-
 That's enough to get you going.
 The three examples in the [./examples](https://github.com/carlosjhr64/gtk3app/tree/master/examples)
-directory fully explains the rest of what Gtk3App can do for you.
+directory fully explains the rest of what `Gtk3App` can do for you.
 
 ## FEATURES:
 
