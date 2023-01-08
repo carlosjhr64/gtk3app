@@ -47,4 +47,9 @@ class TestConfig < Test::Unit::TestCase
     # sanity check
     assert_equal Gtk3App::VERSION.semantic(0..1), cnf[:about_dialog][:set_version]
   end
+
+  def test_such_convention
+    e = Such::Convention.validate Gtk3App::CONFIG.to_h
+    assert_nil e
+  end
 end
