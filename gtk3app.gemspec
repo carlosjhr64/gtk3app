@@ -1,14 +1,14 @@
 Gem::Specification.new do |s|
 
   s.name     = 'gtk3app'
-  s.version  = '5.3.210919'
+  s.version  = '5.3.230108'
 
   s.homepage = 'https://github.com/carlosjhr64/gtk3app'
 
   s.author   = 'CarlosJHR64'
   s.email    = 'carlosjhr64@gmail.com'
 
-  s.date     = '2021-09-19'
+  s.date     = '2023-01-08'
   s.licenses = ['MIT']
 
   s.description = <<DESCRIPTION
@@ -43,6 +43,6 @@ lib/gtk3app/widgets.rb
   s.add_runtime_dependency 'rbon', '~> 0.2', '>= 0.2.210125'
   s.add_runtime_dependency 'gtk3', '~> 3.4', '>= 3.4.9'
   s.add_runtime_dependency 'such', '~> 2.0', '>= 2.0.210201'
-  s.requirements << 'ruby: ruby 3.0.2p107 (2021-07-07 revision 0db68f0233) [x86_64-linux]'
+  s.requirements << 'ruby: ruby 3.2.0 (2022-12-25 revision a528908271) [aarch64-linux]'
 
 end

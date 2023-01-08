@@ -1,6 +1,6 @@
 # Gtk3App
 
-* [VERSION 5.3.210919](https://github.com/carlosjhr64/gtk3app/releases)
+* [VERSION 5.3.230108](https://github.com/carlosjhr64/gtk3app/releases)
 * [github](https://www.github.com/carlosjhr64/gtk3app)
 * [rubygems](https://rubygems.org/gems/gtk3app)
 
@@ -56,7 +56,7 @@ directory fully explains the rest of what Gtk3App can do for you.
 
 * The MIT License
 
-Copyright (c) 2021 CarlosJHR64
+Copyright (c) 2023 CarlosJHR64
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

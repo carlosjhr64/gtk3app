@@ -124,7 +124,7 @@ require
 resize
 response
 ResponseType
-Ruby30
+Ruby32
 run
 s0
 scale

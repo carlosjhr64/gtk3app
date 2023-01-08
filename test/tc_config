@@ -36,7 +36,7 @@ class TestConfig < Test::Unit::TestCase
       when /^[a-z_]+$/
         assert_equal Hash, v.class
       when /^[a-zA-Z]+$/
-        assert((v.class==String) || (v.class==Fixnum))
+        assert((v.class==String) || (v.class==Integer))
       when /^\w+\!$/
         assert_equal Array, v.class
       else
