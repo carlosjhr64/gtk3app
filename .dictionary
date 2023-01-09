@@ -3,6 +3,7 @@ ahmad
 app
 appdir
 app
+appmenu
 AppMenu
 APP
 appname
@@ -45,6 +46,8 @@ gui
 hbox
 HelpFile
 HelpParser
+ie
+keyval
 klass
 kw
 LogoSize
@@ -62,6 +65,7 @@ org
 pixbuf
 Pixbuf
 png
+popup
 popup
 popup
 ursure

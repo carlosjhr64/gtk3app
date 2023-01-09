@@ -1,3 +1,4 @@
+_
 _1
 a0
 about
@@ -56,6 +57,7 @@ FS
 fullscreen
 Gdk
 GdkPixbuf
+Gravity
 Gtk
 Gtk3App
 h0
@@ -78,6 +80,7 @@ item
 k
 key
 keys
+keyval
 klass
 kw
 label
@@ -98,6 +101,7 @@ minime
 MINIME
 name
 new
+NORTH_WEST
 notdecorated
 notoggle
 ok
@@ -109,6 +113,7 @@ parser
 pixbuf
 Pixbuf
 popup_at_pointer
+popup_at_widget
 puts
 quit
 QUIT
