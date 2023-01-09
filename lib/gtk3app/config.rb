@@ -11,10 +11,10 @@ module Gtk3App
       --notdecorated\tDont decorate window
   HELP
 
-  # CONFIG follows the following conventions:
+  # See Such::Convention. Summary:
   # * Strings and numbers are mixed case.
-  # * Arrays are all upper case (may except for arrays of length 1, see Such).
-  # * Hashes are all lower case.
+  # * Arrays are upper case.
+  # * Hashes are lower case.
   # * Lower case bang! keys have special meaning in Such.
   # * Note that method keys may have mixed case as the method itself.
   @@CONFIG = {
@@ -56,7 +56,7 @@ module Gtk3App
     about_dialog: {
       set_program_name: 'Gtk3App',
       set_version: VERSION.semantic(0..1),
-      set_copyright: '(c) 2021 CarlosJHR64',
+      set_copyright: '(c) 2023 CarlosJHR64',
       set_comments: 'A Gtk3 Application Stub',
       set_website: 'https://github.com/carlosjhr64/gtk3app',
       set_website_label: 'See it at GitHub!',
