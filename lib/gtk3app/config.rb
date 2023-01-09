@@ -29,7 +29,7 @@ module Gtk3App
     # Main window configuration
     MAIN: a0, # Window.new's parameters
     main: h0, # window settings
-    main!: [:MAIN,:main],
+    main!: [:MAIN,:main,'key-press-event','delete-event'],
 
     # Expander stage configuration
     STAGE: a0,
@@ -103,6 +103,8 @@ module Gtk3App
     },
     # s0 tells AppMenu not to connect to any signal, otherwise it assumes "clicked".
     app_menu!: [:APP_MENU, :app_menu, s0],
+    # AppMenu key-binding(ie F1=65470)
+    AppMenu: 65470,
   }
   CONFIG = lambda{|k| @@CONFIG[k]}
   def CONFIG.to_h = @@CONFIG

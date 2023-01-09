@@ -1,6 +1,6 @@
 # Gtk3App
 
-* [VERSION 5.3.230109](https://github.com/carlosjhr64/gtk3app/releases)
+* [VERSION 5.4.230109](https://github.com/carlosjhr64/gtk3app/releases)
 * [github](https://www.github.com/carlosjhr64/gtk3app)
 * [rubygems](https://rubygems.org/gems/gtk3app)
 

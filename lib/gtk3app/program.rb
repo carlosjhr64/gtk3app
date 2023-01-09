@@ -11,16 +11,26 @@ class << self
     install(kw)
 
     Such::Thing.configure @@CONFIG
-    @main    = Such::Window.new  :main!, 'delete-event' do quit! end
+    @main = Such::Window.new :main! do |*_,e,signal|
+      case signal
+      when 'key-press-event'
+        if e.keyval==@@CONFIG[:AppMenu]
+          @appmenu.popup_at_widget @logo,
+          Gdk::Gravity::NORTH_WEST,Gdk::Gravity::NORTH_WEST
+        end
+      when 'delete-event'
+        quit!
+      end
+    end
     @main.set_decorated false if @options.notdecorated
 
-    vbox     = Such::Box.new     @main,  [:vertical]
-    hbox     = Such::Box.new      vbox,  [:horizontal]
+    vbox = Such::Box.new @main, [:vertical]
+    hbox = Such::Box.new vbox,  [:horizontal]
 
-    size    = @@CONFIG[:LogoSize]
-    @pixbuf = GdkPixbuf::Pixbuf.new(file: @@CONFIG[:Logo]).scale(size,size)
-    logo    = Gtk3App::EventImage.new hbox, [pixbuf:@pixbuf]
-    Gtk3App::AppMenu.new(logo, :app_menu!) do |widget,*e,signal|
+    size     = @@CONFIG[:LogoSize]
+    @pixbuf  = GdkPixbuf::Pixbuf.new(file: @@CONFIG[:Logo]).scale(size,size)
+    @logo    = Gtk3App::EventImage.new hbox, [pixbuf:@pixbuf]
+    @appmenu = Gtk3App::AppMenu.new(@logo, :app_menu!) do |widget,*e,signal|
       case signal
       when 'activate'
         send widget.key

@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
 
   s.name     = 'gtk3app'
-  s.version  = '5.3.230109'
+  s.version  = '5.4.230109'
 
   s.homepage = 'https://github.com/carlosjhr64/gtk3app'
 
