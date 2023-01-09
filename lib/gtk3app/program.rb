@@ -1,7 +1,10 @@
 module Gtk3App
 class << self
-  # Gtk3App.run(version:String?, help:String?, klass:(Class | Module)?), appdir:String?, appname:String?, config:Hash?)
+  # Gtk3App.run(version:String?, help:String?,
+  #             klass:(Class | Module)?), appdir:String?, appname:String?,
+  #             config:Hash?)
   def run(**kw)
+    # :appdir must be evaluated here, else breaks UserSpace's heuristics
     kw[:appdir] ||= UserSpace.appdir
     ensure_keywords(kw)
     @options = HelpParser[kw[:version], kw[:help]]
@@ -41,39 +44,25 @@ class << self
   end
 
   def raise_argument_error(kw)
-    $stderr.puts 'Expected Signature:'
-    $stderr.puts '  Gtk3App.run(version:String?, help:String?, :klass:Class?, appdir:String?, :appname:String? config:Hash?)'
+    $stderr.puts <<~SIGNATURE
+      Expected Signature:
+        Gtk3App.run(version:String?, help:String?,
+                    klass:Class?, appdir:String?, :appname:String?
+                    config:Hash?)
+    SIGNATURE
     raise ArgumentError, kw.inspect
   end
 
   def ensure_keywords(kw)
-    keys = [:version, :help, :klass, :appdir, :appname, :config]
-    raise_argument_error(kw) if kw.keys.any?{not keys.include?_1}
+    raise_argument_error(kw) if
+    kw.keys.any?{![:version,:help,:klass,:appdir,:appname,:config].include?_1}
     klass = kw[:klass]
-
-    unless kw[:version]
-      if klass and defined? klass::VERSION
-        kw[:version] = klass::VERSION
-      else
-        kw[:version] = (defined? ::VERSION)? ::VERSION : VERSION
-      end
-    end
-
-    unless kw[:help]
-      if klass and defined? klass::HELP
-        kw[:help] = klass::HELP
-      else
-        kw[:help] = (defined? ::HELP)? ::HELP : HELP
-      end
-    end
-
+    kw[:version] ||= (klass and defined? klass::VERSION)?
+                     klass::VERSION : (defined? ::VERSION)? ::VERSION : VERSION
+    kw[:help]    ||= (klass and defined? klass::HELP)?
+                     klass::HELP : (defined? ::HELP)? ::HELP : HELP
     kw[:appname] ||= klass&.name&.downcase || File.basename($0)
-
-    unless kw[:config]
-      if klass and defined? klass::CONFIG
-        kw[:config] = klass::CONFIG
-      end
-    end
+    kw[:config]  ||= klass::CONFIG if klass and defined? klass::CONFIG
   end
 
   def transient(window)
