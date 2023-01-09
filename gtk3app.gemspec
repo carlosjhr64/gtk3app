@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.licenses = ['MIT']
 
   s.description = <<DESCRIPTION
-Gtk3App provides a
+`Gtk3App` provides a
 [Ruby Gnome Gtk3](https://rubygems.org/gems/gtk3)
 application stub.
 
@@ -22,7 +22,7 @@ The other for your main stage area.
 DESCRIPTION
 
   s.summary = <<SUMMARY
-Gtk3App provides a
+`Gtk3App` provides a
 [Ruby Gnome Gtk3](https://rubygems.org/gems/gtk3)
 application stub.
 SUMMARY
@@ -37,12 +37,12 @@ lib/gtk3app/program.rb
 lib/gtk3app/widgets.rb
   )
 
-  s.add_runtime_dependency 'help_parser', '~> 8.0', '>= 8.0.210917'
-  s.add_runtime_dependency 'user_space', '~> 5.1', '>= 5.1.210201'
-  s.add_runtime_dependency 'rafini', '~> 3.0', '>= 3.0.210112'
-  s.add_runtime_dependency 'rbon', '~> 0.2', '>= 0.2.210125'
-  s.add_runtime_dependency 'gtk3', '~> 3.4', '>= 3.4.9'
-  s.add_runtime_dependency 'such', '~> 2.0', '>= 2.0.210201'
+  s.add_runtime_dependency 'help_parser', '~> 8.1', '>= 8.1.221206'
+  s.add_runtime_dependency 'user_space', '~> 5.2', '>= 5.2.230101'
+  s.add_runtime_dependency 'rafini', '~> 3.2', '>= 3.2.221213'
+  s.add_runtime_dependency 'rbon', '~> 0.2', '>= 0.2.221217'
+  s.add_runtime_dependency 'gtk3', '~> 4.0', '>= 4.0.5'
+  s.add_runtime_dependency 'such', '~> 2.1', '>= 2.1.230106'
   s.requirements << 'ruby: ruby 3.2.0 (2022-12-25 revision a528908271) [aarch64-linux]'
 
 end
