@@ -12,10 +12,10 @@ module Gtk3App
   end
 
   class AppMenu < Menu
-    def initialize(window, *par, &block)
+    def initialize(logo, *par, &block)
       @block = block
-      window.add_events(Gdk::EventMask::BUTTON_PRESS_MASK)
-      window.signal_connect('button_press_event') do |w,e|
+      logo.add_events(Gdk::EventMask::BUTTON_PRESS_MASK)
+      logo.signal_connect('button_press_event') do |w,e|
         if e.button == 3
           #self.popup(nil, nil, 3, e.time)
           self.popup_at_pointer #(nil, nil, 3, e.time)
